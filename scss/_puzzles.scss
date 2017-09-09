@@ -19,10 +19,14 @@
 	
 }
 .puzzle{
+	@include flex;
+	flex-wrap: wrap;
 	width: 100vw;
 	height: 100vw;
 	margin-bottom: 1%;
-	background-color: gainsboro;
+	border: 1px solid rgba(#000, .2);
+	// background-image: url(../img/bermeer/bermeer-big.jpg);
+	// background-size: cover;
 	@media(min-width: 480px){
 		width: 49vw;
 		height: 49vw;
@@ -30,4 +34,57 @@
 		max-height: 595px;
 		margin-bottom: 0;
 	}
+}
+
+.puzzle_1_item,
+.puzzle_2_item{
+	width: 33.33%;
+	height: 33.33%;
+	border: 1px solid rgba(#000, .2);
+}
+
+
+#puzzle_1 div:nth-child(1){
+	background-image: url(../img/bermeer/bermeer-5.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(2){
+	background-image: url(../img/bermeer/bermeer-7.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(3){
+	background-image: url(../img/bermeer/bermeer-4.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(4){
+	background-image: url(../img/bermeer/bermeer-6.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(5){
+	background-image: url(../img/bermeer/bermeer-1.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(6){
+	background-image: url(../img/bermeer/bermeer-2.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(7){
+	background-image: url(../img/bermeer/bermeer-3.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(8){
+	background-image: url(../img/bermeer/bermeer-9.jpg);
+	background-size: cover;
+}
+
+#puzzle_1 div:nth-child(9){
+	background-image: url(../img/bermeer/bermeer-8.jpg);
+	background-size: cover;
 }

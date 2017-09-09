@@ -162,10 +162,14 @@ textarea {
       margin-top: 0; } }
 
 .puzzle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   width: 100vw;
   height: 100vw;
   margin-bottom: 1%;
-  background-color: gainsboro; }
+  border: 1px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 480px) {
     .puzzle {
       width: 49vw;
@@ -173,6 +177,48 @@ textarea {
       max-width: 595px;
       max-height: 595px;
       margin-bottom: 0; } }
+
+.puzzle_1_item,
+.puzzle_2_item {
+  width: 33.33%;
+  height: 33.33%;
+  border: 1px solid rgba(0, 0, 0, 0.2); }
+
+#puzzle_1 div:nth-child(1) {
+  background-image: url(../img/bermeer/bermeer-5.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(2) {
+  background-image: url(../img/bermeer/bermeer-7.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(3) {
+  background-image: url(../img/bermeer/bermeer-4.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(4) {
+  background-image: url(../img/bermeer/bermeer-6.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(5) {
+  background-image: url(../img/bermeer/bermeer-1.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(6) {
+  background-image: url(../img/bermeer/bermeer-2.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(7) {
+  background-image: url(../img/bermeer/bermeer-3.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(8) {
+  background-image: url(../img/bermeer/bermeer-9.jpg);
+  background-size: cover; }
+
+#puzzle_1 div:nth-child(9) {
+  background-image: url(../img/bermeer/bermeer-8.jpg);
+  background-size: cover; }
 
 body {
   font-family: "Open Sans", sans-serif; }
@@ -194,7 +240,8 @@ input[type="button"] {
     background-color: #00c9b6; }
   input[type="button"]:active {
     transform: scale(0.96, 0.96);
-    box-shadow: 0 0 0  #fff; }
+    box-shadow: 0 0 0  #fff;
+    border-radius: 4px; }
 
 .container {
   width: 100%;
