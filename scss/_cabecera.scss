@@ -7,7 +7,7 @@
 }
 
 
-$anchura-li: 25px;
+$anchura-li: 30px;
 
 
 .header{
@@ -114,13 +114,19 @@ $anchura-li: 25px;
 			width: 130px;
 			font-size: 14px;
 			text-align: center;
+			// &:hover .ul-lista{
+			// 		height: 100px;
+				
+			// }
 		}
 		.ul-lista{
 			width: 100%;
-			height: $anchura-li * 3;
-			background: blue;
+			height: 0;
+			transition: all, .3s;
 			box-shadow: 0 5px 10px -4px #666;
-			display: none; // PROVISIONAL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			display: visible; // PROVISIONAL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			z-index: 10;
+			overflow: hidden;
 		
 		}
 		.li-lista{
@@ -130,6 +136,10 @@ $anchura-li: 25px;
 			background-color: #fff;
 			cursor: pointer;
 		}
+	}
+
+	.container-lista:hover .ul-lista{
+		height: $anchura-li * 3;
 	}
 
 	.slide{
