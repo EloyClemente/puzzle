@@ -31,7 +31,6 @@ $anchura-li: 25px;
 	font-family: Shrikhand;
 	font-size: 35px;
 	color: #d2b7ff;
-	// background: radial-gradient(#000 40%, #fff 50%);
 	text-shadow: 1px 1px 2px #000;
 	border-bottom: 1px solid rgba(#000, .2);
 	@media(min-width: 480px)
@@ -101,22 +100,6 @@ $anchura-li: 25px;
 	{
 		width: 50%;
 	}
-	// .container-select{
-	// 	@include flex;
-	// 	flex-wrap: wrap;
-	// 	width: 100px;
-	// 	height: 80px;	
-	// }
-
-	// .texto-select{
-	// 	width: 100%;
-	// 	padding-bottom: 5px;
-	// 	border-bottom: 1px solid rgba(#000, .2);
-	// }
-	// .input-select{
-	// 	width: 100%;
-	// }
-
 	.container-lista{
 		@include flex;
 		flex-wrap: wrap;
@@ -152,7 +135,7 @@ $anchura-li: 25px;
 	.slide{
 		width: 80px;
 		height: 80px;
-		margin-left: 5%;
+		margin-left: 10%;
 		background: lightsteelblue;
 		@media(min-width: 480px)
 		{
