@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+
+	<title></title>
+
+	<meta name="description" content=""/>
+	<meta name="keywords" content=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<!--Sitemap-->
+	<!-- <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml"/> -->
+	
+	<!--imagen .ico para la pestaña del navegador-->
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="#"/>  -->
+	<!-- Añadirla también en otro link en formato png a 16px x 16px para que se vea bien en los móviles -->
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="#"/>  -->
+
+	<!--Google Fonts. Siempre antes de la hoja de estilos para que funcione bien-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet"> 
+
+
+
+
+	<!-- El reset es importado desde el scss styles -->
+	<link rel="stylesheet" href="css/styles.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	
+
+</head>
+<body>
+
+	<div class="container">
+
+		<header class="header">
+
+		<h1 class="h1">PuzzleTron</h1>
+
+
+		<div class="container-radio">
+			
+		<!-- 	<div class="selectores"> -->
+				<p>Elige el número de piezas</p>
+				<div class="container-inputs">
+					<div class="item-input"><input type="radio" name="piezas"><p class="numero">9</p></div>
+					<div class="item-input"><input type="radio" name="piezas"><p class="numero">16</p></div>
+					<div class="item-input"><input type="radio" name="piezas"><p class="numero">25</p></div>
+				</div>
+				
+			<!-- </div> -->
+		</div>
+			
+		
+		<div class="container-slide">
+
+			<div class="container-lista">
+				<input type="button" class="elige-puzzle boton-01" value="Elige un puzzle">
+				<ul class="ul-lista">
+					<li class="li-lista">Paisaje</li>
+					<li class="li-lista">Bermeer</li>
+					<li class="li-lista">Catedral</li>
+				</ul>
+			</div>
+			
+			
+			<div class="slide"></div>
+		</div>
+
+		<div class="boton-menu">
+			<p>Menu</p>
+		</div>
+
+
+			
+		</header>
+			
+		<div class="container-puzzle">
+			<div id="puzzle_1" class="puzzle"></div>
+			<div id="puzzle_2" class="puzzle"></div>
+		</div>
+		
+
+
+
+	
+			
+
+
+	</div> <!-- container -->
+	
+<script src="js/main.js"></script>
+</body>
+</html>

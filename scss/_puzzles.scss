@@ -1,0 +1,33 @@
+
+@mixin flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container-puzzle{
+	@include flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: 1200px;
+	max-height: 600px;
+	margin-top: 50px;
+	@media(min-width: 480px){
+		margin-top: 0;
+	}
+	
+}
+.puzzle{
+	width: 100vw;
+	height: 100vw;
+	margin-bottom: 1%;
+	background-color: gainsboro;
+	@media(min-width: 480px){
+		width: 49vw;
+		height: 49vw;
+		max-width: 595px;
+		max-height: 595px;
+		margin-bottom: 0;
+	}
+}

@@ -1,0 +1,47 @@
+@import "reset";
+@import "botones";
+@import "cabecera";
+@import "puzzles";
+
+
+@mixin flex{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+
+body{
+	font-family: "Open Sans", sans-serif;
+}
+
+
+input[type="button"]{
+	@include boton-01( #009688);
+	
+}
+
+
+* {
+  // outline: 1px solid lightsteelblue; 
+}
+
+
+
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	height: 100vh;
+	margin-left: auto;
+	margin-right: auto; 
+	padding-left: 1%;
+	padding-right: 1%;
+	@media(min-width: 480px){
+		padding: 0;
+	}
+}
+
+
+
+
