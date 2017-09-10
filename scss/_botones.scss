@@ -13,7 +13,7 @@
 	color: #fff;
 	background-color: $bgColor;
 	box-shadow: 0 .1em .2em -.1em #666;
-	transition: all, .1s;
+	transition: all, .03s;
 	&:hover{
 		background-color: lighten($bgColor, 10%);
 	}
