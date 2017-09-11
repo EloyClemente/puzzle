@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 var container_origen  = document.getElementById('container_origen');
 var container_destino = document.getElementById('container_destino');
+var cantidad_casillas;
 var dificultad;
 
 
@@ -35,10 +36,12 @@ function identificar_radio_buttons()
 
 function obtener_data_radio_buttons(event)
 {
-	var cantidad_casillas = this.dataset.piezas;
+	cantidad_casillas = this.dataset.piezas;
 
 	crear_capas(cantidad_casillas);
 }
+
+
 
 
 
@@ -134,7 +137,7 @@ function obtener_dificultad(event) // "small", "medium", "big"
 
 function localizar_casillas(nombre_puzzle)
 {
-	for(var i=0; i<9; i++)
+	for(var i=0; i<cantidad_casillas; i++)
 	{
 		var casilla_ID = i + 1; // Sumo 1 para que coincida con el ID de la casilla
 		var casilla    = document.getElementById(casilla_ID);
