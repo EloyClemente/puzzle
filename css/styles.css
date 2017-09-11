@@ -329,6 +329,9 @@ textarea {
   width: 20%;
   height: 20%; }
 
+.container-puzzle img {
+  width: 100%; }
+
 #outline {
   position: absolute;
   top: 97vh;

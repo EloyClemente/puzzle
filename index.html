@@ -46,15 +46,15 @@
 				<div class="container-inputs">
 
 					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-piezas="9"><p class="p-radio" >9</p>
+						<input type="radio" class="radio" name="piezas" data-dificultad="small" data-piezas="9"><p class="p-radio" >9</p>
 					</div>
 
 					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-piezas="16"><p class="p-radio">16</p>
+						<input type="radio" class="radio" name="piezas" data-dificultad="medium" data-piezas="16"><p class="p-radio">16</p>
 					</div>
 
 					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-piezas="25"><p class="p-radio">25</p>
+						<input type="radio" class="radio" name="piezas" data-dificultad="big" data-piezas="25"><p class="p-radio">25</p>
 					</div>
 
 				</div>
@@ -68,9 +68,8 @@
 			<div class="container-lista">
 				<input type="button" class="elige-puzzle boton-01" value="Elige un puzzle">
 				<ul class="ul-lista">
-					<li class="li-lista">Bermeer</li>
-					<li class="li-lista">Paisaje</li>
-					<li class="li-lista">Catedral</li>
+					<li class="li-lista" data-name="bermeer">Bermeer</li>
+					<li class="li-lista" data-name="chapelle">Sainte Chapelle</li>
 				</ul>
 			</div>
 			
@@ -87,8 +86,8 @@
 		</header>
 			
 		<div class="container-puzzle">
-			<div id="puzzle_1" class="puzzle"></div>
-			<div id="puzzle_2" class="puzzle"></div>
+			<div id="container_origen"  class="puzzle"></div>
+			<div id="container_destino" class="puzzle"></div>
 		</div>
 		
 
