@@ -144,7 +144,7 @@ textarea {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       width: 70px; }
-      .container-radio .container-inputs .item-input .numero {
+      .container-radio .container-inputs .item-input .p-radio {
         font-size: 14px;
         padding-left: 5px; }
 
@@ -312,56 +312,22 @@ textarea {
       max-height: 595px;
       margin-bottom: 0; } }
 
-.puzzle_1_item,
-.puzzle_2_item {
-  width: 33.33%;
-  height: 33.33%;
+.piezas-9,
+.piezas-16,
+.piezas-25 {
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
-#puzzle_1 div:nth-child(1) {
-  background-image: url(../img/bermeer/bermeer-5.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
+.piezas-9 {
+  width: 33.333%;
+  height: 33.333%; }
 
-#puzzle_1 div:nth-child(2) {
-  background-image: url(../img/bermeer/bermeer-7.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
+.piezas-16 {
+  width: 25%;
+  height: 25%; }
 
-#puzzle_1 div:nth-child(3) {
-  background-image: url(../img/bermeer/bermeer-4.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(4) {
-  background-image: url(../img/bermeer/bermeer-6.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(5) {
-  background-image: url(../img/bermeer/bermeer-1.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(6) {
-  background-image: url(../img/bermeer/bermeer-2.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(7) {
-  background-image: url(../img/bermeer/bermeer-3.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(8) {
-  background-image: url(../img/bermeer/bermeer-9.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-#puzzle_1 div:nth-child(9) {
-  background-image: url(../img/bermeer/bermeer-8.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
+.piezas-25 {
+  width: 20%;
+  height: 20%; }
 
 #outline {
   position: absolute;
