@@ -5,7 +5,7 @@ const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
 
 var numero_de_casillas
-var puzzle_actual
+var nombre_puzzle
 
 
 
@@ -71,7 +71,7 @@ function estilo_casillas(capa_casilla, numero_de_casillas)
 
 
 // INSERTAR PUZZLE
-function insertar_puzzle( numero_de_casillas, puzzle, dificultad )
+function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 {
 	for(let i=0; i < numero_de_casillas; i++)
 	{
@@ -79,7 +79,7 @@ function insertar_puzzle( numero_de_casillas, puzzle, dificultad )
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = "<img src='img/" +  puzzle + "/" + dificultad + "/" + (i+1) + ".jpg'>"
+		casilla.innerHTML = "<img src='img/" +  nombre_puzzle + "/" + numero_de_casillas + "/" + (i+1) + ".jpg'>"
 	}
 }
 //***********************************************************
@@ -110,48 +110,12 @@ function buscar_puzzle_aleatorio() // Es llamada en la siguiente función
 		indice_lista = 1
 	}
 
-	insertar_puzzle( "16", lista[indice_lista], "medium")
+	nombre_puzzle = lista[indice_lista]
+
+	insertar_puzzle( nombre_puzzle, "16")
 }
 buscar_puzzle_aleatorio()
 //*************************************************************************
-
-
-
-
-
-
-
-// ASIGNAR EVENTO A LOS RADIO BUTTONS
-function identificar_radio_buttons()
-{
-	let radio_buttons = document.getElementsByClassName('radio');
-
-	for(let i=0; i < radio_buttons.length; i++)
-	{
-		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons);
-		radio_buttons[i].addEventListener('change', obtener_dificultad); // Para localizar la carpeta
-	}
-} identificar_radio_buttons();
-
-
-
-
-// Obtiene las casillas del radio button
-function obtener_data_radio_buttons(event)
-{
-	cantidad_casillas = this.dataset.piezas;
-}
-
-
-
-// Para la ruta de la imagen
-function obtener_dificultad(event) // "small", "medium", "big"
-{
-	dificultad = this.dataset.dificultad;
-}
-
-
-
 
 
 
@@ -173,88 +137,90 @@ function evento_desplegable()
 
 
 
-// ENVIAR PUZZLE
-function enviar_puzzle(event)
-{
-	var nombre_puzzle      = this.dataset.name; // Identificar el puzzle
-	var numero_de_casillas = container_origen.getElementsByClassName('casillas-16').length // Contar casillas
 
-	insertar_puzzle( numero_de_casillas, nombre_puzzle, "medium" )
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Quizá no haga falta
-// function archivar_puzzle_actual(carpeta_puzzle)
-// {
-// 	puzzle_actual = carpeta_puzzle
-// }
-
-
-
-
-
-
-
-
-
-
-// ASIGNAR EVENTOS A LOS RADIO BUTTONS
+// ASIGNAR EVENTO A LOS RADIO BUTTONS
 function identificar_radio_buttons()
 {
-	const radio_buttons = document.getElementsByClassName('radio')
+	let radio_buttons = document.getElementsByClassName('radio');
 
 	for(let i=0; i < 3; i++)
 	{
-		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons)
-		// radio_buttons[i].addEventListener('change', obtener_dificultad) // Para localizar la carpeta
-
-		// LLAMAR AQUÍ A LA FUNCIÓN QUE RESTAURA EL PUZZLE SELECCIONADO !!!!!!!!!!!!!!!!
+		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons);
 	}
-} identificar_radio_buttons()
+} identificar_radio_buttons();
 
 
 
 
 
 
-// OBTIENE EL Nº DE CASILLAS ASIGNADO AL RADIO BUTTON
+// ENVIAR POR LISTA
+function enviar_puzzle(event)
+{
+	nombre_puzzle      = this.dataset.name; // Identificar el puzzle de la lista
+	let numero_de_casillas = container_origen.getElementsByTagName('div').length // Contar casillas
+
+	insertar_puzzle( nombre_puzzle, numero_de_casillas )
+}
+
+
+
+
+
+// DATA DE LOS RADIO BUTTONS
 function obtener_data_radio_buttons(event)
 {
-	numero_de_casillas = this.dataset.piezas
+	let numero_de_casillas = this.dataset.piezas; // OBTIENE EL Nº DE CASILLAS ASIGNADO AL RADIO BUTTON
+
+	console.log(nombre_puzzle)
+	console.log(numero_de_casillas)
 
 	crear_reticula(numero_de_casillas)
+	insertar_puzzle( nombre_puzzle, numero_de_casillas )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
