@@ -10,10 +10,64 @@ var lista = ["bermeer", "chapelle"];
 
 
 
+
+crear_capas("16"); // AL CARGAR INSERTA 16 CASILLAS POR DEFECTO
+
+
+
+
+
+// Buscar puzzle aleatorio
+function buscar_puzzle_aleatorio()
+{
+	var random = Math.random();
+	var indice_lista;
+	
+
+	if(random < 0.5)
+	{
+		indice_lista = 0;
+	}
+	else
+	{
+		indice_lista = 1;
+	}
+
+	var imagen = lista[indice_lista]
+
+	return imagen;
+}
+
+
+
+
+// Insertar puzzle aleatorio
+function insertar_puzzle_aleatorio()
+{
+	var puzzle = buscar_puzzle_aleatorio();
+
+	for(var i=0; i < 16; i++)
+	{
+		var casilla_ID = i + 1; // Sumo 1 para que coincida con el ID de la casilla
+		var casilla    = document.getElementById(casilla_ID);
+
+		casilla.innerHTML = "<img src='img/" +  puzzle + "/medium/" + (i+1) +".jpg'>"; // Sumo 1 para que coincida con el nombre de la imagen
+	}
+}
+insertar_puzzle_aleatorio();
+
+
+
+
+
+
+
+
 function limpiar_puzzle()
 {
 	container_origen.innerHTML = "";
 }
+
 
 
 
@@ -27,6 +81,8 @@ function identificar_radio_buttons()
 	{
 		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons);
 		radio_buttons[i].addEventListener('change', obtener_dificultad); // Para localizar la carpeta
+
+		// LLAMAR AQUÍ A LA FUNCIÓN QUE RESTAURA EL PUZZLE SELECCIONADO !!!!!!!!!!!!!!!!
 	}
 } identificar_radio_buttons();
 
@@ -63,7 +119,7 @@ function crear_capas(cantidad_casillas)
 		insertar_casillas(capa_casilla);
 	}
 }
-crear_capas("16"); // Al cargar inserta 16 casillas por defecto
+
 
 
 
@@ -98,7 +154,7 @@ function insertar_casillas(capa_casilla)
 }
 
 
-//***************************************************************
+//***********************************************************************
 
 
 
@@ -167,45 +223,10 @@ function insertar_imagen(casilla, nombre_puzzle, i)
 
 
 
-// Buscar puzzle aleatorio
-function buscar_puzzle_aleatorio()
-{
-	var random = Math.random();
-	var indice_lista;
-	
-
-	if(random < 0.5)
-	{
-		indice_lista = 0;
-	}
-	else
-	{
-		indice_lista = 1;
-	}
-
-	var imagen = lista[indice_lista]
-
-	return imagen;
-}
 
 
 
 
-
-// Insertar puzzle aleatorio
-function insertar_puzzle_aleatorio()
-{
-	var puzzle = buscar_puzzle_aleatorio();
-
-	for(var i=0; i < 16; i++)
-	{
-		var casilla_ID = i + 1; // Sumo 1 para que coincida con el ID de la casilla
-		var casilla    = document.getElementById(casilla_ID);
-
-		casilla.innerHTML = "<img src='img/" +  puzzle + "/medium/" + (i+1) +".jpg'>"; // Sumo 1 para que coincida con el nombre de la imagen
-	}
-}
-insertar_puzzle_aleatorio();
 
 
 
