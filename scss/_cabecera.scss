@@ -58,7 +58,7 @@ $anchura-li: 30px;
 	& > p:first-of-type{
 		font-size: 14px;
 		font-weight: bold;
-		color: #006243;
+		color: #009688;;
 	}
 
 	.container-inputs{
@@ -74,10 +74,25 @@ $anchura-li: 30px;
 			@include flex;
 			flex-wrap: wrap;
 			width: 70px;
-			.p-radio{
+			.radio{
+				font-size: 30px;
+			}
+			.label-radio{
 				font-size: 14px;
 				padding-left: 5px;
 			}
+		}
+		#radio-9:checked + label{
+			color: #009688;
+			font-weight: bold;
+		}
+		#radio-16:checked + label{
+			color: #009688;
+			font-weight: bold;
+		}
+		#radio-25:checked + label{
+			color: #009688;
+			font-weight: bold;
 		}
 	}
 }
@@ -145,8 +160,8 @@ $anchura-li: 30px;
 		width: 80px;
 		height: 80px;
 		margin-left: 10%;
-		background-image: url(../img/bermeer/bermeer.jpg);
-		background-size: cover;
+		// background-image: url(../img/bermeer/bermeer.jpg);
+		// background-size: cover;
 		@media(min-width: 480px)
 		{
 			width: 90px;

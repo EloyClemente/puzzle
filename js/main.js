@@ -5,6 +5,7 @@ var container_origen  = document.getElementById('container_origen');
 var container_destino = document.getElementById('container_destino');
 var cantidad_casillas;
 var dificultad;
+var lista = ["bermeer", "chapelle"];
 
 
 
@@ -25,7 +26,7 @@ function identificar_radio_buttons()
 	for(var i=0; i<radio_buttons.length; i++)
 	{
 		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons);
-		radio_buttons[i].addEventListener('change', obtener_dificultad);
+		radio_buttons[i].addEventListener('change', obtener_dificultad); // Para localizar la carpeta
 	}
 } identificar_radio_buttons();
 
@@ -34,6 +35,7 @@ function identificar_radio_buttons()
 
 
 
+// Obtiene las casillas del radio button
 function obtener_data_radio_buttons(event)
 {
 	cantidad_casillas = this.dataset.piezas;
@@ -46,7 +48,7 @@ function obtener_data_radio_buttons(event)
 
 
 
-
+// Crea las capas para las casillas
 function crear_capas(cantidad_casillas)
 {
 	limpiar_puzzle();
@@ -61,6 +63,7 @@ function crear_capas(cantidad_casillas)
 		insertar_casillas(capa_casilla);
 	}
 }
+crear_capas("16"); // Al cargar inserta 16 casillas por defecto
 
 
 
@@ -100,7 +103,7 @@ function insertar_casillas(capa_casilla)
 
 
 
-function evento_desplegable()
+function evento_desplegable() // Asignar evento a la lista de puzzles
 {
 	var selector_puzzle = document.getElementsByClassName('li-lista');
 
@@ -114,6 +117,8 @@ function evento_desplegable()
 
 
 
+
+// Para la ruta de la imagen
 function obtener_puzzle(event)
 {
 	var nombre_puzzle = this.dataset.name;
@@ -125,6 +130,7 @@ function obtener_puzzle(event)
 
 
 
+// Para la ruta de la imagen
 function obtener_dificultad(event) // "small", "medium", "big"
 {
 	dificultad = this.dataset.dificultad;
@@ -149,6 +155,7 @@ function localizar_casillas(nombre_puzzle)
 
 
 
+
 function insertar_imagen(casilla, nombre_puzzle, i)
 {
 	casilla.innerHTML = "<img src='img/" +  nombre_puzzle + "/" + dificultad + "/" + (i+1) +".jpg'>"; // Sumo 1 para que coincida con el nombre de la imagen
@@ -160,8 +167,45 @@ function insertar_imagen(casilla, nombre_puzzle, i)
 
 
 
+// Buscar puzzle aleatorio
+function buscar_puzzle_aleatorio()
+{
+	var random = Math.random();
+	var indice_lista;
+	
+
+	if(random < 0.5)
+	{
+		indice_lista = 0;
+	}
+	else
+	{
+		indice_lista = 1;
+	}
+
+	var imagen = lista[indice_lista]
+
+	return imagen;
+}
 
 
+
+
+
+// Insertar puzzle aleatorio
+function insertar_puzzle_aleatorio()
+{
+	var puzzle = buscar_puzzle_aleatorio();
+
+	for(var i=0; i < 16; i++)
+	{
+		var casilla_ID = i + 1; // Sumo 1 para que coincida con el ID de la casilla
+		var casilla    = document.getElementById(casilla_ID);
+
+		casilla.innerHTML = "<img src='img/" +  puzzle + "/medium/" + (i+1) +".jpg'>"; // Sumo 1 para que coincida con el nombre de la imagen
+	}
+}
+insertar_puzzle_aleatorio();
 
 
 

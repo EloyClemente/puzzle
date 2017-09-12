@@ -105,7 +105,7 @@ textarea {
   .container-radio > p:first-of-type {
     font-size: 14px;
     font-weight: bold;
-    color: #006243; }
+    color: #009688; }
   .container-radio .container-inputs {
     display: -webkit-box;
     display: -webkit-flex;
@@ -144,9 +144,20 @@ textarea {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       width: 70px; }
-      .container-radio .container-inputs .item-input .p-radio {
+      .container-radio .container-inputs .item-input .radio {
+        font-size: 30px; }
+      .container-radio .container-inputs .item-input .label-radio {
         font-size: 14px;
         padding-left: 5px; }
+    .container-radio .container-inputs #radio-9:checked + label {
+      color: #009688;
+      font-weight: bold; }
+    .container-radio .container-inputs #radio-16:checked + label {
+      color: #009688;
+      font-weight: bold; }
+    .container-radio .container-inputs #radio-25:checked + label {
+      color: #009688;
+      font-weight: bold; }
 
 .container-slide {
   display: -webkit-box;
@@ -229,9 +240,7 @@ textarea {
   .container-slide .slide {
     width: 80px;
     height: 80px;
-    margin-left: 10%;
-    background-image: url(../img/bermeer/bermeer.jpg);
-    background-size: cover; }
+    margin-left: 10%; }
     @media (min-width: 480px) {
       .container-slide .slide {
         width: 90px;

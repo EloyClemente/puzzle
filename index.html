@@ -37,30 +37,6 @@
 		<header class="header">
 
 		<h1 class="h1">PuzzleTron</h1>
-
-
-		<div class="container-radio">
-			
-		<!-- 	<div class="selectores"> -->
-				<p>Elige el número de piezas</p>
-				<div class="container-inputs">
-
-					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-dificultad="small" data-piezas="9"><p class="p-radio" >9</p>
-					</div>
-
-					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-dificultad="medium" data-piezas="16"><p class="p-radio">16</p>
-					</div>
-
-					<div class="item-input">
-						<input type="radio" class="radio" name="piezas" data-dificultad="big" data-piezas="25"><p class="p-radio">25</p>
-					</div>
-
-				</div>
-				
-			<!-- </div> -->
-		</div>
 			
 		
 		<div class="container-slide">
@@ -73,9 +49,37 @@
 				</ul>
 			</div>
 			
-			
 			<div class="slide"></div>
 		</div>
+
+
+
+
+
+		<div class="container-radio">
+			
+				<p>Elige el número de piezas</p>
+				<div class="container-inputs">
+
+					<div class="item-input">
+						<input type="radio" id="radio-9" class="radio" name="piezas" data-dificultad="small" data-piezas="9">
+						<label for="radio-9" class="label-radio" >9</label>
+					</div>
+
+					<div class="item-input">
+						<input type="radio"  id="radio-16" class="radio" name="piezas" data-dificultad="medium" data-piezas="16" checked="checked">
+						<label for="radio-16" class="label-radio" >16</label>
+					</div>
+
+					<div class="item-input">
+						<input type="radio"  id="radio-25" class="radio" name="piezas" data-dificultad="big" data-piezas="25">
+						<label for="radio-25" class="label-radio" >25</label>
+					</div>
+
+				</div>
+		</div>
+
+
 
 		<div class="boton-menu">
 			<p>Menu</p>
