@@ -212,6 +212,7 @@ function comenzar()
 
 		// pieza1.style.left = touch.pageX-25 + 'px'
 		// pieza1.style.top  = touch.pageY-25 + 'px'
+		event.preventDefault()
 
 
 	})
