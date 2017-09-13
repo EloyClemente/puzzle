@@ -200,13 +200,25 @@ function comenzar()
 
 	pieza_1 = document.getElementById('pieza1')
 
-	console.log(pieza_1)
-
 	pieza1.addEventListener('dragstart', comenzamos_arrastrar)
 
 	pieza1.addEventListener('touchstart', function(){
 		pieza1.style.border = "1px solid red"
 	})
+
+	pieza1.addEventListener('touchmove', function(event){
+		var touch = event.targetTouches[0]
+
+		pieza1.style.left = touch.pageX-25 + 'px'
+		pieza1.style.top  = touch.pageY-25 + 'px'
+
+		event.preventDefault()
+	})
+
+
+
+
+
 
 
 
