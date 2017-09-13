@@ -207,12 +207,13 @@ function comenzar()
 	})
 
 	pieza1.addEventListener('touchmove', function(event){
-		var touch = event.targetTouches[0]
+		pieza1.style.border = '1px solid blue'
+		// var touch = event.targetTouches[0]
 
-		pieza1.style.left = touch.pageX-25 + 'px'
-		pieza1.style.top  = touch.pageY-25 + 'px'
+		// pieza1.style.left = touch.pageX-25 + 'px'
+		// pieza1.style.top  = touch.pageY-25 + 'px'
 
-		event.preventDefault()
+
 	})
 
 
