@@ -192,73 +192,122 @@ function obtener_data_radio_buttons(event)
 
 
 
-var pieza_1
+var pieza1
 var casilla_destino
 
-function comenzar()
-{
 
-	pieza_1 = document.getElementById('pieza1')
-
-	pieza1.addEventListener('dragstart', comenzamos_arrastrar)
-
-	pieza1.addEventListener('touchstart', function(){
-		pieza1.style.border = "1px solid red"
-	})
-
-	pieza1.addEventListener('touchmove', function(event){
-
-		event.preventDefault()
-
-		console.log(event)
-
-		pieza1.style.border = '2px solid yellow'
-
-		pieza1.style.left  = event.pageX-25 + 'px'
-		pieza1.style.right = event.pageY-25 + 'px'
-	})
+pieza1          = document.getElementById('pieza1')
+casilla_destino = document.getElementById('destino1')
 
 
 
 
 
 
+pieza1.addEventListener('mouseover', function(){
+	pieza1.style.border = "2px solid red"
+})
 
+pieza1.addEventListener('mouseleave', function(){
+	pieza1.style.border = "none"
+})
+	
+var posicion_pieza_x = pieza1.getBoundingClientRect().left
+var posicion_pieza_y = pieza1.getBoundingClientRect().top
 
-	casilla_destino = document.getElementById('destino1')
-
-	casilla_destino.addEventListener('dragenter', function(event){
-		event.preventDefault()
-	})
-	casilla_destino.addEventListener('dragover', function(event){
-		event.preventDefault()
-	})
-	casilla_destino.addEventListener('drop', soltado)
-}
-comenzar()
-
-
-
-
-
-function comenzamos_arrastrar(event)
-{
-	var imagen = '<img id="pieza1" src="' + pieza_1.getAttribute('src') + '">'
-
-	event.dataTransfer.setData('Text', imagen)
-}
-
-
-function soltado(event)
-{
+pieza1.addEventListener('dragstart', function(event){
 	event.preventDefault()
 
-	casilla_destino.innerHTML = event.dataTransfer.getData('Text')
 
-	
+	window.addEventListener('mousemove', function(event){
 
-	
-}
+		var coord_x = event.clientX - posicion_pieza_x
+		var coord_y = event.clientY - posicion_pieza_y
+
+		var puntero = event.clientX
+
+		pieza1.style.left = coord_x + 'px'
+		pieza1.style.top  = coord_y + 'px'
+		pieza1.style.zIndex = 100
+		var casilla = pieza1.parentNode.zIndex = "100"
+	})
+})
+
+
+
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+ 
+    if (/android/i.test(userAgent)) {
+
+    	container_destino.style.backgroundColor = "red"
+        
+    }
+
+
+
+
+pieza1.addEventListener('touchstart', function(){
+	pieza1.style.border = "2px solid red"
+})
+
+pieza1.addEventListener('touchmove', function(event){
+
+
+	var dedo = event.Touch.clientX
+})
+
+
+
+
+
+
+
+
+
+
+
+
+// 		pieza1.addEventListener('touchend', soltado)
+
+
+
+
+
+
+// 	casilla_destino.addEventListener('dragenter', function(event){
+// 		event.preventDefault()
+// 	})
+// 	casilla_destino.addEventListener('dragover', function(event){
+// 		event.preventDefault()
+// 	})
+// 	casilla_destino.addEventListener('drop', soltado)
+// }
+// comenzar()
+
+
+
+
+
+// function comenzamos_arrastrar(event)
+// {
+// 	console.log(event)
+
+// 	pieza1.style.border = '2px solid yellow'
+
+// 	var ruta = '<img id="pieza1" src="' + pieza1.getAttribute('src') + '">'
+
+// 	console.log(ruta)
+
+
+// }
+
+
+// function soltado(event)
+// {
+// 	event.preventDefault()
+
+// 	casilla_destino.innerHTML = event.dataTransfer.getData('Text')
+// }
 
 
 
