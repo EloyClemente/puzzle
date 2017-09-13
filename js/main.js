@@ -212,7 +212,10 @@ function comenzar()
 
 		console.log(event)
 
-		pieza1.style.border = '1px solid blue'
+		pieza1.style.border = '2px solid yellow'
+
+		pieza1.style.left  = event.pageX-25 + 'px'
+		pieza1.style.right = event.pageY-25 + 'px'
 	})
 
 
