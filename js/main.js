@@ -89,7 +89,7 @@ function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = "<img src='img/" +  nombre_puzzle + "/" + numero_de_casillas + "/" + (i + 1) + ".jpg'>"
+		casilla.innerHTML = '<img id="pieza' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg">'
 	}
 }
 //***********************************************************
@@ -192,16 +192,56 @@ function obtener_data_radio_buttons(event)
 
 
 
+var pieza_1
+var casilla_destino
+
+function comenzar()
+{
+
+	pieza_1 = document.getElementById('pieza1')
+
+	console.log(pieza_1)
+
+	pieza1.addEventListener('dragstart', comenzamos_arrastrar)
+
+
+
+	casilla_destino = document.getElementById('destino1')
+
+	console.log(casilla_destino)
+
+	casilla_destino.addEventListener('dragenter', function(event){
+		event.preventDefault()
+	})
+	casilla_destino.addEventListener('dragover', function(event){
+		event.preventDefault()
+	})
+	casilla_destino.addEventListener('drop', soltado)
+}
+comenzar()
 
 
 
 
 
+function comenzamos_arrastrar(event)
+{
+	var imagen = '<img id="pieza1" src="' + pieza_1.getAttribute('src') + '">'
+
+	event.dataTransfer.setData('Text', imagen)
+}
 
 
+function soltado(event)
+{
+	event.preventDefault()
 
+	casilla_destino.innerHTML = event.dataTransfer.getData('Text')
 
+	
 
+	
+}
 
 
 
