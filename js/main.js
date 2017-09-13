@@ -202,9 +202,9 @@ function comenzar()
 
 	pieza1.addEventListener('dragstart', comenzamos_arrastrar)
 
-	// pieza1.addEventListener('touchstart', function(){
-	// 	pieza1.style.border = "1px solid red"
-	// })
+	pieza1.addEventListener('touchstart', function(){
+		pieza1.style.border = "1px solid red"
+	})
 
 	pieza1.addEventListener('touchmove', function(event){
 
