@@ -202,22 +202,17 @@ function comenzar()
 
 	pieza1.addEventListener('dragstart', comenzamos_arrastrar)
 
-	pieza1.addEventListener('touchstart', function(){
-		pieza1.style.border = "1px solid red"
-	})
+	// pieza1.addEventListener('touchstart', function(){
+	// 	pieza1.style.border = "1px solid red"
+	// })
 
 	pieza1.addEventListener('touchmove', function(event){
 
 		event.preventDefault()
-		
+
+		console.log(event)
+
 		pieza1.style.border = '1px solid blue'
-		// var touch = event.targetTouches[0]
-
-		// pieza1.style.left = touch.pageX-25 + 'px'
-		// pieza1.style.top  = touch.pageY-25 + 'px'
-
-
-
 	})
 
 
@@ -228,8 +223,6 @@ function comenzar()
 
 
 	casilla_destino = document.getElementById('destino1')
-
-	console.log(casilla_destino)
 
 	casilla_destino.addEventListener('dragenter', function(event){
 		event.preventDefault()
