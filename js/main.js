@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
+var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
+var casillas_destino    = document.getElementById('container_destino').getElementsByTagName('div')
 
 var numero_de_casillas
 var nombre_puzzle
@@ -14,6 +16,12 @@ var puntero_x
 var puntero_y
 
 var pulsado
+
+var pieza
+var pieza_ID
+var pieza_url
+
+var lista
 
 
 
@@ -94,10 +102,10 @@ function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = '<img id="pieza' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
-
-		asignar_eventos_a_piezas()
+		casilla.innerHTML = '<img id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
 	}
+
+	asignar_eventos_a_piezas()
 }
 //***********************************************************
 
@@ -199,32 +207,31 @@ function obtener_data_radio_buttons(event)
 
 
 
+function poner_borde()
+{
+	this.style.border = "2px solid red" 
+	// encima = true
+}
+
+function quitar_borde()
+{
+	this.style.border = "none" 
+	// encima = false
+}
+
+
+
 
 
 
 function asignar_eventos_a_piezas()
 {
-	let piezas           = document.getElementById('container_origen').getElementsByTagName('img')
-	let casillas_destino = document.getElementById('container_destino').getElementsByTagName('div')
-
 	for(let i=0; i < piezas.length; i++)
 	{
-		piezas_mouseover(piezas, i)
-		piezas_mouseleave(piezas, i)
+		piezas[i].addEventListener('mouseover' ,  poner_borde)
+		piezas[i].addEventListener('mouseleave',  quitar_borde)
 
-
-		piezas[i].addEventListener('dragstart', comenzando_arrastrar)
-		casillas_destino[i].addEventListener('drop', soltar)
-
-
-		casillas_destino[i].addEventListener('dragenter', function(event){
-			event.preventDefault()
-		})
-
-		casillas_destino[i].addEventListener('dragover', function(event){
-			event.preventDefault()
-		})
-
+		piezas[i].addEventListener('dragstart' ,  drag_start)
 	}
 }
 asignar_eventos_a_piezas()
@@ -232,118 +239,69 @@ asignar_eventos_a_piezas()
 
 
 
-function comenzando_arrastrar(event)
+
+function identificar_pieza()
 {
-	var pieza = event.target
-	console.log(pieza)
-	event.dataTransfer.setData('Text', pieza.getAttribute('id'))
+	return event.target
 }
 
 
-
-function soltar(event)
+function ID_pieza()
 {
-	var id = event.dataTransfer.getData('Text')
-
-	var src = document.getElementById(id).src
-
-	console.log(src)
-
-	var casilla = event.target
-
-	casilla.innerHTML = '<img src="' + src + '">'
+	event.preventDefault()
+	return event.target.id
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function piezas_mouseover(piezas, i)
+function url_pieza()
 {
-	piezas[i].addEventListener('mouseover', function(){
-		this.style.border = "2px solid red"
-	})
-}
-
-function piezas_mouseleave(piezas, i)
-{
-	piezas[i].addEventListener('mouseleave', function(){
-		this.style.border = "none"
-	})
+	return event.target.getAttribute('src')
 }
 
 
 
 
+function drag_start()
+{
+	event.preventDefault()
+
+	pieza     = event.target
+	pieza_ID  = event.target.id
+	pieza_url = event.target.getAttribute('src')
+
+	var posicion_pieza_x = pieza.getBoundingClientRect().left
+	var posicion_pieza_y = pieza.getBoundingClientRect().top
 
 
 
+		window.addEventListener('mousemove', mover)
 
-
-
-
-
-
-
-
-var userAgent = navigator.userAgent || navigator.vendor || window.opera;
- 
-    if (/android/i.test(userAgent)) 
-    {
-	    	pieza1.addEventListener('touchstart', function()
-	    	{
-			pieza1.style.border = "2px solid blue"
-		})
-
-		pieza1.addEventListener('touchmove', function(event)
+		function mover()
 		{
-			var horizontal = event.touches[0].clientX
-			var vertical   = event.touches[0].clientY
+			event.preventDefault()
 
-			console.log(horizontal)
-			console.log(vertical)
-		})
-    }
+			pieza.style.left = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			pieza.style.top  = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
-    else
-    {
-	   
-	} 
+			pieza.style.zIndex = 100
+		}
 
 
 
 
+		window.addEventListener('mouseup', soltar)
 
+		function soltar()
+		{
+			window.removeEventListener('mousemove', mover)
 
-
-
-
-
-
-
-
-
+			pieza.style.left   = "0px"
+			pieza.style.top    = "0px"
+			pieza.style.zIndex = 0
+			
+			// document.getElementById("origen" + pieza_ID).innerHTML = "" 
+		}	
+}
 
 
 
@@ -352,35 +310,67 @@ var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
 
 
+	
+
+window.addEventListener('mousedown', function(){
+	pulsado = true
+})
+window.addEventListener('mouseup', function(){
+	pulsado = false
+})
 
 
 
+window.addEventListener('mousemove', function(event)
+{
+
+	var ancho_casilla  = container_destino.offsetWidth / 4
+
+	var container_left = container_destino.getBoundingClientRect().left
+	var container_top  = container_destino.getBoundingClientRect().top
 
 
+	if(pulsado == true)
+	{
+			for(var i=0; i < casillas_destino.length; i++)
+			{
+				var casilla = document.getElementById('destino' + (i + 1))
+
+				if( event.clientX > casilla.getBoundingClientRect().left &&
+				    event.clientX < casilla.getBoundingClientRect().right &&
+				    event.clientY > casilla.getBoundingClientRect().top &&
+				    event.clientY < casilla.getBoundingClientRect().bottom)
+				{
+
+					casilla.style.backgroundColor = "red"
+
+					var atributo = casilla.getAttribute('id')
+
+					lista = []
+					lista.push(atributo)
+
+					// NOTA: Al recorrer las casillas, el bucle registra
+					// todas las capas. Pero la que nos interesa es sólo
+					// la última registrada. Para ello las almacenamos
+					// todas en un array, para posteriormente tomar 
+					// sólo la última en el momento de soltar la pieza.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					window.addEventListener('mouseup', function(){
+						document.getElementById(lista[lista.length-1]).appendChild(identificar_pieza())
+					})
+				}
+				else
+				{
+					casilla.style.backgroundColor = "white"
+				}
+			}
+	}
+	else
+	{
+		
+	}
+})
 
 
 
