@@ -1,5 +1,22 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+var casilla_1  = document.getElementById('destino1')
+var casilla_2  = document.getElementById('destino2')
+var casilla_3  = document.getElementById('destino3')
+var casilla_4  = document.getElementById('destino4')
+var casilla_5  = document.getElementById('destino5')
+var casilla_6  = document.getElementById('destino6')
+var casilla_7  = document.getElementById('destino7')
+var casilla_8  = document.getElementById('destino8')
+var casilla_9  = document.getElementById('destino9')
+var casilla_10 = document.getElementById('destino10')
+var casilla_11 = document.getElementById('destino11')
+var casilla_12 = document.getElementById('destino12')
+var casilla_13 = document.getElementById('destino13')
+var casilla_14 = document.getElementById('destino14')
+var casilla_15 = document.getElementById('destino15')
+var casilla_16 = document.getElementById('destino16')
+
 
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
@@ -16,6 +33,12 @@ var puntero_x
 var puntero_y
 
 var pulsado
+
+var pieza
+var pieza_ID
+var pieza_url
+
+var lista
 
 
 
@@ -96,7 +119,7 @@ function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = '<img id="pieza' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
+		casilla.innerHTML = '<img id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
 	}
 
 	asignar_eventos_a_piezas()
@@ -199,92 +222,19 @@ function obtener_data_radio_buttons(event)
 //*******************************************************************************************************
 //*******************************************************************************************************
 
-function verificar()
+
+
+function poner_borde()
 {
-	window.addEventListener('mousedown', function(){
-		pulsado = true
-	})
-	window.addEventListener('mouseup', function(){
-		pulsado = false
-	})
+	this.style.border = "2px solid red" 
+	// encima = true
 }
-	
 
-
-
-
-
-
-
-window.addEventListener('mousemove', function(event){
-
-
-	var ancho_casilla = container_destino.offsetWidth / 4
-
-	var container_left = container_destino.getBoundingClientRect().left
-	var container_top  = container_destino.getBoundingClientRect().top
-
-
-
-	var casilla_1 = document.getElementById('destino1')
-	var casilla_2 = document.getElementById('destino2')
-	var casilla_3 = document.getElementById('destino3')
-	var casilla_4 = document.getElementById('destino4')
-
-
-	// LOCALIZADAS CINCO CASILLAS. SE PUEDE HACER.
-	var casilla_1_x = container_left + 1
-	var casilla_1_y = container_top  + 1
-
-	var casilla_2_x = container_left + 1 + ancho_casilla
-	var casilla_2_y = container_top  + 1
-
-	var casilla_3_x = container_left + 1 + ancho_casilla * 2
-	var casilla_3_y = container_top  + 1
-
-	var casilla_4_x = container_left + 1 + ancho_casilla * 3
-	var casilla_4_y = container_top  + 1
-
-	var casilla_5_x = container_left + 1
-	var casilla_5_y = container_top  + 1 + ancho_casilla
-
-
-
-
-
-
-	if(event.clientX > casilla_1_x && 
-	   event.clientX < casilla_2_x && 
-	   event.clientY > casilla_1_y && 
-	   event.clientY < casilla_5_y)
-	{
-		casilla_1.style.border = "2px solid red"
-
-		if(verificar() == false)
-		{
-			casilla_1.innerHTML = '<img src="img/bermeer/16/5.jpg" >' // HE CONSEGUIDO SIMULAR UN DROP. SE PUEDE HACER.
-		}
-	}
-	else
-	{
-		casilla_1.style.border = "none"
-	}
-
-
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
+function quitar_borde()
+{
+	this.style.border = "none" 
+	// encima = false
+}
 
 
 
@@ -295,94 +245,177 @@ function asignar_eventos_a_piezas()
 {
 	for(let i=0; i < piezas.length; i++)
 	{
-		piezas_mouseover(piezas, i)
-		piezas_mouseleave(piezas, i)
+		piezas[i].addEventListener('mouseover' ,  poner_borde)
+		piezas[i].addEventListener('mouseleave',  quitar_borde)
 
-		piezas[i].addEventListener('mousedown', agarrar)
+		piezas[i].addEventListener('dragstart' ,  drag_start)
 	}
 }
 asignar_eventos_a_piezas()
 
 
-		
-	
 
 
 
-
-function agarrar(event)
+function identificar_pieza()
 {
+	return event.target
+}
 
-	pieza                = event.target
+
+function ID_pieza()
+{
+	event.preventDefault()
+	return event.target.id
+}
+
+
+function url_pieza()
+{
+	return event.target.getAttribute('src')
+}
+
+
+
+
+function drag_start()
+{
+	event.preventDefault()
+
+	pieza     = event.target
+	pieza_ID  = event.target.id
+	pieza_url = event.target.getAttribute('src')
+
 	var posicion_pieza_x = pieza.getBoundingClientRect().left
 	var posicion_pieza_y = pieza.getBoundingClientRect().top
 
 
-		
 
-			window.addEventListener('mousemove', mover)
-			window.addEventListener('mouseup', soltar)
+		window.addEventListener('mousemove', mover)
+
+		function mover()
+		{
+			event.preventDefault()
+
+			pieza.style.left = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			pieza.style.top  = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
+
+			identificar_pieza().style.zIndex = 100
+		}
 
 
-				function mover(event)
+
+
+		window.addEventListener('mouseup', soltar)
+
+		function soltar()
+		{
+			window.removeEventListener('mousemove', mover)
+
+			pieza.style.left   = "0px"
+			pieza.style.top    = "0px"
+			pieza.style.zIndex = 0
+			
+			// document.getElementById("origen" + pieza_ID).innerHTML = "" 
+		}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function pulsacion()
+// {
+// 	window.addEventListener('mousedown', function(){
+// 		pulsado = true
+// 	})
+// 	window.addEventListener('mouseup', function(){
+// 		pulsado = false
+// 	})
+
+// 	return pulsado
+// }
+	
+
+window.addEventListener('mousedown', function(){
+	pulsado = true
+})
+window.addEventListener('mouseup', function(){
+	pulsado = false
+})
+
+
+
+window.addEventListener('mousemove', function(event)
+{
+
+	var ancho_casilla  = container_destino.offsetWidth / 4
+
+	var container_left = container_destino.getBoundingClientRect().left
+	var container_top  = container_destino.getBoundingClientRect().top
+
+
+	if(pulsado == true)
+	{
+			for(var i=0; i < casillas_destino.length; i++)
+			{
+				var casilla = document.getElementById('destino' + (i + 1))
+
+				if( event.clientX > casilla.getBoundingClientRect().left &&
+				    event.clientX < casilla.getBoundingClientRect().right &&
+				    event.clientY > casilla.getBoundingClientRect().top &&
+				    event.clientY < casilla.getBoundingClientRect().bottom)
 				{
-					event.preventDefault()
+					casilla.style.backgroundColor = "red"
 
-					var mouse_x = event.clientX
-					var mouse_y = event.clientY
-
-									
-					pieza.style.left = (mouse_x - posicion_pieza_x) - pieza.offsetWidth / 2 + 'px'
-					pieza.style.top  = (mouse_y - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
-
-					pieza.style.zIndex = 100
-				}		
-
-
-				function soltar()
-				{
-					window.removeEventListener('mousemove', mover)
-
-					pieza.style.left   = "0px"
-					pieza.style.top    = "0px"
-					pieza.style.zIndex = 0
-				}			
 				
-}
+
+					var atributo = casilla.getAttribute('id')
+
+					lista = []
+					lista.push(atributo)
+					console.log(lista)
+
+
+
+					window.addEventListener('mouseup', function(){
+
+						var ultimo = lista.pop()
+
+						console.log(ultimo)
+
+						document.getElementById(ultimo).appendChild(identificar_pieza())
+					})
+				}
+				else
+				{
+					casilla.style.backgroundColor = "white"
+				}
+			}
+	}
+	else
+	{
+		
+	}
+})
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function piezas_mouseover(piezas, i)
-{
-	piezas[i].addEventListener('mouseover', function(){
-		this.style.border = "2px solid red"
-	})
-}
-
-function piezas_mouseleave(piezas, i)
-{
-	piezas[i].addEventListener('mouseleave', function(){
-		this.style.border = "none"
-	})
-}
 
 
 
