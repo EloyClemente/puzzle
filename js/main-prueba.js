@@ -379,25 +379,23 @@ window.addEventListener('mousemove', function(event)
 				    event.clientY > casilla.getBoundingClientRect().top &&
 				    event.clientY < casilla.getBoundingClientRect().bottom)
 				{
-					casilla.style.backgroundColor = "red"
 
-				
+					casilla.style.backgroundColor = "red"
 
 					var atributo = casilla.getAttribute('id')
 
 					lista = []
 					lista.push(atributo)
-					console.log(lista)
 
+					// NOTA: Al recorrer las casillas, el bucle registra
+					// todas las capas. Pero la que nos interesa es sólo
+					// la última registrada. Para ello las almacenamos
+					// todas en un array, para posteriormente tomar 
+					// sólo la última en el momento de soltar la pieza.
 
 
 					window.addEventListener('mouseup', function(){
-
-						var ultimo = lista.pop()
-
-						console.log(ultimo)
-
-						document.getElementById(ultimo).appendChild(identificar_pieza())
+						document.getElementById(lista[lista.length-1]).appendChild(identificar_pieza())
 					})
 				}
 				else
