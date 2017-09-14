@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
+var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
+var casillas_destino    = document.getElementById('container_destino').getElementsByTagName('div')
 
 var numero_de_casillas
 var nombre_puzzle
@@ -95,9 +97,9 @@ function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 
 
 		casilla.innerHTML = '<img id="pieza' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
-
-		asignar_eventos_a_piezas()
 	}
+
+	asignar_eventos_a_piezas()
 }
 //***********************************************************
 
@@ -197,6 +199,93 @@ function obtener_data_radio_buttons(event)
 //*******************************************************************************************************
 //*******************************************************************************************************
 
+function verificar()
+{
+	window.addEventListener('mousedown', function(){
+		pulsado = true
+	})
+	window.addEventListener('mouseup', function(){
+		pulsado = false
+	})
+}
+	
+
+
+
+
+
+
+
+window.addEventListener('mousemove', function(event){
+
+
+	var ancho_casilla = container_destino.offsetWidth / 4
+
+	var container_left = container_destino.getBoundingClientRect().left
+	var container_top  = container_destino.getBoundingClientRect().top
+
+
+
+	var casilla_1 = document.getElementById('destino1')
+	var casilla_2 = document.getElementById('destino2')
+	var casilla_3 = document.getElementById('destino3')
+	var casilla_4 = document.getElementById('destino4')
+
+
+	// LOCALIZADAS CINCO CASILLAS. SE PUEDE HACER.
+	var casilla_1_x = container_left + 1
+	var casilla_1_y = container_top  + 1
+
+	var casilla_2_x = container_left + 1 + ancho_casilla
+	var casilla_2_y = container_top  + 1
+
+	var casilla_3_x = container_left + 1 + ancho_casilla * 2
+	var casilla_3_y = container_top  + 1
+
+	var casilla_4_x = container_left + 1 + ancho_casilla * 3
+	var casilla_4_y = container_top  + 1
+
+	var casilla_5_x = container_left + 1
+	var casilla_5_y = container_top  + 1 + ancho_casilla
+
+
+
+
+
+
+	if(event.clientX > casilla_1_x && 
+	   event.clientX < casilla_2_x && 
+	   event.clientY > casilla_1_y && 
+	   event.clientY < casilla_5_y)
+	{
+		casilla_1.style.border = "2px solid red"
+
+		if(verificar() == false)
+		{
+			casilla_1.innerHTML = '<img src="img/bermeer/16/5.jpg" >' // HE CONSEGUIDO SIMULAR UN DROP. SE PUEDE HACER.
+		}
+	}
+	else
+	{
+		casilla_1.style.border = "none"
+	}
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -204,60 +293,62 @@ function obtener_data_radio_buttons(event)
 
 function asignar_eventos_a_piezas()
 {
-	let piezas           = document.getElementById('container_origen').getElementsByTagName('img')
-	let casillas_destino = document.getElementById('container_destino').getElementsByTagName('div')
-
 	for(let i=0; i < piezas.length; i++)
 	{
 		piezas_mouseover(piezas, i)
 		piezas_mouseleave(piezas, i)
 
-
-		piezas[i].addEventListener('dragstart', comenzando_arrastrar)
-		casillas_destino[i].addEventListener('drop', soltar)
-
-
-		casillas_destino[i].addEventListener('dragenter', function(event){
-			event.preventDefault()
-		})
-
-		casillas_destino[i].addEventListener('dragover', function(event){
-			event.preventDefault()
-		})
-
+		piezas[i].addEventListener('mousedown', agarrar)
 	}
 }
 asignar_eventos_a_piezas()
 
 
+		
+	
 
 
-function comenzando_arrastrar(event)
+
+
+function agarrar(event)
 {
-	var pieza = event.target
-	console.log(pieza)
-	event.dataTransfer.setData('Text', pieza.getAttribute('id'))
+
+	pieza                = event.target
+	var posicion_pieza_x = pieza.getBoundingClientRect().left
+	var posicion_pieza_y = pieza.getBoundingClientRect().top
+
+
+		
+
+			window.addEventListener('mousemove', mover)
+			window.addEventListener('mouseup', soltar)
+
+
+				function mover(event)
+				{
+					event.preventDefault()
+
+					var mouse_x = event.clientX
+					var mouse_y = event.clientY
+
+									
+					pieza.style.left = (mouse_x - posicion_pieza_x) - pieza.offsetWidth / 2 + 'px'
+					pieza.style.top  = (mouse_y - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
+
+					pieza.style.zIndex = 100
+				}		
+
+
+				function soltar()
+				{
+					window.removeEventListener('mousemove', mover)
+
+					pieza.style.left   = "0px"
+					pieza.style.top    = "0px"
+					pieza.style.zIndex = 0
+				}			
+				
 }
-
-
-
-function soltar(event)
-{
-	var id = event.dataTransfer.getData('Text')
-
-	var src = document.getElementById(id).src
-
-	console.log(src)
-
-	var casilla = event.target
-
-	casilla.innerHTML = '<img src="' + src + '">'
-}
-
-
-
-
-
 
 
 
@@ -292,100 +383,6 @@ function piezas_mouseleave(piezas, i)
 		this.style.border = "none"
 	})
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var userAgent = navigator.userAgent || navigator.vendor || window.opera;
- 
-    if (/android/i.test(userAgent)) 
-    {
-	    	pieza1.addEventListener('touchstart', function()
-	    	{
-			pieza1.style.border = "2px solid blue"
-		})
-
-		pieza1.addEventListener('touchmove', function(event)
-		{
-			var horizontal = event.touches[0].clientX
-			var vertical   = event.touches[0].clientY
-
-			console.log(horizontal)
-			console.log(vertical)
-		})
-    }
-
-    else
-    {
-	   
-	} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
