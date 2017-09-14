@@ -3,25 +3,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
+
 var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
 var casillas_destino    = document.getElementById('container_destino').getElementsByTagName('div')
 
-var numero_de_casillas
-var nombre_puzzle
-
-var posicion_pieza_x
-var posicion_pieza_y
-
-var puntero_x
-var puntero_y
-
 var pulsado
 
-var pieza
-var pieza_ID
-var pieza_url
+// var pieza_url
 
-var lista
+
+
 
 
 
@@ -38,19 +29,19 @@ function limpiar_puzzle()
 
 
 
-// CREACIÓN DE RETÍCULAS
-function crear_reticula(numero_de_casillas)
+
+// CREACIÓN DE REJILLAS
+function crear_rejillas(numero_de_casillas)
 {
 	limpiar_puzzle()
 
-
 	for(let i=0; i < numero_de_casillas; i++)
 	{
-		const capa_casilla_origen  = document.createElement('div')
-		const capa_casilla_destino = document.createElement('div')
+		const capa_casilla_origen    = document.createElement('div')
+		const capa_casilla_destino   = document.createElement('div')
 
-		capa_casilla_origen.id     = "origen"  + (i + 1) // Sumo 1 para que el 1er ID sea 1 en lugar de 0.
-		capa_casilla_destino.id    = "destino" + (i + 1)
+		capa_casilla_origen.id       = "origen"  + (i + 1) // Sumo 1 para que el 1er ID sea 1 en lugar de 0.
+		capa_casilla_destino.id      = "destino" + (i + 1)
 
 
 
@@ -60,13 +51,14 @@ function crear_reticula(numero_de_casillas)
 				container_destino.appendChild(capa_casilla_destino)
 	}
 }
-crear_reticula("16")
+crear_rejillas("16") // 16 por defecto
 
 
 
 
 
-// ESTILO DE LA RETÍCULA
+
+// ESTILO DE LA REJILLA
 function estilo_casillas(capa_casilla_origen, capa_casilla_destino, numero_de_casillas)
 {
 	switch(numero_de_casillas)
@@ -93,32 +85,11 @@ function estilo_casillas(capa_casilla_origen, capa_casilla_destino, numero_de_ca
 
 
 
-// INSERTAR PUZZLE
-function insertar_puzzle( nombre_puzzle, numero_de_casillas)
-{
-	for(let i=0; i < numero_de_casillas; i++)
-	{
-		let casilla_ID    = "origen" + (i + 1)  // Para que no comience por 0
-		let casilla       = document.getElementById(casilla_ID)
-
-
-		casilla.innerHTML = '<img id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
-	}
-
-	asignar_eventos_a_piezas()
-}
-//***********************************************************
-
-
-
-
-
-
 
 
 
 // BUSCAR PUZZLE ALEATORIO (adaptar el random al número de puzzles) !!!!
-function buscar_puzzle_aleatorio() // Es llamada en la siguiente función
+function buscar_puzzle_aleatorio()
 {
 	let indice_lista
 	const random = Math.random()
@@ -135,12 +106,32 @@ function buscar_puzzle_aleatorio() // Es llamada en la siguiente función
 		indice_lista = 1
 	}
 
-	nombre_puzzle = lista[indice_lista]
+	var nombre_puzzle = lista[indice_lista]
 
-	insertar_puzzle( nombre_puzzle, "16")
+	insertar_puzzle( nombre_puzzle, "16" )
 }
 buscar_puzzle_aleatorio()
 //*************************************************************************
+
+
+
+
+
+// INSERTAR PUZZLE
+function insertar_puzzle( nombre_puzzle, numero_de_casillas)
+{
+	for(let i=0; i < numero_de_casillas; i++)
+	{
+		let casilla_ID    = "origen" + (i + 1)  // Para que no comience por 0
+		let casilla       = document.getElementById(casilla_ID)
+
+
+		casilla.innerHTML = '<img id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
+	}
+
+	asignar_eventos_a_piezas()
+}
+//***********************************************************
 
 
 
@@ -163,6 +154,8 @@ function evento_desplegable()
 
 
 
+
+
 // ASIGNAR EVENTO A LOS RADIO BUTTONS
 function identificar_radio_buttons()
 {
@@ -179,10 +172,13 @@ function identificar_radio_buttons()
 
 
 
+
+
+
 // ENVIAR POR LISTA
 function enviar_puzzle(event)
 {
-	nombre_puzzle          = this.dataset.name; // Identificar el puzzle de la lista
+	nombre_puzzle          = this.dataset.name; // Identificar el puzzle de la lista con el atributo data
 	let numero_de_casillas = container_origen.getElementsByTagName('div').length // Contar casillas
 
 	insertar_puzzle( nombre_puzzle, numero_de_casillas )
@@ -192,31 +188,36 @@ function enviar_puzzle(event)
 
 
 
+
+
+
+
 // DATA DE LOS RADIO BUTTONS
 function obtener_data_radio_buttons(event)
 {
-	let numero_de_casillas = this.dataset.piezas; // OBTIENE EL Nº DE CASILLAS ASIGNADO AL RADIO BUTTON
+	let numero_de_casillas = this.dataset.piezas; // Obtener el nº de casillas asignado al atributo data
 
-	crear_reticula(numero_de_casillas)
+	crear_rejillas( numero_de_casillas )
 	insertar_puzzle( nombre_puzzle, numero_de_casillas )
 }
 
 
+
 //*******************************************************************************************************
 //*******************************************************************************************************
+
+
 
 
 
 function poner_borde()
 {
 	this.style.border = "2px solid red" 
-	// encima = true
 }
 
 function quitar_borde()
 {
 	this.style.border = "none" 
-	// encima = false
 }
 
 
@@ -240,17 +241,12 @@ asignar_eventos_a_piezas()
 
 
 
+
 function identificar_pieza()
 {
 	return event.target
 }
 
-
-function ID_pieza()
-{
-	event.preventDefault()
-	return event.target.id
-}
 
 
 function url_pieza()
@@ -261,13 +257,18 @@ function url_pieza()
 
 
 
+
+
 function drag_start()
 {
 	event.preventDefault()
 
-	pieza     = event.target
-	pieza_ID  = event.target.id
-	pieza_url = event.target.getAttribute('src')
+	var pieza = event.target
+
+	// pieza_ID      = event.target.id
+	// pieza_url     = event.target.getAttribute('src')
+
+	console.log(pieza)
 
 	var posicion_pieza_x = pieza.getBoundingClientRect().left
 	var posicion_pieza_y = pieza.getBoundingClientRect().top
@@ -356,13 +357,19 @@ window.addEventListener('mousemove', function(event)
 					// sólo la última en el momento de soltar la pieza.
 
 
-					window.addEventListener('mouseup', function(){
-						document.getElementById(lista[lista.length-1]).appendChild(identificar_pieza())
+					window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+
+						if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
+						{
+							console.log(event.target.nodeName)
+							document.getElementById(lista[lista.length-1]).appendChild(identificar_pieza())
+						}
+						
 					})
 				}
 				else
 				{
-					casilla.style.backgroundColor = "white"
+					casilla.style.backgroundColor = "transparent"
 				}
 			}
 	}
