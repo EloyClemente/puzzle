@@ -61,6 +61,8 @@ crear_rejillas("16") // 16 por defecto
 // ESTILO DE LA REJILLA
 function estilo_casillas(capa_casilla_origen, capa_casilla_destino, numero_de_casillas)
 {
+	capa_casilla_destino.style.transition = "all, .3s"
+
 	switch(numero_de_casillas)
 	{
 		case '9': 
@@ -232,12 +234,13 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mouseover' ,  poner_borde)
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
 
-		piezas[i].addEventListener('mousedown' ,  drag_start)
+		piezas[i].addEventListener('mousedown' ,  clicar)
+
+		piezas[i].style.transition = "all, .1s"
+		piezas[i].style.cursor     = "move"
 	}
 }
 asignar_eventos_a_piezas()
-
-
 
 
 
@@ -257,32 +260,21 @@ function url_pieza()
 
 
 
-
-
-function drag_start()
+function clicar()
 {
-	// event.preventDefault()
-
 	var pieza = event.target
-
-	// pieza_ID      = event.target.id
-	// pieza_url     = event.target.getAttribute('src')
-
-	console.log(pieza)
 
 	var posicion_pieza_x = pieza.getBoundingClientRect().left
 	var posicion_pieza_y = pieza.getBoundingClientRect().top
 
 
-
 		window.addEventListener('mousemove', mover)
-
 		function mover()
 		{
 			event.preventDefault()
 
-			pieza.style.left = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
-			pieza.style.top  = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
+			pieza.style.left   = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
 			pieza.style.zIndex = 100
 		}
@@ -299,8 +291,6 @@ function drag_start()
 			pieza.style.left   = "0px"
 			pieza.style.top    = "0px"
 			pieza.style.zIndex = 0
-			
-			// document.getElementById("origen" + pieza_ID).innerHTML = "" 
 		}	
 }
 
@@ -322,6 +312,7 @@ window.addEventListener('mouseup', function(){
 
 
 
+
 window.addEventListener('mousemove', function(event)
 {
 	if(pulsado == true)
@@ -335,8 +326,8 @@ window.addEventListener('mousemove', function(event)
 			    event.clientY > casilla_origen.getBoundingClientRect().top &&
 			    event.clientY < casilla_origen.getBoundingClientRect().bottom)
 			{
+
 				var atributo_origen = casilla_origen.getAttribute('id')
-				console.log(atributo_origen)
 
 				var lista_origen = []
 				lista_origen.push(atributo_origen)
@@ -354,10 +345,15 @@ window.addEventListener('mousemove', function(event)
 
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
-						console.log(lista_origen[0])
-						document.getElementById(lista_origen[0]).appendChild(identificar_pieza())
+						if(lista_origen.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
+						{
+							document.getElementById( lista_origen[0] ).appendChild( identificar_pieza() )
+							lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+						}
 					}
 				})
+
+				
 			}
 			else
 			{
@@ -379,8 +375,6 @@ window.addEventListener('mousemove', function(event)
 				casilla_destino.style.backgroundColor = "red"
 
 				var atributo_destino = casilla_destino.getAttribute('id')
-				console.log(atributo_destino)
-				
 
 				var lista_destino = []
 				lista_destino.push(atributo_destino)
@@ -389,12 +383,19 @@ window.addEventListener('mousemove', function(event)
 
 				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 
+					console.log(event.target)
+
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
-						console.log(event.target)
-						document.getElementById(lista_destino[0]).appendChild(identificar_pieza())
+						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
+						{
+							document.getElementById( lista_destino[0] ).appendChild( identificar_pieza() )
+							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+						}
 					}
 				})
+
+				
 			}
 			else
 			{
