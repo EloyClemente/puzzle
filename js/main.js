@@ -9,7 +9,7 @@ var casillas_destino    = document.getElementById('container_destino').getElemen
 
 var pulsado
 
-// var pieza_url
+
 
 
 
@@ -315,7 +315,6 @@ function drag_start()
 
 window.addEventListener('mousedown', function(){
 	pulsado = true
-	console.log('true')
 })
 window.addEventListener('mouseup', function(){
 	pulsado = false
@@ -325,60 +324,85 @@ window.addEventListener('mouseup', function(){
 
 window.addEventListener('mousemove', function(event)
 {
-
-	var ancho_casilla  = container_destino.offsetWidth / 4
-
-	var container_left = container_destino.getBoundingClientRect().left
-	var container_top  = container_destino.getBoundingClientRect().top
-
-
 	if(pulsado == true)
 	{
-			for(var i=0; i < casillas_destino.length; i++)
+		for(var i=0; i < casillas_destino.length; i++)
+		{
+			var casilla_origen  = document.getElementById('origen'  + (i + 1))
+
+			if( event.clientX > casilla_origen.getBoundingClientRect().left &&
+			    event.clientX < casilla_origen.getBoundingClientRect().right &&
+			    event.clientY > casilla_origen.getBoundingClientRect().top &&
+			    event.clientY < casilla_origen.getBoundingClientRect().bottom)
 			{
-				var casilla = document.getElementById('destino' + (i + 1))
+				var atributo_origen = casilla_origen.getAttribute('id')
+				console.log(atributo_origen)
 
-				if( event.clientX > casilla.getBoundingClientRect().left &&
-				    event.clientX < casilla.getBoundingClientRect().right &&
-				    event.clientY > casilla.getBoundingClientRect().top &&
-				    event.clientY < casilla.getBoundingClientRect().bottom)
-				{
+				var lista_origen = []
+				lista_origen.push(atributo_origen)
 
-					casilla.style.backgroundColor = "red"
-
-					var atributo = casilla.getAttribute('id')
-
-					lista = []
-					lista.push(atributo)
-
-					// NOTA: Al recorrer las casillas, el bucle registra
-					// todas las capas. Pero la que nos interesa es sólo
-					// la última registrada. Para ello las almacenamos
-					// todas en un array, para posteriormente tomar 
-					// sólo la última en el momento de soltar la pieza.
+				// NOTA: Al recorrer las casillas, el bucle registra
+				// todas las capas. Pero la que nos interesa es sólo
+				// la última registrada. Para ello las almacenamos
+				// todas en un array, el cual es reseteado a cero
+				// al comienzo de cada lectura. De este modo siempre 
+				// contiene un sólo elemento: el último almacenado.
 
 
-					window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 
-						if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
-						{
-							console.log(event.target.nodeName)
-							document.getElementById(lista[lista.length-1]).appendChild(identificar_pieza())
-						}
-						
-					})
-				}
-				else
-				{
-					casilla.style.backgroundColor = "transparent"
-				}
+				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+
+					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
+					{
+						console.log(lista_origen[0])
+						document.getElementById(lista_origen[0]).appendChild(identificar_pieza())
+					}
+				})
 			}
-	}
-	else
-	{
-		
-	}
-})
+			else
+			{
+
+			}
+		} // for(var i=0; i < piezas.length; i++)
+
+
+		for(var i=0; i < casillas_destino.length; i++)
+		{
+			var casilla_destino = document.getElementById('destino' + (i + 1))
+
+			if( event.clientX > casilla_destino.getBoundingClientRect().left &&
+			    event.clientX < casilla_destino.getBoundingClientRect().right &&
+			    event.clientY > casilla_destino.getBoundingClientRect().top &&
+			    event.clientY < casilla_destino.getBoundingClientRect().bottom)
+			{
+
+				casilla_destino.style.backgroundColor = "red"
+
+				var atributo_destino = casilla_destino.getAttribute('id')
+				console.log(atributo_destino)
+				
+
+				var lista_destino = []
+				lista_destino.push(atributo_destino)
+
+
+
+				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+
+					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
+					{
+						console.log(event.target)
+						document.getElementById(lista_destino[0]).appendChild(identificar_pieza())
+					}
+				})
+			}
+			else
+			{
+				casilla_destino.style.backgroundColor = "transparent"
+			}
+		} // for(var i=0; i < piezas.length; i++)
+	} // if(pulsado == true)
+}) // window.addEventListener('mousemove)
 
 
 
