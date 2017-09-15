@@ -4,9 +4,12 @@ document.addEventListener('DOMContentLoaded', function(){
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
 
-var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
 var casillas_destino    = document.getElementById('container_destino').getElementsByTagName('div')
+var casillas_actuales   = container_destino.getElementsByTagName('div')
 
+var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
+
+var nombre_puzzle
 var pulsado
 
 
@@ -32,7 +35,7 @@ function limpiar_puzzle()
 
 
 // CREACIÓN DE REJILLAS
-function crear_rejillas(numero_de_casillas)
+function crear_rejillas( numero_de_casillas )
 {
 	limpiar_puzzle()
 
@@ -46,13 +49,13 @@ function crear_rejillas(numero_de_casillas)
 
 
 
-				estilo_casillas(capa_casilla_origen, capa_casilla_destino, numero_de_casillas)
+				estilo_casillas( capa_casilla_origen, capa_casilla_destino, numero_de_casillas )
 
-				container_origen.appendChild(capa_casilla_origen)
-				container_destino.appendChild(capa_casilla_destino)
+				container_origen.appendChild( capa_casilla_origen )
+				container_destino.appendChild( capa_casilla_destino )
 	}
 }
-crear_rejillas("16") // 16 por defecto
+crear_rejillas( "16" ) // 16 por defecto
 
 
 
@@ -60,11 +63,11 @@ crear_rejillas("16") // 16 por defecto
 
 
 // ESTILO DE LA REJILLA
-function estilo_casillas(capa_casilla_origen, capa_casilla_destino, numero_de_casillas)
+function estilo_casillas( capa_casilla_origen, capa_casilla_destino, numero_de_casillas )
 {
 	capa_casilla_destino.style.transition = "all, .3s"
 
-	switch(numero_de_casillas)
+	switch( numero_de_casillas )
 	{
 		case '9': 
 		capa_casilla_origen.classList.add('casillas-9')
@@ -109,27 +112,28 @@ function buscar_puzzle_aleatorio()
 		indice_lista = 1
 	}
 
-	var nombre_puzzle = lista[indice_lista]
+	nombre_puzzle = lista[ indice_lista ] // Variable global. Primer puzzle asignado por defecto
 
-	insertar_puzzle( nombre_puzzle, "16" )
-}
-buscar_puzzle_aleatorio()
+	insertar_puzzle( nombre_puzzle )
+
+} buscar_puzzle_aleatorio()
 //*************************************************************************
 
 
 
 
 
+
 // INSERTAR PUZZLE
-function insertar_puzzle( nombre_puzzle, numero_de_casillas)
+function insertar_puzzle( nombre_puzzle )
 {
-	for(let i=0; i < numero_de_casillas; i++)
+	for(let i=0; i < casillas_actuales.length; i++)
 	{
 		let casilla_ID    = "origen" + (i + 1)  // Para que no comience por 0
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = '<img class="piezas" id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg">'
+		casilla.innerHTML = '<img class="piezas" id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + casillas_actuales.length + '/' + (i + 1) + '.jpg">'
 	}
 
 	asignar_eventos_a_piezas()
@@ -148,7 +152,7 @@ function evento_desplegable()
 
 	for(let i=0; i < selector_puzzle.length; i++)
 	{
-		selector_puzzle[i].addEventListener('click', enviar_puzzle)
+		selector_puzzle[i].addEventListener('click', enviar_por_lista)
 	}
 } evento_desplegable()
 
@@ -166,7 +170,7 @@ function identificar_radio_buttons()
 
 	for(let i=0; i < 3; i++)
 	{
-		radio_buttons[i].addEventListener('change', obtener_data_radio_buttons);
+		radio_buttons[i].addEventListener('change', enviar_por_radio);
 	}
 } identificar_radio_buttons();
 
@@ -176,33 +180,51 @@ function identificar_radio_buttons()
 
 
 
+// ENVIAR POR RADIO BUTTON
+function enviar_por_radio(event)
+{
+	crear_rejillas( radio_checked() )
+	insertar_puzzle( nombre_puzzle )
+}
+
+
+
+
+
+
+
+// REVISAR CHECKED DE LOS RADIO BUTTONS
+function radio_checked()
+{
+	let radio = document.getElementsByClassName('radio')
+
+	for(let i=0; i < 3; i++)
+	{
+		if(radio[i].checked == true) // Mantenemos el nº de casillas seleccionado por el usuario al cambiar el puzzle
+		{
+			return radio[i].dataset.piezas // Obtener el nº de casillas asignado al atributo data
+		}
+	}
+}
+
+
+
+
+
+
 
 
 // ENVIAR POR LISTA
-function enviar_puzzle(event)
+function enviar_por_lista(event)
 {
-	nombre_puzzle          = this.dataset.name; // Identificar el puzzle de la lista con el atributo data
-	let numero_de_casillas = container_origen.getElementsByTagName('div').length // Contar casillas
+	nombre_puzzle = this.dataset.name; // Sobreescribimos el puzzle de la variable, al identificarlo de la lista con el atributo data
 
-	insertar_puzzle( nombre_puzzle, numero_de_casillas )
+	limpiar_puzzle()
+	crear_rejillas( radio_checked() )
+	insertar_puzzle( nombre_puzzle, casillas_actuales.length )
 }
 
 
-
-
-
-
-
-
-
-// DATA DE LOS RADIO BUTTONS
-function obtener_data_radio_buttons(event)
-{
-	let numero_de_casillas = this.dataset.piezas; // Obtener el nº de casillas asignado al atributo data
-
-	crear_rejillas( numero_de_casillas )
-	insertar_puzzle( nombre_puzzle, numero_de_casillas )
-}
 
 
 
@@ -246,17 +268,7 @@ asignar_eventos_a_piezas()
 
 
 
-// function identificar_pieza()
-// {
-// 	return event.target
-// }
 
-
-
-function url_pieza()
-{
-	return event.target.getAttribute('src')
-}
 
 
 
@@ -264,7 +276,6 @@ function url_pieza()
 function mouse_down(event)
 {
 	var pieza = event.target
-	console.log(pieza)
 	event.preventDefault()
 
 	var posicion_pieza_x = pieza.getBoundingClientRect().left
@@ -276,9 +287,6 @@ function mouse_down(event)
 		window.addEventListener('mousemove', mover)
 		function mover(event)
 		{
-			console.log(event.clientX)
-			// event.preventDefault()
-
 			pieza.style.left   = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
 			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
@@ -368,24 +376,28 @@ window.addEventListener('mousemove', function(event)
 
 		for(var i=0; i < casillas_destino.length; i++)
 		{
-			var casilla_destino = document.getElementById('destino' + (i + 1))
+			var casilla_seleccionada = document.getElementById('destino' + (i + 1))
 
-			if( event.clientX > casilla_destino.getBoundingClientRect().left &&
-			    event.clientX < casilla_destino.getBoundingClientRect().right &&
-			    event.clientY > casilla_destino.getBoundingClientRect().top &&
-			    event.clientY < casilla_destino.getBoundingClientRect().bottom)
+			if( event.clientX > casilla_seleccionada.getBoundingClientRect().left &&
+			    event.clientX < casilla_seleccionada.getBoundingClientRect().right &&
+			    event.clientY > casilla_seleccionada.getBoundingClientRect().top &&
+			    event.clientY < casilla_seleccionada.getBoundingClientRect().bottom)
 			{
 
-				casilla_destino.style.backgroundColor = "red"
+				casilla_seleccionada.style.backgroundColor = "red"
 
-				var atributo_destino = casilla_destino.getAttribute('id')
+				var atributo_destino = casilla_seleccionada.getAttribute('id')
 
 				var lista_destino = []
 				lista_destino.push(atributo_destino)
 
 
 
+
+
 				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+
+					document.getElementById( atributo_destino ).style.backgroundColor = "transparent" // Quitamos el color a la casilla. Con lista_destino[0] da error
 
 
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
@@ -393,17 +405,16 @@ window.addEventListener('mousemove', function(event)
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
 							document.getElementById( lista_destino[0] ).appendChild(event.target)
-							console.log(event.target)
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 						}
 					}
-				})
+				}) // window.addEventListener('mouseup')
 
 				
 			}
 			else
 			{
-				casilla_destino.style.backgroundColor = "transparent"
+				casilla_seleccionada.style.backgroundColor = "transparent"
 			}
 		} // for(var i=0; i < piezas.length; i++)
 	} // if(pulsado == true)
