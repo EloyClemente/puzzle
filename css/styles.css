@@ -312,7 +312,7 @@ textarea {
   width: 100vw;
   height: 100vw;
   margin-bottom: 1%;
-  outline: 1px solid rgba(0, 0, 0, 0.2); }
+  border: 1px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 480px) {
     .puzzle {
       width: 49vw;
@@ -324,7 +324,7 @@ textarea {
 .casillas-9,
 .casillas-16,
 .casillas-25 {
-  outline: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -344,6 +344,10 @@ textarea {
   height: 20%; }
 
 .container-puzzle img {
+  width: 100%;
+  position: absolute; }
+
+.piezas {
   width: 100%;
   position: absolute; }
 

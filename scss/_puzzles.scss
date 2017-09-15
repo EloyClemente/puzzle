@@ -24,7 +24,7 @@
 	width: 100vw;
 	height: 100vw;
 	margin-bottom: 1%;
-	outline: 1px solid rgba(#000, .2);
+	border: 1px solid rgba(#000, .2);
 	@media(min-width: 480px){
 		width: 49vw;
 		height: 49vw;
@@ -38,7 +38,7 @@
 .casillas-9,
 .casillas-16,
 .casillas-25{
-	outline: 1px solid rgba(#000, .2);
+	border: 1px solid rgba(#000, .1);
 	user-select: none;
 	position: relative;
 }
@@ -61,6 +61,12 @@
 
 
 .container-puzzle img{
+	width: 100%;
+	position: absolute;
+}
+
+
+.piezas{
 	width: 100%;
 	position: absolute;
 }

@@ -18,6 +18,7 @@ var pulsado
 
 
 
+
 function limpiar_puzzle()
 {
 	container_origen.innerHTML  = ""
@@ -128,7 +129,7 @@ function insertar_puzzle( nombre_puzzle, numero_de_casillas)
 		let casilla       = document.getElementById(casilla_ID)
 
 
-		casilla.innerHTML = '<img id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg" >'
+		casilla.innerHTML = '<img class="piezas" id="' + (i + 1) + '" src="img/' +  nombre_puzzle + '/' + numero_de_casillas + '/' + (i + 1) + '.jpg">'
 	}
 
 	asignar_eventos_a_piezas()
@@ -231,13 +232,13 @@ function asignar_eventos_a_piezas()
 {
 	for(let i=0; i < piezas.length; i++)
 	{
+		piezas[i].style.transition = "all, 0s"
+		piezas[i].style.cursor     = "move"
+
 		piezas[i].addEventListener('mouseover' ,  poner_borde)
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
 
-		piezas[i].addEventListener('mousedown' ,  clicar)
-
-		piezas[i].style.transition = "all, .1s"
-		piezas[i].style.cursor     = "move"
+		piezas[i].addEventListener('mousedown' ,  mouse_down)
 	}
 }
 asignar_eventos_a_piezas()
@@ -245,10 +246,10 @@ asignar_eventos_a_piezas()
 
 
 
-function identificar_pieza()
-{
-	return event.target
-}
+// function identificar_pieza()
+// {
+// 	return event.target
+// }
 
 
 
@@ -260,18 +261,23 @@ function url_pieza()
 
 
 
-function clicar()
+function mouse_down(event)
 {
 	var pieza = event.target
+	console.log(pieza)
+	event.preventDefault()
 
 	var posicion_pieza_x = pieza.getBoundingClientRect().left
 	var posicion_pieza_y = pieza.getBoundingClientRect().top
 
+	
+
 
 		window.addEventListener('mousemove', mover)
-		function mover()
+		function mover(event)
 		{
-			event.preventDefault()
+			console.log(event.clientX)
+			// event.preventDefault()
 
 			pieza.style.left   = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
 			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
@@ -293,8 +299,6 @@ function clicar()
 			pieza.style.zIndex = 0
 		}	
 }
-
-
 
 
 
@@ -347,7 +351,7 @@ window.addEventListener('mousemove', function(event)
 					{
 						if(lista_origen.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
-							document.getElementById( lista_origen[0] ).appendChild( identificar_pieza() )
+							document.getElementById( lista_origen[0] ).appendChild(event.target)
 							lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 						}
 					}
@@ -383,13 +387,13 @@ window.addEventListener('mousemove', function(event)
 
 				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 
-					console.log(event.target)
 
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
-							document.getElementById( lista_destino[0] ).appendChild( identificar_pieza() )
+							document.getElementById( lista_destino[0] ).appendChild(event.target)
+							console.log(event.target)
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 						}
 					}
