@@ -25,6 +25,8 @@
 	height: 100vw;
 	margin-bottom: 1%;
 	border: 1px solid rgba(#000, .2);
+	border-bottom: 1px solid rgba(#000, .3);
+	box-shadow: 0 5px 10px -5px #666;
 	@media(min-width: 480px){
 		width: 49vw;
 		height: 49vw;
@@ -38,7 +40,7 @@
 .casillas-9,
 .casillas-16,
 .casillas-25{
-	border: 1px solid rgba(#000, .1);
+	// border: 1px solid rgba(#000, .1);
 	user-select: none;
 	position: relative;
 }

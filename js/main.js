@@ -99,17 +99,21 @@ function buscar_puzzle_aleatorio()
 {
 	let indice_lista
 	const random = Math.random()
-	const lista  = ["bermeer", "chapelle"]
+	const lista  = ["bermeer", "correggio", "chapelle"]
 	
 
 
-	if(random < 0.5)
+	if(random > 0 && random < 0.3333)
 	{
 		indice_lista = 0
 	}
-	else
+	else if(random > 0.3333 && random < 0.6666)
 	{
 		indice_lista = 1
+	}
+	else
+	{
+		indice_lista = 2
 	}
 
 	nombre_puzzle = lista[ indice_lista ] // Variable global. Primer puzzle asignado por defecto
