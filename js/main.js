@@ -232,7 +232,7 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mouseover' ,  poner_borde)
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
 
-		piezas[i].addEventListener('dragstart' ,  drag_start)
+		piezas[i].addEventListener('mousedown' ,  drag_start)
 	}
 }
 asignar_eventos_a_piezas()
@@ -261,7 +261,7 @@ function url_pieza()
 
 function drag_start()
 {
-	event.preventDefault()
+	// event.preventDefault()
 
 	var pieza = event.target
 
@@ -315,6 +315,7 @@ function drag_start()
 
 window.addEventListener('mousedown', function(){
 	pulsado = true
+	console.log('true')
 })
 window.addEventListener('mouseup', function(){
 	pulsado = false
