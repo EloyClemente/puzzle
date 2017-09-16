@@ -279,19 +279,38 @@ textarea {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 100%;
-  max-width: 1200px;
-  max-height: 600px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 50px; }
   @media (min-width: 480px) {
     .container-puzzle {
-      margin-top: 0; } }
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      height: 50vw;
+      margin-top: 0;
+      padding: 2%; } }
 
 .puzzle {
   display: -webkit-box;
@@ -309,8 +328,8 @@ textarea {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: 100vw;
-  height: 100vw;
+  width: 75vw;
+  height: 75vw;
   margin-bottom: 1%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -318,10 +337,10 @@ textarea {
   box-shadow: 0 5px 10px -5px #666; }
   @media (min-width: 480px) {
     .puzzle {
-      width: 49vw;
-      height: 49vw;
-      max-width: 595px;
-      max-height: 595px;
+      width: 45vw;
+      height: 45vw;
+      max-width: 500px;
+      max-height: 500px;
       margin-bottom: 0; } }
 
 .casillas-9,
