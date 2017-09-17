@@ -275,7 +275,7 @@ asignar_eventos_a_piezas()
 
 
 
-
+var arrastrar_pieza
 
 function mouse_down(event)
 {
@@ -295,6 +295,8 @@ function mouse_down(event)
 			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
 			pieza.style.zIndex = 100
+
+			arrastrar_pieza = "yes" // Da permiso para activar las casillas
 		}
 
 
@@ -309,6 +311,8 @@ function mouse_down(event)
 			pieza.style.left   = "0px"
 			pieza.style.top    = "0px"
 			pieza.style.zIndex = 0
+
+			arrastrar_pieza = "no" // Deshabilita el permiso
 		}	
 }
 
@@ -317,7 +321,7 @@ function mouse_down(event)
 
 
 
-	
+
 
 window.addEventListener('mousedown', function(){
 	pulsado = true
@@ -331,7 +335,8 @@ window.addEventListener('mouseup', function(){
 
 window.addEventListener('mousemove', function(event)
 {
-	if(pulsado == true)
+
+	if(arrastrar_pieza == "yes") // Si arrastramos una pieza se activan las casillas. Si no, no
 	{
 		for(var i=0; i < casillas_destino.length; i++)
 		{
