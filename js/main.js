@@ -373,13 +373,9 @@ window.addEventListener('mousemove', function(event)
 						}
 					}
 				})
-
 				
 			}
-			else
-			{
 
-			}
 		} // for(var i=0; i < piezas.length; i++)
 
 
