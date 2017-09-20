@@ -5,6 +5,7 @@
 	align-items: center;
 }
 
+
 .container-puzzle{
 	@include flex;
 	justify-content: flex-start;
@@ -78,7 +79,6 @@
 	width: 100%;
 	position: absolute;
 }
-
 
 
 

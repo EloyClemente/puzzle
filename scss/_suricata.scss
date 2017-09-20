@@ -1,0 +1,77 @@
+@mixin suricata{
+	width: 200px;
+	height: 120px;
+	position: absolute;
+	top: 60px;
+	left: 100%;
+	// background-color: red;
+	background-size: cover;
+	background-position: center;
+}
+
+@keyframes entrada{
+	0%{
+		left: 100%;
+	}
+	100%{
+		left: 40%;
+	}
+}
+
+
+
+@keyframes salida{
+	0%{
+		left: 40%;
+	}
+	100%{
+		left: -120%;
+	}
+}
+
+.suricata-entrada{
+	@include suricata;
+	animation-name: entrada;
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+	background-image: url(../img/suricata/caminando.gif);
+}
+
+
+
+.parada-1{
+	@include suricata;
+	background-image: url(../img/suricata/baile-1.gif);
+	left: 40%;
+}
+
+.parada-2{
+	@include suricata;
+	background-image: url(../img/suricata/baile-2.gif);
+	left: 40%;
+}
+
+.parada-3{
+	@include suricata;
+	background-image: url(../img/suricata/baile-3.gif);
+	left: 40%;
+}
+
+
+
+.suricata-salida{
+	@include suricata;
+	animation-name: salida;
+	animation-duration: 4s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+	background-image: url(../img/suricata/caminando.gif);
+}
+
+
+
+
+
+
+

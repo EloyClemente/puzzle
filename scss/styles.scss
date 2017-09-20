@@ -2,6 +2,7 @@
 @import "botones";
 @import "cabecera";
 @import "puzzles";
+@import "suricata";
 
 
 @mixin flex{
@@ -30,7 +31,9 @@ input[type="button"]{
 
 
 
-
+body{
+	overflow-y: hidden;
+}
 
 
 .container {
@@ -41,6 +44,7 @@ input[type="button"]{
 	margin-right: auto; 
 	padding-left: 1%;
 	padding-right: 1%;
+	overflow: hidden;
 	@media(min-width: 480px){
 		padding: 0;
 	}

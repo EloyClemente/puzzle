@@ -1,0 +1,70 @@
+@-webkit-keyframes entrada {
+  0% {
+    left: 100%; }
+  100% {
+    left: 40%; } }
+
+@keyframes entrada {
+  0% {
+    left: 100%; }
+  100% {
+    left: 40%; } }
+
+@-webkit-keyframes salida {
+  0% {
+    left: 40%; }
+  100% {
+    left: -20%; } }
+
+@keyframes salida {
+  0% {
+    left: 40%; }
+  100% {
+    left: -20%; } }
+
+.suricata-entrada {
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  background-color: red;
+  background-size: cover;
+  background-position: center;
+  -webkit-animation-name: entrada;
+  animation-name: entrada;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear; }
+
+.suricata-parada {
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  background-color: red;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/suricata/suricata-final.gif); }
+
+.suricata-salida {
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  background-color: red;
+  background-size: cover;
+  background-position: center;
+  -webkit-animation-name: salida;
+  animation-name: salida;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear; }

@@ -12,6 +12,9 @@ var piezas              = document.getElementById('container_origen').getElement
 var nombre_puzzle
 var pulsado
 
+var contador = 0
+
+var cont = 0
 
 
 
@@ -313,6 +316,11 @@ function mouse_down(event)
 			pieza.style.zIndex = 0
 
 			arrastrar_pieza = "no" // Deshabilita el permiso
+
+			contador = 0 
+			// Para revisar si el puzzle está bien construído. 
+			// Es necesario resetear el contador aquí para que 
+			// no acumule llamadas a la función con el mousemove
 		}	
 }
 
@@ -411,6 +419,11 @@ window.addEventListener('mousemove', function(event)
 						{
 							document.getElementById( lista_destino[0] ).appendChild(event.target)
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+
+							setTimeout(function(){
+								revisar_si_lleno()
+							}, 300) // Para que le de tiempo a insertar la pieza. Por extraño que parezca, esta es la solución
+							
 						}
 					}
 				}) // window.addEventListener('mouseup')
@@ -424,6 +437,123 @@ window.addEventListener('mousemove', function(event)
 		} // for(var i=0; i < piezas.length; i++)
 	} // if(pulsado == true)
 }) // window.addEventListener('mousemove)
+
+
+
+
+
+
+
+
+function revisar_si_lleno()
+{
+	if(contador == 0) // Para que llame a la función sólo una vez
+	{
+		var imagenes_destino = container_destino.getElementsByTagName('img')
+
+
+		if(imagenes_destino.length == casillas_destino.length)
+		{
+			validar_resultado()
+		}
+
+		contador = 1
+	}
+}
+
+
+
+var cont = 0
+
+function validar_resultado()
+{
+	var resultado = ""
+
+	for(var i=1; i < casillas_destino.length+1; i++)
+	{
+		var casilla         = document.getElementById('destino' + (i)) // Localizar casilla
+		var lista_de_piezas = casilla.getElementsByTagName('img') // localizar su imagen
+
+
+		var pieza    = lista_de_piezas[0] // Localizar su única imagen. 
+							    // Ha de ser 0 porque cada casilla 
+							    // tiene su propia nodelist 
+							    // con un único elemento 
+
+		var pieza_ID = pieza.getAttribute('id')
+
+		resultado = resultado + pieza_ID
+		console.log(resultado)
+	}	
+
+			if(resultado == "574632198" || resultado == "57463219151114161210138" || "12101177222194155316131121149252482018236")
+			{
+				contar() 
+			}
+			else
+			{
+				console.log("incorrecto")
+			}
+}
+
+
+
+
+// NOTA:
+// Toda esta maquinaria de abajo es un hack para 
+// solucionar el problema de no poderse resetear 
+// la animación cuando la iteración es sólo de 1
+
+
+
+
+function contar()
+{
+	cont = cont + 1
+	suricata(cont)
+}
+
+
+
+function suricata(cont)
+{
+	var header = document.getElementById('header')
+	var capa   = document.createElement('div')
+
+	header.appendChild(capa)
+
+
+	capa.classList.add('suricata-entrada')
+
+
+	capa.addEventListener('animationend', function(){
+
+		if(cont == 1)
+		{
+			capa.classList.add('parada-1')
+			capa.classList.remove('suricata-entrada')
+		}
+		else if(cont == 2)
+		{
+			capa.classList.add('parada-2')
+			capa.classList.remove('suricata-entrada')
+		}
+		else if(cont == 3)
+		{
+			capa.classList.add('parada-3')
+			capa.classList.remove('suricata-entrada')
+		}
+
+
+			setTimeout(function(){
+				capa.classList.add('suricata-salida')
+			}, 5000)
+	})
+}
+
+// IMPORTANTE: OPTIMIZAR LA MAQUINARIA CON UN BUEN CÓDIGO, EN LUGAR DE HACER ESTA CHAPUZA
+// NI TENER TANTAS CLASES EN LA HOJA DE ESTILOS
+
 
 
 
@@ -455,5 +585,6 @@ function outline()
 	}
 }
 document.getElementById('outline').addEventListener('click',outline);
+document.getElementById('outline').addEventListener('click',contar);
 
 });
