@@ -1,6 +1,5 @@
 
 ---------------------- PUZZLE ---------------------
-
  
  *** Diseñado y desarrollado por Eloy Clemente ***
 
