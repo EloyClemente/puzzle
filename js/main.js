@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 
+var header              = document.getElementById('header')
 const container_origen  = document.getElementById('container_origen')
 const container_destino = document.getElementById('container_destino')
 
@@ -504,7 +505,6 @@ function validar_resultado()
 
 function suricata()
 {
-	var header = document.getElementById('header')
 	var capa   = document.createElement('div')
 
 	capa.classList.add('entrada')
@@ -512,79 +512,59 @@ function suricata()
 	header.appendChild(capa)
 
 
-		capa.addEventListener('animationend', function(){
+		setTimeout(function(){
 			capa.style.backgroundImage = "url('img/suricata/baile.gif" + "?a=" + Math.random() + "')"
-			capa.classList.add('parada')
-			capa.classList.remove('entrada')
+				capa.classList.add('parada')	
+				suricata_mensaje()
+		}, 3000) // Tres segundos de la entrada
 
-			setTimeout(function(){
-				capa.style.backgroundImage = "url('img/suricata/caminando.gif')"
-				capa.classList.remove('parada')
-				capa.classList.add('salida')
-			}, 5000)
-		})
+
+		setTimeout(function(){
+			capa.style.backgroundImage = "url('img/suricata/caminando.gif')"
+			capa.classList.add('salida')
+		}, 8000) // 3 segundos de la entrada + 5 del baile
+
+
+		// NOTA: ¿Por qué no he utilizado animationend?
+		// Por alguna razón, el setTimeout necesario para
+		// insertar la imagen de salida, dispara el evento
+		// dos veces, lanzando dos veces el mensaje.
+		// Con dos setTimeout, el problema queda resuelto
+		// de forma rápida y sencilla.
 }
 
-// NOTA:
-// Toda esta maquinaria de abajo es un hack para 
-// solucionar el problema de no poderse resetear 
-// la animación cuando la iteración es sólo de 1
 
 
 
+function suricata_mensaje()
+{
+	var correcto_texto = document.createElement('p')
+	correcto_texto.innerHTML = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
 
-// function contar()
-// {
-// 	cont = cont + 1
-// 	suricata(cont)
-// }
+	var correcto_capa  = document.createElement('div')
+	
+	correcto_capa.classList.add('mensaje-correcto')
 
-
-
-// function suricata(cont)
-// {
-// 	var header = document.getElementById('header')
-// 	var capa   = document.createElement('div')
-
-// 	header.appendChild(capa)
-
-
-// 	capa.classList.add('suricata-entrada')
-
-
-// 	capa.addEventListener('animationend', function(){
-
-// 		if(cont == 1)
-// 		{
-// 			capa.classList.add('parada-1')
-// 			capa.classList.remove('suricata-entrada')
-// 		}
-// 		else if(cont == 2)
-// 		{
-// 			capa.classList.add('parada-2')
-// 			capa.classList.remove('suricata-entrada')
-// 		}
-// 		else if(cont == 3)
-// 		{
-// 			capa.classList.add('parada-3')
-// 			capa.classList.remove('suricata-entrada')
-// 		}
-
-
-// 			setTimeout(function(){
-// 				capa.classList.add('suricata-salida')
-// 			}, 5000)
-// 	})
-// }
-
-// IMPORTANTE: OPTIMIZAR LA MAQUINARIA CON UN BUEN CÓDIGO, EN LUGAR DE HACER ESTA CHAPUZA
-// NI TENER TANTAS CLASES EN LA HOJA DE ESTILOS
+	correcto_capa.appendChild(correcto_texto)
+	header.appendChild(correcto_capa)
 
 
 
+	setTimeout(function(){
+		correcto_capa.style.height = "80px"
+		correcto_capa.style.color = "#fff"
 
+		setTimeout(function(){
+			correcto_capa.style.height = "0px"
+			correcto_capa.style.color = "transparent"
+		}, 4000)
+	}, 20) // Para que le de tiempo a cargar la hoja de estilos
+	
 
-
+	setTimeout(function(){
+		correcto_capa.parentNode.removeChild(correcto_capa)
+	}, 6000)
+}
 
 
 

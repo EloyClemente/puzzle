@@ -60,4 +60,19 @@
 
 
 
-
+.mensaje-correcto{
+	@include flex;
+	width: 240px;
+	height: 0;
+	position: absolute;
+	top: 180px;
+	left: 40%;
+	border-radius: 5px;
+	color: transparent;
+	background-color: rgba(blue, .8);
+	box-shadow: 0 5px 10px -3px #000;
+	text-align: center;
+	transition: all, .6s;
+	z-index: 1000;
+	
+}

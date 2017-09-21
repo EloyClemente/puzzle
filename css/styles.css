@@ -443,6 +443,35 @@ textarea {
   animation-timing-function: linear;
   background-image: url(../img/suricata/caminando.gif); }
 
+.mensaje-correcto {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 240px;
+  height: 0;
+  position: absolute;
+  top: 180px;
+  left: 40%;
+  border-radius: 5px;
+  color: transparent;
+  background-color: rgba(0, 0, 255, 0.8);
+  -webkit-box-shadow: 0 5px 10px -3px #000;
+  box-shadow: 0 5px 10px -3px #000;
+  text-align: center;
+  -webkit-transition: all, .6s;
+  -o-transition: all, .6s;
+  transition: all, .6s;
+  z-index: 1000; }
+
 #outline {
   position: absolute;
   top: 97vh;
