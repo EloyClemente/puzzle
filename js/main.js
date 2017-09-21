@@ -103,21 +103,25 @@ function buscar_puzzle_aleatorio()
 {
 	let indice_lista
 	const random = Math.random()
-	const lista  = ["bermeer", "correggio", "chapelle"]
+	const lista  = ["bermeer", "correggio", "meninas", "chapelle"]
 	
 
 
-	if(random > 0 && random < 0.3333)
+	if(random > 0 && random < 0.25)
 	{
 		indice_lista = 0
 	}
-	else if(random > 0.3333 && random < 0.6666)
+	else if(random > 0.25 && random < 0.50)
 	{
 		indice_lista = 1
 	}
-	else
+	else if(random > 0.50 && random < 0.75)
 	{
 		indice_lista = 2
+	}
+	else
+	{
+		indice_lista = 3
 	}
 
 	nombre_puzzle = lista[ indice_lista ] // Variable global. Primer puzzle asignado por defecto
@@ -566,7 +570,7 @@ function suricata_mensaje(mensaje)
 
 	var correcto_capa  = document.createElement('div')
 	
-	correcto_capa.classList.add('mensaje-correcto')
+	correcto_capa.classList.add('mensaje')
 
 	correcto_capa.appendChild(correcto_texto)
 	header.appendChild(correcto_capa)

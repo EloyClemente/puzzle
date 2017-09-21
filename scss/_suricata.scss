@@ -60,7 +60,7 @@
 
 
 
-.mensaje-correcto{
+.mensaje{
 	@include flex;
 	width: 240px;
 	height: 0;
@@ -69,7 +69,7 @@
 	left: 40%;
 	border-radius: 5px;
 	color: transparent;
-	background-color: rgba(blue, .8);
+	background-color: rgba(#8c00ff, .8);
 	box-shadow: 0 5px 10px -3px #000;
 	text-align: center;
 	transition: all, .6s;

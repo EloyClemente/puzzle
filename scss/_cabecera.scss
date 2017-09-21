@@ -140,6 +140,7 @@ $anchura-li: 30px;
 			height: 0;
 			transition: all, .3s;
 			box-shadow: 0 5px 10px -4px #666;
+			border-radius: 0 0 5px 5px;
 			z-index: 10;
 			overflow: hidden;
 		
@@ -150,11 +151,16 @@ $anchura-li: 30px;
 			border-bottom: 1px solid rgba(#000, .2);
 			background-color: #fff;
 			cursor: pointer;
+			transition: all, .3s;
+		}
+		.li-lista:hover{
+			color: #fff;
+			background-color: #009688;
 		}
 	}
 
 	.container-lista:hover .ul-lista{
-		height: $anchura-li * 3;
+		height: $anchura-li * 4;
 	}
 
 	.slide{

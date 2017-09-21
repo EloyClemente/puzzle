@@ -194,6 +194,7 @@
       transition: all, .3s;
       -webkit-box-shadow: 0 5px 10px -4px #666;
       box-shadow: 0 5px 10px -4px #666;
+      border-radius: 0 0 5px 5px;
       z-index: 10;
       overflow: hidden; }
     .container-slide .container-lista .li-lista {
@@ -212,9 +213,15 @@
       height: 30px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
       background-color: #fff;
-      cursor: pointer; }
+      cursor: pointer;
+      -webkit-transition: all, .3s;
+      -o-transition: all, .3s;
+      transition: all, .3s; }
+    .container-slide .container-lista .li-lista:hover {
+      color: #fff;
+      background-color: #009688; }
   .container-slide .container-lista:hover .ul-lista {
-    height: 90px; }
+    height: 120px; }
   .container-slide .slide {
     width: 80px;
     height: 80px;

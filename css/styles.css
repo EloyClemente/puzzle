@@ -217,6 +217,7 @@ textarea {
       transition: all, .3s;
       -webkit-box-shadow: 0 5px 10px -4px #666;
       box-shadow: 0 5px 10px -4px #666;
+      border-radius: 0 0 5px 5px;
       z-index: 10;
       overflow: hidden; }
     .container-slide .container-lista .li-lista {
@@ -235,9 +236,15 @@ textarea {
       height: 30px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
       background-color: #fff;
-      cursor: pointer; }
+      cursor: pointer;
+      -webkit-transition: all, .3s;
+      -o-transition: all, .3s;
+      transition: all, .3s; }
+    .container-slide .container-lista .li-lista:hover {
+      color: #fff;
+      background-color: #009688; }
   .container-slide .container-lista:hover .ul-lista {
-    height: 90px; }
+    height: 120px; }
   .container-slide .slide {
     width: 80px;
     height: 80px;
@@ -443,7 +450,7 @@ textarea {
   animation-timing-function: linear;
   background-image: url(../img/suricata/caminando.gif); }
 
-.mensaje-correcto {
+.mensaje {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -463,7 +470,7 @@ textarea {
   left: 40%;
   border-radius: 5px;
   color: transparent;
-  background-color: rgba(0, 0, 255, 0.8);
+  background-color: rgba(140, 0, 255, 0.8);
   -webkit-box-shadow: 0 5px 10px -3px #000;
   box-shadow: 0 5px 10px -3px #000;
   text-align: center;
