@@ -488,14 +488,14 @@ function validar_resultado()
 	}	
 
 			if(resultado == "574632198" || 
-			   		    "57463219151114161210138" || 
-			   		    "12101177222194155316131121149252482018236")
+			   resultado == "57463219151114161210138" || 
+			   resultado == "12101177222194155316131121149252482018236")
 			{
-				suricata() 
+				suricata("correcto") 
 			}
 			else
 			{
-				console.log("incorrecto")
+				suricata("incorrecto")
 			}
 }
 
@@ -503,8 +503,12 @@ function validar_resultado()
 
 
 
-function suricata()
+function suricata(validacion)
 {
+	var resultado = validacion
+
+	console.log(resultado)
+
 	var capa   = document.createElement('div')
 
 	capa.classList.add('entrada')
@@ -513,9 +517,22 @@ function suricata()
 
 
 		setTimeout(function(){
-			capa.style.backgroundImage = "url('img/suricata/baile.gif" + "?a=" + Math.random() + "')"
+
+			if(resultado == "correcto")
+			{
+				capa.style.backgroundImage = "url('img/suricata/baile.gif" + "?a=" + Math.random() + "')"
+
+				suricata_mensaje("¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!")
+			}
+			else
+			{
+				capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
+
+				suricata_mensaje("No es correcto..." + "<br/>" + "Inténtalo de nuevo")
+			}
+			
 				capa.classList.add('parada')	
-				suricata_mensaje()
+				
 		}, 3000) // Tres segundos de la entrada
 
 
@@ -536,10 +553,10 @@ function suricata()
 
 
 
-function suricata_mensaje()
+function suricata_mensaje(mensaje)
 {
 	var correcto_texto = document.createElement('p')
-	correcto_texto.innerHTML = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
+	correcto_texto.innerHTML = mensaje
 
 	var correcto_capa  = document.createElement('div')
 	
