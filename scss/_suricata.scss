@@ -9,6 +9,8 @@
 	background-position: center;
 }
 
+
+
 @keyframes entrada{
 	0%{
 		left: 100%;
@@ -17,7 +19,6 @@
 		left: 40%;
 	}
 }
-
 
 
 @keyframes salida{
@@ -29,7 +30,7 @@
 	}
 }
 
-.suricata-entrada{
+.entrada{
 	@include suricata;
 	animation-name: entrada;
 	animation-duration: 3s;
@@ -39,28 +40,13 @@
 }
 
 
-
-.parada-1{
+.parada{
 	@include suricata;
-	background-image: url(../img/suricata/baile-1.gif);
-	left: 40%;
-}
-
-.parada-2{
-	@include suricata;
-	background-image: url(../img/suricata/baile-2.gif);
-	left: 40%;
-}
-
-.parada-3{
-	@include suricata;
-	background-image: url(../img/suricata/baile-3.gif);
 	left: 40%;
 }
 
 
-
-.suricata-salida{
+.salida{
 	@include suricata;
 	animation-name: salida;
 	animation-duration: 4s;

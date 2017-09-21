@@ -490,7 +490,7 @@ function validar_resultado()
 			   		    "57463219151114161210138" || 
 			   		    "12101177222194155316131121149252482018236")
 			{
-				contar() 
+				suricata() 
 			}
 			else
 			{
@@ -501,6 +501,30 @@ function validar_resultado()
 
 
 
+
+function suricata()
+{
+	var header = document.getElementById('header')
+	var capa   = document.createElement('div')
+
+	capa.classList.add('entrada')
+
+	header.appendChild(capa)
+
+
+		capa.addEventListener('animationend', function(){
+			capa.style.backgroundImage = "url('img/suricata/baile.gif" + "?a=" + Math.random() + "')"
+			capa.classList.add('parada')
+			capa.classList.remove('entrada')
+
+			setTimeout(function(){
+				capa.style.backgroundImage = "url('img/suricata/caminando.gif')"
+				capa.classList.remove('parada')
+				capa.classList.add('salida')
+			}, 5000)
+		})
+}
+
 // NOTA:
 // Toda esta maquinaria de abajo es un hack para 
 // solucionar el problema de no poderse resetear 
@@ -509,49 +533,49 @@ function validar_resultado()
 
 
 
-function contar()
-{
-	cont = cont + 1
-	suricata(cont)
-}
+// function contar()
+// {
+// 	cont = cont + 1
+// 	suricata(cont)
+// }
 
 
 
-function suricata(cont)
-{
-	var header = document.getElementById('header')
-	var capa   = document.createElement('div')
+// function suricata(cont)
+// {
+// 	var header = document.getElementById('header')
+// 	var capa   = document.createElement('div')
 
-	header.appendChild(capa)
-
-
-	capa.classList.add('suricata-entrada')
+// 	header.appendChild(capa)
 
 
-	capa.addEventListener('animationend', function(){
-
-		if(cont == 1)
-		{
-			capa.classList.add('parada-1')
-			capa.classList.remove('suricata-entrada')
-		}
-		else if(cont == 2)
-		{
-			capa.classList.add('parada-2')
-			capa.classList.remove('suricata-entrada')
-		}
-		else if(cont == 3)
-		{
-			capa.classList.add('parada-3')
-			capa.classList.remove('suricata-entrada')
-		}
+// 	capa.classList.add('suricata-entrada')
 
 
-			setTimeout(function(){
-				capa.classList.add('suricata-salida')
-			}, 5000)
-	})
-}
+// 	capa.addEventListener('animationend', function(){
+
+// 		if(cont == 1)
+// 		{
+// 			capa.classList.add('parada-1')
+// 			capa.classList.remove('suricata-entrada')
+// 		}
+// 		else if(cont == 2)
+// 		{
+// 			capa.classList.add('parada-2')
+// 			capa.classList.remove('suricata-entrada')
+// 		}
+// 		else if(cont == 3)
+// 		{
+// 			capa.classList.add('parada-3')
+// 			capa.classList.remove('suricata-entrada')
+// 		}
+
+
+// 			setTimeout(function(){
+// 				capa.classList.add('suricata-salida')
+// 			}, 5000)
+// 	})
+// }
 
 // IMPORTANTE: OPTIMIZAR LA MAQUINARIA CON UN BUEN CÓDIGO, EN LUGAR DE HACER ESTA CHAPUZA
 // NI TENER TANTAS CLASES EN LA HOJA DE ESTILOS
@@ -587,6 +611,6 @@ function outline()
 	}
 }
 document.getElementById('outline').addEventListener('click',outline);
-document.getElementById('outline').addEventListener('click',contar);
+document.getElementById('outline').addEventListener('click',suricata);
 
 });
