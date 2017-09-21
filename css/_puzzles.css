@@ -103,3 +103,6 @@
 .piezas {
   width: 100%;
   position: absolute; }
+
+.rejilla {
+  border: 1px solid rgba(0, 0, 0, 0.2); }

@@ -18,6 +18,7 @@ $anchura-li: 30px;
 	width: 100%;
 	height: 200px;
 	position: relative;
+	border-bottom: 1px solid rgba(#000, .2);
 	@media(min-width: 480px)
 	{
 		justify-content: space-around;
@@ -30,30 +31,124 @@ $anchura-li: 30px;
 	width: 100%;
 	height: 50px;
 	font-family: Shrikhand;
-	font-size: 35px;
+	font-size: 8vmin;
 	color: #d2b7ff;
 	text-shadow: 1px 1px 2px #000;
 	border-bottom: 1px solid rgba(#000, .2);
 	@media(min-width: 480px)
 	{
 		height: 70px;
+		font-size: 35px;
 	}
 }
 	
 
 
 
+
+
+
+
+
+
+
+.container-selector{
+	@include flex;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 70px;
+	border-bottom: 1px solid rgba(#000, .2);
+	font-size: 14px;
+	@media(min-width: 480px)
+	{
+		width: 33%;
+		height: 130px;
+		border: none;
+	}
+}
+
+
+
+
+
+.container-lista{
+	@include flex;
+	flex-wrap: wrap;
+	width: 130px;
+	height: 30px;
+	font-size: 14px;
+	@media(min-width: 480px)
+	{
+	}
+}
+
+
+
+
+
+.elige-puzzle{
+	@include boton-01( #009688);
+	width: 130px;
+	font-size: 14px;
+	text-align: center;
+}
+
+
+
+
+.ul-lista{
+	width: 100%;
+	height: 0;
+	transition: all, .3s;
+	box-shadow: 0 5px 10px -4px #666;
+	border-radius: 0 0 5px 5px;
+	z-index: 10;
+	overflow: hidden;
+}
+
+
+
+.container-lista:hover .ul-lista{
+	height: $anchura-li * 4;
+}
+
+
+
+
+
+.li-lista{
+	@include flex;
+	width: 100%;
+	height: $anchura-li;
+	border-bottom: 1px solid rgba(#000, .2);
+	background-color: #fff;
+	cursor: pointer;
+	transition: all, .3s;
+	&:hover{
+		color: #fff;
+		background-color: #009688;
+	}
+	&:active{
+		background-color: lighten(#009688, 10%);
+		font-size: 13px;
+		transition: none;
+	}
+}
+	
+
+
+	
 .container-radio{
 	@include flex;
 	align-content: center;
 	flex-wrap: wrap;
 	width: 100%;
 	height: 80px;
-	border-bottom: 1px solid rgba(#000, .2);
+	// border-bottom: 1px solid rgba(#000, .2);
 	@media(min-width: 480px)
 	{
-		width: 50%;
-		height: 110px;
+		width: 33%;
+		height: 130px;
 	}
 
 	& > p:first-of-type{
@@ -61,40 +156,82 @@ $anchura-li: 30px;
 		font-weight: bold;
 		color: #009688;;
 	}
+}
 
-	.container-inputs{
+	.boton-rejilla{
+		
+	}
+
+.container-inputs{
+	@include flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top: 10px;
+	@media(min-width: 480px)
+	{
+		width: 100%;
+	}
+	.item-input{
 		@include flex;
 		flex-wrap: wrap;
-		width: 100%;
-		margin-top: 10px;
-		@media(min-width: 480px)
-		{
-			width: 100%;
+		width: 70px;
+		.radio{
+			font-size: 30px;
 		}
-		.item-input{
-			@include flex;
-			flex-wrap: wrap;
-			width: 70px;
-			.radio{
-				font-size: 30px;
-			}
-			.label-radio{
-				font-size: 14px;
-				padding-left: 5px;
-			}
+		.label-radio{
+			font-size: 14px;
+			padding-left: 5px;
 		}
-		#radio-9:checked + label{
-			color: #009688;
-			font-weight: bold;
-		}
-		#radio-16:checked + label{
-			color: #009688;
-			font-weight: bold;
-		}
-		#radio-25:checked + label{
-			color: #009688;
-			font-weight: bold;
-		}
+	}
+	#radio-9:checked + label{
+		color: #009688;
+		font-weight: bold;
+	}
+	#radio-16:checked + label{
+		color: #009688;
+		font-weight: bold;
+	}
+	#radio-25:checked + label{
+		color: #009688;
+		font-weight: bold;
+	}
+}
+
+
+
+	
+
+
+.container-boton-rejilla{
+	@include flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+	height: 70px;
+	@media(min-width: 480px)
+	{
+		width: 33%;
+		height: 130px;
+	}
+}
+
+.boton-solucion,
+.boton-rejilla{
+	@include boton-01(#009688);
+	font-size: 12px;
+}
+
+
+
+
+.boton-menu{
+	@include flex;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid rgba(#000, .2);
+	@media(min-width: 480px)
+	{
+		display: none;
 	}
 }
 
@@ -104,66 +241,7 @@ $anchura-li: 30px;
 
 
 
-
-.container-slide{
-	@include flex;
-	flex-wrap: wrap;
-	width: 100%;
-	height: 110px;
-	border-bottom: 1px solid rgba(#000, .2);
-	font-size: 14px;
-	@media(min-width: 480px)
-	{
-		width: 50%;
-	}
-	.container-lista{
-		@include flex;
-		flex-wrap: wrap;
-		max-width: 130px;
-		height: 30px;
-		font-size: 14px;
-		@media(min-width: 480px)
-		{
-			width: 50%;
-		}
-		.elige-puzzle{
-			width: 130px;
-			font-size: 14px;
-			text-align: center;
-			// &:hover .ul-lista{
-			// 		height: 100px;
-				
-			// }
-		}
-		.ul-lista{
-			width: 100%;
-			height: 0;
-			transition: all, .3s;
-			box-shadow: 0 5px 10px -4px #666;
-			border-radius: 0 0 5px 5px;
-			z-index: 10;
-			overflow: hidden;
-		
-		}
-		.li-lista{
-			@include flex;
-			height: $anchura-li;
-			border-bottom: 1px solid rgba(#000, .2);
-			background-color: #fff;
-			cursor: pointer;
-			transition: all, .3s;
-		}
-		.li-lista:hover{
-			color: #fff;
-			background-color: #009688;
-		}
-	}
-
-	.container-lista:hover .ul-lista{
-		height: $anchura-li * 4;
-	}
-
-	.slide{
+.slide{
 		width: 80px;
 		height: 80px;
 		margin-left: 10%;
@@ -175,18 +253,4 @@ $anchura-li: 30px;
 			height: 90px;
 		}
 	}
-}
 
-
-
-
-
-
-.boton-menu{
-	@include flex;
-	width: 100%;
-	height: 40px;
-	border-bottom: 1px solid rgba(#000, .2);
-	@media(min-width: 480px){
-		display: none;}
-}

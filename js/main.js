@@ -559,7 +559,7 @@ function suricata(validacion)
 		// Con dos setTimeout, el problema queda resuelto
 		// de forma rápida y sencilla.
 }
-suricata("presentacion")
+// suricata("presentacion")
 
 
 
@@ -601,7 +601,32 @@ function suricata_mensaje(mensaje)
 
 
 
+// MOSTRAR / OCULTAR REJILLA
+var boton_rejilla = document.getElementById('mostrar_rejilla')
+var click = 0
 
+boton_rejilla.addEventListener('click', function(){
+
+	for(let i=0; i < casillas_destino.length; i++)
+	{
+		casillas_destino[i].classList.toggle('rejilla')
+	}
+
+	if(click == 0)
+	{
+		boton_rejilla.value = "Ocultar rejilla"
+		click = 1
+	}
+	else
+	{
+		boton_rejilla.value = "Mostrar rejilla"
+		click = 0
+	}
+
+	console.log(click)
+
+	
+})
 
 
 
@@ -618,6 +643,5 @@ function outline()
 	}
 }
 document.getElementById('outline').addEventListener('click',outline);
-document.getElementById('outline').addEventListener('click',suricata);
 
 });
