@@ -524,6 +524,12 @@ function suricata(validacion)
 
 				suricata_mensaje("¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!")
 			}
+			else if(resultado == "presentacion")
+			{
+				capa.style.backgroundImage = "url('img/suricata/presentacion.gif" + "?a=" + Math.random() + "')"
+
+				suricata_mensaje("Completa el puzzle" + "<br/>" + "y te diré si es correcto")
+			}
 			else
 			{
 				capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
@@ -549,7 +555,7 @@ function suricata(validacion)
 		// Con dos setTimeout, el problema queda resuelto
 		// de forma rápida y sencilla.
 }
-
+suricata("presentacion")
 
 
 
