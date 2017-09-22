@@ -319,7 +319,8 @@ textarea {
   top: 80px;
   left: 100%;
   background-size: cover;
-  background-position: center; }
+  background-position: center;
+  background-color: red; }
 
 .entrada {
   width: 200px;
@@ -329,6 +330,7 @@ textarea {
   left: 100%;
   background-size: cover;
   background-position: center;
+  background-color: red;
   animation-name: entrada;
   animation-duration: 3s;
   animation-iteration-count: 1;
@@ -343,6 +345,7 @@ textarea {
   left: 100%;
   background-size: cover;
   background-position: center;
+  background-color: red;
   left: 40%; }
 
 .salida {
@@ -353,6 +356,7 @@ textarea {
   left: 100%;
   background-size: cover;
   background-position: center;
+  background-color: red;
   animation-name: salida;
   animation-duration: 4s;
   animation-iteration-count: 1;
