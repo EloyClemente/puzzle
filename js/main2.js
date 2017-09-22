@@ -522,7 +522,7 @@ function presentacion()
 	setTimeout(function(){
 		capa.style.left = "40%"
 
-	}, 1000)
+	}, 2000)
 
 
 
