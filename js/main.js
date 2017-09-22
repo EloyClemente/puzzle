@@ -586,7 +586,7 @@ function animacion_capa(capa, mensaje, tipo_de_animacion)
 							capa.style.left = "-30%"
 						}, duracion_pausa) // Duración de la pausa
 
-		}, 500) // Delay antes de entrar en escena
+		}, 2000) // Delay antes de entrar en escena
 }
 
 
