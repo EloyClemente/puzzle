@@ -508,27 +508,35 @@ function validar_resultado()
 
 function presentacion()
 {
-	var capa = document.createElement('div')
+	var capa_1 = document.createElement('div')
+	var capa_2 = document.createElement('div')
 
-	capa.classList.add('suricata')
-	capa.style.transition = "all, 3.1s"
-	capa.style.transitionTimingFunction = "linear"
+	capa_1.classList.add('capa-1')
+	capa_1.style.transition = "all, 3.1s"
+	capa_1.style.transitionTimingFunction = "linear"
 
-	header.appendChild(capa)
+	capa_2.classList.add('capa-2')
 
-	capa.style.backgroundImage = "url('img/suricata/caminando-baja-resolucion.gif')"
+
+
+	header.appendChild(capa_1)
+	header.appendChild(capa_2)
+
+
+	capa_1.style.backgroundImage = "url('img/suricata/caminando-baja-resolucion.gif')"
 
 
 	setTimeout(function(){
-		capa.style.left = "40%"
 
+		capa_1.style.left = "40%"
 
 
 		setTimeout(function(){
 
-			capa.style.transition = "none"
+			capa_1.style.backgroundImage = "none"
+			// capa_2.style.visibility = "visible"
 
-			capa.style.backgroundImage = "url('img/suricata/new-presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
+			capa_2.style.backgroundImage = "url('img/suricata/new-presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
 
 		}, 3100)
 
@@ -536,7 +544,7 @@ function presentacion()
 	}, 3000)
 
 
-	console.log(capa.getBoundingClientRect().left)
+	// console.log(capa.getBoundingClientRect().left)
 
 
 
