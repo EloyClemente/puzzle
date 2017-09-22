@@ -14,8 +14,7 @@ var nombre_puzzle
 var pulsado
 
 var contador = 0
-
-var cont = 0
+var cont     = 0
 
 
 
@@ -506,92 +505,130 @@ function validar_resultado()
 
 
 
-
 function suricata(validacion)
 {
+	var mensaje
 	var resultado = validacion
+	var capa      = document.createElement('div')
 
-	console.log(resultado)
-
-	var capa   = document.createElement('div')
-
-	capa.classList.add('entrada')
+	capa.classList.add('suricata')
 
 	header.appendChild(capa)
 
 
-		setTimeout(function(){
-
-			if(resultado == "correcto")
-			{
-				capa.style.backgroundImage = "url('img/suricata/baile.gif" + "?a=" + Math.random() + "')"
-
-				suricata_mensaje("¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!")
-			}
-			else if(resultado == "presentacion")
-			{
-				capa.style.backgroundImage = "url('img/suricata/presentacion.gif" + "?a=" + Math.random() + "')"
-
-				suricata_mensaje("Completa el puzzle" + "<br/>" + "y te diré si es correcto")
-			}
-			else
-			{
-				capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
-
-				suricata_mensaje("No es correcto..." + "<br/>" + "Inténtalo de nuevo")
-			}
-			
-				capa.classList.add('parada')	
-				
-		}, 3000) // Tres segundos de la entrada
-
-
-		setTimeout(function(){
-			capa.style.backgroundImage = "url('img/suricata/caminando.gif')"
-			capa.classList.add('salida')
-		}, 8000) // 3 segundos de la entrada + 5 del baile
-
-
-		// NOTA: ¿Por qué no he utilizado animationend?
-		// Por alguna razón, el setTimeout necesario para
-		// insertar la imagen de salida, dispara el evento
-		// dos veces, lanzando dos veces el mensaje.
-		// Con dos setTimeout, el problema queda resuelto
-		// de forma rápida y sencilla.
+	if(resultado == "presentacion")
+	{
+		capa.style.backgroundImage = "url('img/suricata/presentacion.gif" + "?a=" + Math.random() + "')"
+		mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
+		animacion_capa(capa, mensaje, "presentacion")
+	}
+	else if(resultado == "correcto")
+	{
+		capa.style.backgroundImage = "url('img/suricata/correcto.gif" + "?a=" + Math.random() + "')"
+		mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
+		animacion_capa(capa, mensaje, "correcto")
+	}
+	else
+	{
+		capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
+		mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
+		animacion_capa(capa, mensaje, "incorrecto")
+	}
 }
 suricata("presentacion")
 
 
 
-function suricata_mensaje(mensaje)
+
+
+function animacion_capa(capa, mensaje, tipo_de_animacion)
 {
-	var correcto_texto = document.createElement('p')
-	correcto_texto.innerHTML = mensaje
-
-	var correcto_capa  = document.createElement('div')
+	capa.style.left                     = "100%"
+	capa.style.transition               = "all, 3.1s" // Duración de la entrada
+	capa.style.transitionTimingFunction = "linear"
 	
-	correcto_capa.classList.add('mensaje')
+	var tipo_de_animacion
+	var duracion_pausa
+	var delay_mensaje
+	var duracion_mensaje
 
-	correcto_capa.appendChild(correcto_texto)
-	header.appendChild(correcto_capa)
 
-
-
-	setTimeout(function(){
-		correcto_capa.style.height = "80px"
-		correcto_capa.style.color = "#fff"
+	if(tipo_de_animacion == "presentacion")
+	{
+		duracion_pausa   = 10000 
+		delay_mensaje    = 4000
+		duracion_mensaje = 3000
+	}
+	else if(tipo_de_animacion == "correcto")
+	{
+		duracion_pausa   = 11600
+		delay_mensaje    = 4000
+		duracion_mensaje = 4000	
+	}
+	else
+	{
+		duracion_pausa   = 8100
+		delay_mensaje    = 4900
+		duracion_mensaje = 2500	
+	}
+	
 
 		setTimeout(function(){
-			correcto_capa.style.height = "0px"
-			correcto_capa.style.color = "transparent"
-		}, 4000)
+
+				capa.style.left = "40%" // Entra en escena
+
+				setTimeout(function(){
+					suricata_mensaje(mensaje, duracion_mensaje)
+				}, delay_mensaje) // Espera antes de lanzar el mensaje
+
+
+						setTimeout(function(){
+							capa.style.left = "-30%"
+						}, duracion_pausa) // Duración de la pausa
+
+		}, 500) // Delay antes de entrar en escena
+}
+
+
+
+
+
+function suricata_mensaje(mensaje, duracion_mensaje)
+{
+	var capa_mensaje  = document.createElement('div')
+	var texto         = document.createElement('p')
+	texto.innerHTML   = mensaje
+	
+
+	capa_mensaje.classList.add('mensaje')
+
+
+	capa_mensaje.appendChild(texto)
+	header.appendChild(capa_mensaje)
+
+	
+
+	setTimeout(function(){
+
+		capa_mensaje.style.height = "80px"
+		capa_mensaje.style.color  = "#fff"
+
+			setTimeout(function(){
+				capa_mensaje.style.height = "0px"
+				capa_mensaje.style.color  = "transparent"
+			}, duracion_mensaje)
+
 	}, 20) // Para que le de tiempo a cargar la hoja de estilos
 	
 
 	setTimeout(function(){
-		correcto_capa.parentNode.removeChild(correcto_capa)
-	}, 6000)
+		capa_mensaje.parentNode.removeChild(capa_mensaje)
+	}, 15000)
 }
+
+
+
+
 
 
 
@@ -624,8 +661,6 @@ boton_rejilla.addEventListener('click', function(){
 	}
 
 	console.log(click)
-
-	
 })
 
 

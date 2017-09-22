@@ -4,9 +4,9 @@
 	position: absolute;
 	top: 80px;
 	left: 100%;
-	// background-color: red;
 	background-size: cover;
 	background-position: center;
+	// background-color: red;
 }
 
 
@@ -28,6 +28,12 @@
 	100%{
 		left: -120%;
 	}
+}
+
+
+.suricata{
+	@include suricata;
+	// transition: all, 6s;
 }
 
 .entrada{
@@ -72,7 +78,6 @@
 	background-color: rgba(#8c00ff, .8);
 	box-shadow: 0 5px 10px -3px #000;
 	text-align: center;
-	transition: all, .6s;
+	transition: all, .5s;
 	z-index: 1000;
-	
 }

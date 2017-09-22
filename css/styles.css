@@ -7,7 +7,6 @@ html, body {
   border: 0;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 ul, li {
@@ -22,27 +21,11 @@ textarea {
   outline: none; }
 
 .header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-  -ms-flex-align: start;
   align-items: flex-start;
-  -webkit-align-content: flex-start;
-  -ms-flex-line-pack: start;
   align-content: flex-start;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   height: 200px;
@@ -50,22 +33,11 @@ textarea {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 480px) {
     .header {
-      -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
       justify-content: space-around; } }
 
 .h1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100%;
   height: 50px;
@@ -80,20 +52,9 @@ textarea {
       font-size: 35px; } }
 
 .container-selector {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   height: 70px;
@@ -106,20 +67,9 @@ textarea {
       border: none; } }
 
 .container-lista {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 130px;
   height: 30px;
@@ -131,16 +81,12 @@ textarea {
   padding: .5em .9em;
   font-size: 16px;
   outline: none;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 2px;
   cursor: pointer;
   color: #fff;
   background-color: #009688;
-  -webkit-box-shadow: 0 .1em .2em -.1em #666;
   box-shadow: 0 .1em .2em -.1em #666;
-  -webkit-transition: all, .03s;
-  -o-transition: all, .03s;
   transition: all, .03s;
   width: 130px;
   font-size: 14px;
@@ -148,20 +94,14 @@ textarea {
   .elige-puzzle:hover {
     background-color: #00c9b6; }
   .elige-puzzle:active {
-    -webkit-transform: scale(0.96, 0.96);
-    -ms-transform: scale(0.96, 0.96);
     transform: scale(0.96, 0.96);
-    -webkit-box-shadow: 0 0 0  #fff;
     box-shadow: 0 0 0  #fff;
     border-radius: 4px; }
 
 .ul-lista {
   width: 100%;
   height: 0;
-  -webkit-transition: all, .3s;
-  -o-transition: all, .3s;
   transition: all, .3s;
-  -webkit-box-shadow: 0 5px 10px -4px #666;
   box-shadow: 0 5px 10px -4px #666;
   border-radius: 0 0 5px 5px;
   z-index: 10;
@@ -171,25 +111,14 @@ textarea {
   height: 120px; }
 
 .li-lista {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100%;
   height: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #fff;
   cursor: pointer;
-  -webkit-transition: all, .3s;
-  -o-transition: all, .3s;
   transition: all, .3s; }
   .li-lista:hover {
     color: #fff;
@@ -197,28 +126,13 @@ textarea {
   .li-lista:active {
     background-color: #00c9b6;
     font-size: 13px;
-    -webkit-transition: none;
-    -o-transition: none;
     transition: none; }
 
 .container-radio {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   height: 80px; }
@@ -232,20 +146,9 @@ textarea {
     color: #009688; }
 
 .container-inputs {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   margin-top: 10px; }
@@ -253,20 +156,9 @@ textarea {
     .container-inputs {
       width: 100%; } }
   .container-inputs .item-input {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     width: 70px; }
     .container-inputs .item-input .radio {
@@ -285,25 +177,10 @@ textarea {
     font-weight: bold; }
 
 .container-boton-rejilla {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: flex-row;
-  -ms-flex-direction: flex-row;
   flex-direction: flex-row;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
   justify-content: space-around;
   width: 100%;
   height: 70px; }
@@ -311,10 +188,6 @@ textarea {
     .container-boton-rejilla {
       width: 30%;
       height: 130px;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
       flex-direction: column; } }
 
 .boton-solucion,
@@ -324,16 +197,12 @@ textarea {
   padding: .5em .9em;
   font-size: 16px;
   outline: none;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 2px;
   cursor: pointer;
   color: #fff;
   background-color: #009688;
-  -webkit-box-shadow: 0 .1em .2em -.1em #666;
   box-shadow: 0 .1em .2em -.1em #666;
-  -webkit-transition: all, .03s;
-  -o-transition: all, .03s;
   transition: all, .03s;
   font-size: 12px; }
   .boton-solucion:hover,
@@ -341,25 +210,13 @@ textarea {
     background-color: #00c9b6; }
   .boton-solucion:active,
   .boton-rejilla:active {
-    -webkit-transform: scale(0.96, 0.96);
-    -ms-transform: scale(0.96, 0.96);
     transform: scale(0.96, 0.96);
-    -webkit-box-shadow: 0 0 0  #fff;
     box-shadow: 0 0 0  #fff;
     border-radius: 4px; }
 
 .boton-menu {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100%;
   height: 40px;
@@ -378,26 +235,10 @@ textarea {
       height: 90px; } }
 
 .container-puzzle {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -406,45 +247,23 @@ textarea {
   margin-top: 50px; }
   @media (min-width: 480px) {
     .container-puzzle {
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
       justify-content: space-between;
-      -webkit-box-align: start;
-      -webkit-align-items: flex-start;
-      -ms-flex-align: start;
       align-items: flex-start;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
-      -ms-flex-direction: row;
       flex-direction: row;
       height: 50vw;
       margin-top: 0;
       padding: 2%; } }
 
 .puzzle {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 75vw;
   height: 75vw;
   margin-bottom: 1%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 5px 10px -5px #666;
   box-shadow: 0 5px 10px -5px #666; }
   @media (min-width: 480px) {
     .puzzle {
@@ -457,9 +276,6 @@ textarea {
 .casillas-9,
 .casillas-16,
 .casillas-25 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   position: relative; }
 
@@ -486,29 +302,24 @@ textarea {
 .rejilla {
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
-@-webkit-keyframes entrada {
-  0% {
-    left: 100%; }
-  100% {
-    left: 40%; } }
-
 @keyframes entrada {
   0% {
     left: 100%; }
   100% {
     left: 40%; } }
-
-@-webkit-keyframes salida {
-  0% {
-    left: 40%; }
-  100% {
-    left: -120%; } }
-
 @keyframes salida {
   0% {
     left: 40%; }
   100% {
     left: -120%; } }
+.suricata {
+  width: 200px;
+  height: 120px;
+  position: absolute;
+  top: 80px;
+  left: 100%;
+  background-size: cover;
+  background-position: center; }
 
 .entrada {
   width: 200px;
@@ -518,13 +329,9 @@ textarea {
   left: 100%;
   background-size: cover;
   background-position: center;
-  -webkit-animation-name: entrada;
   animation-name: entrada;
-  -webkit-animation-duration: 3s;
   animation-duration: 3s;
-  -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background-image: url(../img/suricata/caminando.gif); }
 
@@ -546,28 +353,15 @@ textarea {
   left: 100%;
   background-size: cover;
   background-position: center;
-  -webkit-animation-name: salida;
   animation-name: salida;
-  -webkit-animation-duration: 4s;
   animation-duration: 4s;
-  -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background-image: url(../img/suricata/caminando.gif); }
 
 .mensaje {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 240px;
   height: 0;
@@ -577,12 +371,9 @@ textarea {
   border-radius: 5px;
   color: transparent;
   background-color: rgba(140, 0, 255, 0.8);
-  -webkit-box-shadow: 0 5px 10px -3px #000;
   box-shadow: 0 5px 10px -3px #000;
   text-align: center;
-  -webkit-transition: all, .6s;
-  -o-transition: all, .6s;
-  transition: all, .6s;
+  transition: all, .5s;
   z-index: 1000; }
 
 #outline {
@@ -611,3 +402,5 @@ body {
   @media (min-width: 480px) {
     .container {
       padding: 0; } }
+
+/*# sourceMappingURL=styles.css.map */
