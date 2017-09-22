@@ -564,24 +564,28 @@ function suricata(validacion)
 	header.appendChild(capa)
 
 
-	if(resultado == "presentacion")
-	{
-		capa.style.backgroundImage = "url('img/suricata/presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-		mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
-		animacion_capa(capa, mensaje, "presentacion")
-	}
-	else if(resultado == "correcto")
-	{
-		capa.style.backgroundImage = "url('img/suricata/correcto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-		mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
-		animacion_capa(capa, mensaje, "correcto")
-	}
-	else
-	{
-		capa.style.backgroundImage = "url('img/suricata/incorrecto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-		mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
-		animacion_capa(capa, mensaje, "incorrecto")
-	}
+	setTimeout(function(){
+
+		if(resultado == "presentacion")
+		{
+			capa.style.backgroundImage = "url('img/suricata/presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
+			mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
+			animacion_capa(capa, mensaje, "presentacion")
+		}
+		else if(resultado == "correcto")
+		{
+			capa.style.backgroundImage = "url('img/suricata/correcto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
+			mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
+			animacion_capa(capa, mensaje, "correcto")
+		}
+		else
+		{
+			capa.style.backgroundImage = "url('img/suricata/incorrecto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
+			mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
+			animacion_capa(capa, mensaje, "incorrecto")
+		}
+
+		}, 5000)
 }
 suricata("presentacion")
 
@@ -634,7 +638,7 @@ function animacion_capa(capa, mensaje, tipo_de_animacion)
 							capa.style.left = "-30%"
 						}, duracion_pausa) // Duración de la pausa
 
-		}, 2000) // Delay antes de entrar en escena
+		}, 10) // Delay antes de entrar en escena
 }
 
 
