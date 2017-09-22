@@ -494,11 +494,11 @@ function validar_resultado()
 			   resultado == "57463219151114161210138" || 
 			   resultado == "12101177222194155316131121149252482018236")
 			{
-				// suricata("correcto") 
+				suricata("correcto") 
 			}
 			else
 			{
-				// suricata("incorrecto")
+				suricata("incorrecto")
 			}
 }
 
@@ -543,20 +543,6 @@ function validar_resultado()
 
 // }
 // presentacion()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
