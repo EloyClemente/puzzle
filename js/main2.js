@@ -572,13 +572,13 @@ function suricata(validacion)
 	}
 	else if(resultado == "correcto")
 	{
-		capa.style.backgroundImage = "url('img/suricata/correcto.gif" + "?a=" + Math.random() + "')"
+		capa.style.backgroundImage = "url('img/suricata/correcto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
 		mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
 		animacion_capa(capa, mensaje, "correcto")
 	}
 	else
 	{
-		capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
+		capa.style.backgroundImage = "url('img/suricata/incorrecto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
 		mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
 		animacion_capa(capa, mensaje, "incorrecto")
 	}
@@ -603,7 +603,7 @@ function animacion_capa(capa, mensaje, tipo_de_animacion)
 
 	if(tipo_de_animacion == "presentacion")
 	{
-		duracion_pausa   = 10000 
+		duracion_pausa   = 9100
 		delay_mensaje    = 4000
 		duracion_mensaje = 3000
 	}
