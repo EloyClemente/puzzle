@@ -522,7 +522,18 @@ function presentacion()
 	setTimeout(function(){
 		capa.style.left = "40%"
 
+
+
+		setTimeout(function(){
+			capa.style.backgroundImage = "url('img/suricata/new-presentacion.gif" + "?a=" + Math.random() + "')"
+
+		}, 5000)
+
+
 	}, 3000)
+
+
+	console.log(capa.getBoundingClientRect().left)
 
 
 
