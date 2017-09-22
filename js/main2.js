@@ -580,7 +580,7 @@ function suricata(validacion)
 
 	if(resultado == "presentacion")
 	{
-		
+		capa.style.backgroundImage = "url('img/suricata/presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
 		mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
 		animacion_capa(capa, mensaje, "presentacion")
 	}
@@ -638,7 +638,6 @@ function animacion_capa(capa, mensaje, tipo_de_animacion)
 		setTimeout(function(){
 
 				capa.style.left = "40%" // Entra en escena
-				capa.style.backgroundImage = "url('img/suricata/presentacion.gif" + "?a=" + Math.random() + "')"
 
 				setTimeout(function(){
 					suricata_mensaje(mensaje, duracion_mensaje)
