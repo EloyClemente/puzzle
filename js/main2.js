@@ -190,7 +190,7 @@ function miniaturas_mostrar(event)
 
 	let imagen = li.dataset.name
 
-	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + ".jpg)"
+	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + "-200.jpg)"
 
 	event.stopPropagation()
 
