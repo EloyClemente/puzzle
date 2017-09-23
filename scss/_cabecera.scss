@@ -98,20 +98,10 @@ $anchura-li: 30px;
 
 .ul-lista{
 	width: 100%;
-	height: 0;
 	transition: all, .3s;
 	box-shadow: 0 5px 10px -4px #666;
-	border-radius: 0 0 5px 5px;
 	z-index: 10;
-	overflow: hidden;
 }
-
-
-
-.container-lista:hover .ul-lista{
-	height: $anchura-li * 4;
-}
-
 
 
 
@@ -119,11 +109,13 @@ $anchura-li: 30px;
 .li-lista{
 	@include flex;
 	width: 100%;
-	height: $anchura-li;
-	border-bottom: 1px solid rgba(#000, .2);
+	height: 0;
+	color: #333;
 	background-color: #fff;
+	// font-size: 14px;
 	cursor: pointer;
 	transition: all, .3s;
+	position: relative;
 	&:hover{
 		color: #fff;
 		background-color: #009688;
@@ -135,6 +127,40 @@ $anchura-li: 30px;
 	}
 }
 	
+.container-lista:hover .li-lista{
+	height: $anchura-li;
+	border-bottom: 1px solid rgba(#000, .2);
+}
+
+
+.letras{
+	height: 0;
+	overflow: hidden;
+	transition-property: height;
+	transition-duration: .3s;
+}
+
+.container-lista:hover .letras{
+	height: 20px;
+}
+
+
+.ul-lista > li:last-child{
+	border-radius: 0 0 5px 5px;
+}
+
+
+.miniatura{
+	width: 200px;
+	height: 200px;
+	background: blue;
+	position: absolute;
+	top: 0;
+	left: 100%;
+}
+
+
+
 
 
 	

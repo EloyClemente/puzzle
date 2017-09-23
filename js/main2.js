@@ -156,6 +156,7 @@ function insertar_puzzle( nombre_puzzle )
 
 
 
+// ASIGNAR MINIATURAS A LA LISTA DE PUZZLES
 // ASIGNAR EVENTO CLICK A LA LISTA DE PUZZLES
 function evento_desplegable()
 {
@@ -163,9 +164,29 @@ function evento_desplegable()
 
 	for(let i=0; i < selector_puzzle.length; i++)
 	{
+		selector_puzzle[i].addEventListener('mouseover', miniaturas)
 		selector_puzzle[i].addEventListener('click', enviar_por_lista)
 	}
 } evento_desplegable()
+
+
+
+
+
+
+// function miniaturas(event)
+// {
+// 	let puzzle = event.target
+
+// 	let capa_miniatura = document.createElement('div')
+
+// 	capa_miniatura.classList.add('miniatura')
+
+// 	puzzle.appendChild(capa_miniatura)
+
+// 	console.log(puzzle)
+// }
+
 
 
 
