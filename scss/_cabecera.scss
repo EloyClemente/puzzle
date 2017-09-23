@@ -89,7 +89,8 @@ $anchura-li: 30px;
 .elige-puzzle{
 	@include boton-01( #009688);
 	width: 130px;
-	font-size: 14px;
+	font-size: 15px;
+	font-weight: bold;
 	text-align: center;
 }
 

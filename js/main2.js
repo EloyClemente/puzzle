@@ -318,7 +318,7 @@ asignar_eventos_a_piezas()
 
 
 
-
+// ARRASTRAR PIEZAS
 var arrastrar_pieza
 
 function mouse_down(event)
@@ -335,12 +335,12 @@ function mouse_down(event)
 		window.addEventListener('mousemove', mover)
 		function mover(event)
 		{
-			pieza.style.left   = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
-			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
+			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			pieza.style.top       = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
-			pieza.style.zIndex = 100
-
-			arrastrar_pieza = "yes" // Da permiso para activar las casillas
+			pieza.style.boxShadow = "0 5px 15px #333"
+			pieza.style.zIndex    = 100
+			arrastrar_pieza       = "yes" // Da permiso para activar las casillas
 		}
 
 
@@ -352,10 +352,11 @@ function mouse_down(event)
 		{
 			window.removeEventListener('mousemove', mover)
 
-			pieza.style.left   = "0px"
-			pieza.style.top    = "0px"
-			pieza.style.zIndex = 0
-			arrastrar_pieza = "no" // Deshabilita el permiso
+			pieza.style.left      = "0px"
+			pieza.style.top       = "0px"
+			pieza.style.boxShadow = "none"
+			pieza.style.zIndex    = 0
+			arrastrar_pieza       = "no" // Deshabilita el permiso
 
 			contador = 0 
 			// Para revisar si el puzzle está bien construído. 

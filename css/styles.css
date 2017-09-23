@@ -143,7 +143,8 @@ textarea {
   -o-transition: all, .03s;
   transition: all, .03s;
   width: 130px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: bold;
   text-align: center; }
   .elige-puzzle:hover {
     background-color: #00c9b6; }
