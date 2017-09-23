@@ -112,7 +112,7 @@ $anchura-li: 30px;
 	height: 0;
 	color: #333;
 	background-color: #fff;
-	// font-size: 14px;
+	font-size: 0;
 	cursor: pointer;
 	transition: all, .3s;
 	position: relative;
@@ -130,18 +130,22 @@ $anchura-li: 30px;
 .container-lista:hover .li-lista{
 	height: $anchura-li;
 	border-bottom: 1px solid rgba(#000, .2);
+	font-size: 14px;
 }
 
 
-.letras{
-	height: 0;
-	overflow: hidden;
-	transition-property: height;
-	transition-duration: .3s;
-}
+// .letras{
+// 	@include flex;
+// 	height: 0;
+// 	overflow: hidden;
+// 	transition-property: height;
+// 	transition-duration: .3s;
+// 	background: red;
+// }
 
 .container-lista:hover .letras{
-	height: 20px;
+	width: 100%;
+	height: 100%;
 }
 
 
@@ -150,14 +154,21 @@ $anchura-li: 30px;
 }
 
 
-.miniatura{
+.miniaturas-mostrar{
 	width: 200px;
 	height: 200px;
-	background: blue;
 	position: absolute;
 	top: 0;
 	left: 100%;
+	background-size: cover;
+	border: 3px solid #fff;
+	border-radius: 5px;
+	box-shadow: 5px 0px 10px #333;
+	
+	transition: all, .3s;
 }
+
+
 
 
 

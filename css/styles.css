@@ -181,6 +181,7 @@ textarea {
   height: 0;
   color: #333;
   background-color: #fff;
+  font-size: 0;
   cursor: pointer;
   -webkit-transition: all, .3s;
   -o-transition: all, .3s;
@@ -198,31 +199,30 @@ textarea {
 
 .container-lista:hover .li-lista {
   height: 30px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-
-.letras {
-  height: 0;
-  overflow: hidden;
-  -webkit-transition-property: height;
-  -o-transition-property: height;
-  transition-property: height;
-  -webkit-transition-duration: .3s;
-  -o-transition-duration: .3s;
-  transition-duration: .3s; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 14px; }
 
 .container-lista:hover .letras {
-  height: 20px; }
+  width: 100%;
+  height: 100%; }
 
 .ul-lista > li:last-child {
   border-radius: 0 0 5px 5px; }
 
-.miniatura {
+.miniaturas-mostrar {
   width: 200px;
   height: 200px;
-  background: blue;
   position: absolute;
   top: 0;
-  left: 100%; }
+  left: 100%;
+  background-size: cover;
+  border: 3px solid #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 0px 10px #333;
+  box-shadow: 5px 0px 10px #333;
+  -webkit-transition: all, .3s;
+  -o-transition: all, .3s;
+  transition: all, .3s; }
 
 .container-radio {
   display: -webkit-box;

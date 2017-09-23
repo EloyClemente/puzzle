@@ -164,7 +164,8 @@ function evento_desplegable()
 
 	for(let i=0; i < selector_puzzle.length; i++)
 	{
-		selector_puzzle[i].addEventListener('mouseover', miniaturas)
+		selector_puzzle[i].addEventListener('mouseenter', miniaturas_mostrar)
+		selector_puzzle[i].addEventListener('mouseleave', miniaturas_ocultar)
 		selector_puzzle[i].addEventListener('click', enviar_por_lista)
 	}
 } evento_desplegable()
@@ -174,19 +175,34 @@ function evento_desplegable()
 
 
 
-// function miniaturas(event)
-// {
-// 	let puzzle = event.target
+// MOSTRAR MINIATURAS
+function miniaturas_mostrar(event)
+{
+	let li = event.target
+	console.log(li)
 
-// 	let capa_miniatura = document.createElement('div')
+	capa_miniatura = document.createElement('div')
 
-// 	capa_miniatura.classList.add('miniatura')
+	capa_miniatura.classList.add('miniaturas-mostrar')
 
-// 	puzzle.appendChild(capa_miniatura)
+	li.appendChild(capa_miniatura)
 
-// 	console.log(puzzle)
-// }
 
+	let imagen = li.dataset.name
+
+	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + ".jpg)"
+
+	event.stopPropagation()
+
+	console.log(imagen)
+}
+
+
+
+function miniaturas_ocultar(event)
+{
+	capa_miniatura.parentNode.removeChild(capa_miniatura)
+}
 
 
 
@@ -323,7 +339,7 @@ function mouse_down(event)
 			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
 			pieza.style.zIndex = 100
-console.log('yes')
+
 			arrastrar_pieza = "yes" // Da permiso para activar las casillas
 		}
 
@@ -339,7 +355,6 @@ console.log('yes')
 			pieza.style.left   = "0px"
 			pieza.style.top    = "0px"
 			pieza.style.zIndex = 0
-			console.log('no')
 			arrastrar_pieza = "no" // Deshabilita el permiso
 
 			contador = 0 
@@ -428,8 +443,6 @@ window.addEventListener('mousemove', function(event)
 
 				var lista_destino = []
 				lista_destino.push(atributo_destino)
-
-				console.log(atributo_destino)
 
 
 
