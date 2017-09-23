@@ -506,188 +506,32 @@ function validar_resultado()
 
 
 
-function presentacion()
-{
-	var capa_1 = document.createElement('div')
-	var capa_2 = document.createElement('div')
 
-	capa_1.classList.add('capa-1')
-	capa_1.style.transition = "all, 3.1s"
-	capa_1.style.transitionTimingFunction = "linear"
 
-	capa_2.classList.add('capa-2')
 
 
 
-	header.appendChild(capa_1)
-	header.appendChild(capa_2)
 
 
-	capa_1.style.backgroundImage = "url('img/suricata/caminando-baja-resolucion.gif')"
 
 
-	setTimeout(function(){
 
-		capa_1.style.left = "40%"
 
 
-		setTimeout(function(){
 
-			capa_1.style.backgroundImage = "none"
-			// capa_2.style.visibility = "visible"
 
-			capa_2.style.backgroundImage = "url('img/suricata/new-presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
 
-		}, 3100)
 
 
-	}, 3000)
 
 
-	// console.log(capa.getBoundingClientRect().left)
 
 
 
 
 
 
-}
-presentacion()
 
-
-
-
-
-
-
-
-
-
-// function suricata(validacion)
-// {
-// 	var mensaje
-// 	var resultado = validacion
-// 	var capa      = document.createElement('div')
-
-// 	capa.classList.add('suricata')
-
-// 	header.appendChild(capa)
-
-
-
-
-// 		if(resultado == "presentacion")
-// 		{
-// 			capa.style.backgroundImage = "url('img/suricata/presentacion-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-// 			mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
-// 			animacion_capa(capa, mensaje, "presentacion")
-// 		}
-// 		else if(resultado == "correcto")
-// 		{
-// 			capa.style.backgroundImage = "url('img/suricata/correcto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-// 			mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
-// 			animacion_capa(capa, mensaje, "correcto")
-// 		}
-// 		else
-// 		{
-// 			capa.style.backgroundImage = "url('img/suricata/incorrecto-baja-resolucion.gif" + "?a=" + Math.random() + "')"
-// 			mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
-// 			animacion_capa(capa, mensaje, "incorrecto")
-// 		}
-
-		
-// }
-// suricata("presentacion")
-
-
-
-
-
-// function animacion_capa(capa, mensaje, tipo_de_animacion)
-// {
-// 	capa.style.left                     = "100%"
-// 	capa.style.transition               = "all, 3.1s" // Duración de la entrada
-// 	capa.style.transitionTimingFunction = "linear"
-	
-// 	var tipo_de_animacion
-// 	var duracion_pausa
-// 	var delay_mensaje
-// 	var duracion_mensaje
-
-
-// 	if(tipo_de_animacion == "presentacion")
-// 	{
-// 		duracion_pausa   = 9100
-// 		delay_mensaje    = 4000
-// 		duracion_mensaje = 3000
-// 	}
-// 	else if(tipo_de_animacion == "correcto")
-// 	{
-// 		duracion_pausa   = 11600
-// 		delay_mensaje    = 4000
-// 		duracion_mensaje = 4000	
-// 	}
-// 	else
-// 	{
-// 		duracion_pausa   = 8100
-// 		delay_mensaje    = 4900
-// 		duracion_mensaje = 2500	
-// 	}
-	
-
-// 		setTimeout(function(){
-
-// 				capa.style.left = "40%" // Entra en escena
-
-
-// 				setTimeout(function(){
-// 					suricata_mensaje(mensaje, duracion_mensaje)
-// 				}, delay_mensaje) // Espera antes de lanzar el mensaje
-
-
-// 						setTimeout(function(){
-// 							capa.style.left = "-30%"
-// 						}, duracion_pausa) // Duración de la pausa
-
-// 		}, 10) // Delay antes de entrar en escena
-// }
-
-
-
-
-
-// function suricata_mensaje(mensaje, duracion_mensaje)
-// {
-// 	var capa_mensaje  = document.createElement('div')
-// 	var texto         = document.createElement('p')
-// 	texto.innerHTML   = mensaje
-	
-
-// 	capa_mensaje.classList.add('mensaje')
-
-
-// 	capa_mensaje.appendChild(texto)
-// 	header.appendChild(capa_mensaje)
-
-	
-
-// 	setTimeout(function(){
-
-// 		capa_mensaje.style.height = "80px"
-// 		capa_mensaje.style.color  = "#fff"
-
-// 			setTimeout(function(){
-// 				capa_mensaje.style.height = "0px"
-// 				capa_mensaje.style.color  = "transparent"
-// 			}, duracion_mensaje)
-
-// 	}, 20) // Para que le de tiempo a cargar la hoja de estilos
-	
-
-// 	setTimeout(function(){
-// 		capa_mensaje.parentNode.removeChild(capa_mensaje)
-// 	}, 15000)
-// }
 
 
 
