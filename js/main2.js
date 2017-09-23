@@ -156,7 +156,7 @@ function insertar_puzzle( nombre_puzzle )
 
 
 
-// ASIGNAR EVENTO A LA LISTA DE PUZZLES
+// ASIGNAR EVENTO CLICK A LA LISTA DE PUZZLES
 function evento_desplegable()
 {
 	let selector_puzzle = document.getElementsByClassName('li-lista')
@@ -302,7 +302,7 @@ function mouse_down(event)
 			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
 			pieza.style.zIndex = 100
-
+console.log('yes')
 			arrastrar_pieza = "yes" // Da permiso para activar las casillas
 		}
 
@@ -318,7 +318,7 @@ function mouse_down(event)
 			pieza.style.left   = "0px"
 			pieza.style.top    = "0px"
 			pieza.style.zIndex = 0
-
+			console.log('no')
 			arrastrar_pieza = "no" // Deshabilita el permiso
 
 			contador = 0 
@@ -408,14 +408,11 @@ window.addEventListener('mousemove', function(event)
 				var lista_destino = []
 				lista_destino.push(atributo_destino)
 
-
+				console.log(atributo_destino)
 
 
 
 				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
-
-					document.getElementById( atributo_destino ).style.backgroundColor = "transparent" // Quitamos el color a la casilla. Con lista_destino[0] da error
-
 
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
@@ -501,38 +498,6 @@ function validar_resultado()
 				// suricata("incorrecto")
 			}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
