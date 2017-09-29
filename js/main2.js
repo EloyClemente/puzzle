@@ -606,7 +606,7 @@ function entrada(respuesta_suricata)
 
 	}, 10)
 }
-// entrada("presentacion")
+entrada("presentacion")
 
 
 
@@ -672,7 +672,7 @@ function flexion(respuesta_suricata)
 
 			setTimeout(function(){
 				capa_flexion.style.visibility = "hidden" 
-			}, 90)
+			}, 100)
 
 			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
 			clearInterval(iniciar)
@@ -753,7 +753,7 @@ function correcto()
 
 
 		// Detener animación
-		if(iteraciones == 176)
+		if(iteraciones == 174)
 		{
 			agacharse()
 
