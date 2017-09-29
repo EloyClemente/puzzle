@@ -606,7 +606,7 @@ function entrada(respuesta_suricata)
 
 	}, 10)
 }
-// entrada("presentacion")
+entrada("presentacion")
 
 
 
@@ -1012,10 +1012,10 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
-document.getElementById('ver_correcto').addEventListener('click', function(){
+// document.getElementById('ver_correcto').addEventListener('click', function(){
 
-	entrada("incorrecto")
-})
+// 	entrada("incorrecto")
+// })
 
 
 
