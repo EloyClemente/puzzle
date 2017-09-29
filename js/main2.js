@@ -595,7 +595,7 @@ function entrada(respuesta_suricata)
 		// Detener capa
 		if(capa_caminar.offsetLeft <= (header.offsetWidth / 2) - 100) // Detener en el 50% del header
 		{
-			levantarse(respuesta_suricata)
+			flexion(respuesta_suricata)
 
 			setTimeout(function(){ // Para evitar el parpadeo
 				caminar.style.visibility = "hidden"
@@ -615,8 +615,8 @@ entrada("presentacion")
 
 
 
-// LEVANTARSE
-function levantarse(respuesta_suricata)
+// FLEXIÓN
+function flexion(respuesta_suricata)
 {
 	var capa_flexion = document.getElementById('flexion')
 	capa_flexion.style.left = ((header.offsetWidth / 2) - 100) + "px"
@@ -640,6 +640,8 @@ function levantarse(respuesta_suricata)
 
 	var iniciar = setInterval(function(){
 
+		console.log(sprite_position_x)
+
 		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
 		sprite_position_x = sprite_position_x - 200
 
@@ -647,7 +649,7 @@ function levantarse(respuesta_suricata)
 		iteraciones       = iteraciones + 1
 
 
-		if(iteraciones == 16)
+		if(iteraciones == 16) // -3000
 		{
 			switch(respuesta_suricata)
 			{
@@ -670,9 +672,9 @@ function levantarse(respuesta_suricata)
 
 			setTimeout(function(){
 				capa_flexion.style.visibility = "hidden" 
-			}, 10)
+			}, 40)
 
-			capa_flexion.style.backgroundPosition = "-2400px 0px" // Nos saltamos un par de frames para un mejor resultado
+			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
 			clearInterval(iniciar)
 
 			// Para la función mover_sprite()
@@ -814,11 +816,13 @@ function incorrecto()
 
 function agacharse()
 {
+	var sprite_position_x    = -2400 // Nos saltamos un par de frames para un mejor resultado
+
 	var capa_flexion = document.getElementById('flexion')
 	capa_flexion.style.left =  ((header.offsetWidth / 2) - 100) + "px"
 	capa_flexion.style.visibility = "visible"
 
-	var sprite_position_x    = -2400 // Nos saltamos un par de frames para un mejor resultado
+	
 	var iteraciones = 0
 	
 	
