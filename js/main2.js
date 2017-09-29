@@ -14,7 +14,16 @@ var nombre_puzzle
 var pulsado
 
 var contador = 0
-var cont     = 0
+
+
+
+// VARIABLES PARA LA ANIMACIÓN
+var direccion_sprite
+var position_x = 0
+var cont = 0
+var numero_fotograma = 1
+//****************************
+
 
 
 
@@ -179,7 +188,6 @@ function evento_desplegable()
 function miniaturas_mostrar(event)
 {
 	let li = event.target
-	console.log(li)
 
 	capa_miniatura = document.createElement('div')
 
@@ -193,8 +201,6 @@ function miniaturas_mostrar(event)
 	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + "-200.jpg)"
 
 	event.stopPropagation()
-
-	console.log(imagen)
 }
 
 
@@ -519,20 +525,495 @@ function validar_resultado()
 		var pieza_ID = pieza.getAttribute('id')
 
 		resultado = resultado + pieza_ID
-		console.log(resultado)
 	}	
 
 			if(resultado == "574632198" || 
 			   resultado == "57463219151114161210138" || 
 			   resultado == "12101177222194155316131121149252482018236")
 			{
-				// suricata("correcto") 
+				cont = 0 // Reseteamos las variables que usaremos en la animación
+				numero_fotograma = 1
+				entrada("correcto") 
 			}
 			else
 			{
-				// suricata("incorrecto")
+				cont = 0
+				numero_fotograma = 1
+				entrada("incorrecto")
 			}
 }
+
+
+
+
+
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+
+
+
+
+
+
+
+
+
+// ENTRADA
+function entrada(respuesta_suricata)
+{
+	var capa_caminar = document.getElementById('caminar')
+
+	var position_capa = header.offsetWidth // Hay que tomar como referencia el contenedor padre (el header)
+	var sprite_position_x = 0
+	var cont = 0
+
+
+
+	var iniciar = setInterval(function()
+	{
+		// Mover capa *********************************
+		capa_caminar.style.left = position_capa + "px"
+		position_capa           = position_capa - 1.4 // Velocidad de la capa
+		//*********************************************
+
+
+
+		// Mover sprite ****************************************************************************
+		if(cont % 3 == 0) // Para que el sprite se mueva sólo en los desplazamientos de capa impares
+		{
+			capa_caminar.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+			sprite_position_x = sprite_position_x - 200
+		}
+		cont = cont + 0.5
+		//******************************************************************************************
+		
+		
+
+
+		// Detener capa
+		if(capa_caminar.offsetLeft <= (header.offsetWidth / 2) - 100) // Detener en el 50% del header
+		{
+			levantarse(respuesta_suricata)
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				caminar.style.visibility = "hidden"
+			}, 10)
+			
+			clearInterval(iniciar)
+		}
+
+	}, 10)
+}
+entrada("presentacion")
+
+
+
+
+
+
+
+
+// LEVANTARSE
+function levantarse(respuesta_suricata)
+{
+	var capa_flexion = document.getElementById('flexion')
+	capa_flexion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+
+	console.log(header.offsetWidth)
+
+	capa_flexion.style.visibility = "visible"
+
+	var sprite_position_x  = 0 // Esto hace falta
+	var iteraciones = 0
+
+
+
+
+	var mensaje_presentacion = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
+	var mensaje_correcto     = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
+	var mensaje_incorrecto   = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
+
+
+
+
+	var iniciar = setInterval(function(){
+
+		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones       = iteraciones + 1
+
+
+		if(iteraciones == 16)
+		{
+			switch(respuesta_suricata)
+			{
+				case "presentacion":
+				presentacion();
+				mensaje(mensaje_presentacion, 1000, 4500) // Mensaje, delay y duración
+				break;
+
+				case "correcto":
+				correcto();
+				mensaje(mensaje_correcto, 700, 6000)
+				break;
+
+				case "incorrecto":
+				incorrecto();
+				mensaje(mensaje_incorrecto, 1500, 2500)
+				break;
+			}
+
+
+			setTimeout(function(){
+				capa_flexion.style.visibility = "hidden" 
+			}, 10)
+
+			capa_flexion.style.backgroundPosition = "-2400px 0px" // Nos saltamos un par de frames para un mejor resultado
+			clearInterval(iniciar)
+
+			// Para la función mover_sprite()
+			numero_fotograma = 1
+			position_x = 0
+			cont = 0
+		}
+	}, 90)
+}
+
+
+
+
+
+
+
+function presentacion()
+{
+	var capa_presentacion = document.getElementById('presentacion')
+	capa_presentacion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+	capa_presentacion.style.visibility = "visible"
+
+
+	var sprite_position_x = 0
+	var iteraciones = 0
+
+	
+
+	// Mover sprite
+	var iniciar = setInterval(function(){
+
+		capa_presentacion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+	
+		iteraciones = iteraciones + 1
+
+
+		if(iteraciones == 90)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_presentacion.style.visibility = "hidden"
+			}, 10)
+
+			capa_presentacion.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 90)
+}
+
+
+
+
+
+
+
+function correcto()
+{
+	var sprite_position_x = 0
+
+	var capa_correcto = document.getElementById('correcto')
+	capa_correcto.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_correcto.style.visibility = "visible"
+
+	var iteraciones = 0
+
+
+	var iniciar = setInterval(function(){
+
+		capa_correcto.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones = iteraciones + 1
+
+
+		// Detener animación
+		if(iteraciones == 178)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_correcto.style.visibility = "hidden"
+			}, 10)
+
+			capa_correcto.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 60)
+}
+
+
+
+
+
+function incorrecto()
+{
+	var capa_incorrecto = document.getElementById('incorrecto')
+	capa_incorrecto.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_incorrecto.style.visibility = "visible"
+
+	capa_incorrecto.style.left = header.offsetWidth / 2
+
+
+	var sprite_position_x = 0
+	var iteraciones = 0
+
+
+	// Mover sprite
+	var iniciar = setInterval(function(){
+
+		capa_incorrecto.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones = iteraciones + 1
+
+
+		if(iteraciones == 56)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_incorrecto.style.visibility = "hidden"
+			}, 10)
+
+			capa_incorrecto.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 100)
+}
+
+
+
+
+
+
+function agacharse()
+{
+	var capa_flexion = document.getElementById('flexion')
+	capa_flexion.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_flexion.style.visibility = "visible"
+
+	var sprite_position_x    = -2400 // Nos saltamos un par de frames para un mejor resultado
+	var iteraciones = 0
+	
+	
+	// capa_flexion.style.backgroundPosition = "-3400px 0px"  // Preparar su posición antes de hacerlo visible
+	
+
+	var iniciar = setInterval(function(){
+
+		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+
+		sprite_position_x = sprite_position_x + 200
+		iteraciones       = iteraciones + 1
+
+
+		if(iteraciones == 13)
+		{
+			salida()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_flexion.style.visibility = "hidden"
+			}, 10)
+
+			capa_flexion.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 90)
+}
+
+
+
+
+
+
+
+
+function salida()
+{
+	var cont = 0
+	var capa_caminar = document.getElementById('caminar')
+	caminar.style.visibility = "visible"
+
+	var sprite_position_x = 0
+
+
+	var position_capa = (header.offsetWidth / 2) - 100
+
+	
+
+	var iniciar = setInterval(function(){
+
+		// Mover la capa ******************************
+		capa_caminar.style.left = position_capa + "px"
+		position_capa           = position_capa - 1.4 // Velocidad de la capa
+		//*********************************************
+
+
+
+		// Mover sprite ****************************************************************************
+		if(cont % 3 == 0) // Para que el sprite se mueva sólo en los desplazamientos de capa impares
+		{
+			capa_caminar.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+			sprite_position_x = sprite_position_x - 200
+		}
+		cont = cont + 0.5
+		//******************************************************************************************
+
+
+
+		// Detener
+		if(caminar.getBoundingClientRect().left < header.getBoundingClientRect().left - 200)
+		{
+			clearInterval(iniciar)
+
+			position_x = 0
+			cont = 0
+		}
+
+	}, 10)
+}
+
+
+
+
+
+
+
+
+
+
+// // MOVER SPRITE
+// function mover_sprite(nombre_de_capa, numero_de_frames)
+// {
+// 	console.log(numero_fotograma)
+// 	if(numero_fotograma == 1)
+// 	{
+// 		direccion_sprite = "izquierda"
+// 	}
+
+// 	if(numero_fotograma == numero_de_frames)
+// 	{
+// 		direccion_sprite = "derecha"
+// 	}
+
+
+
+// 	if(cont % 3 == 0) // Para que la imagen cambie sólo en los desplazamientos impares
+// 	{
+		
+// 		nombre_de_capa.style.backgroundPosition = position_x + "px" + " 0px"
+
+
+// 		if(direccion_sprite == "izquierda")
+// 		{
+// 			mover_izquierda()
+// 		}
+
+// 		if(direccion_sprite == "derecha")
+// 		{
+// 			mover_derecha()
+			
+// 		}
+// 	}	
+
+
+// 	function mover_izquierda()
+// 	{
+// 		position_x  = position_x - 200
+// 		numero_fotograma = numero_fotograma + 1
+// 	}
+
+
+// 	function mover_derecha()
+// 	{
+// 		position_x  = position_x + 200
+// 		numero_fotograma = numero_fotograma - 1
+// 	}
+
+	
+
+// 	cont = cont + 0.5
+// }
+	
+
+
+
+
+
+
+function mensaje(mensaje, delay_mensaje, duracion_mensaje)
+{
+	var capa_mensaje  = document.createElement('div')
+	var texto         = document.createElement('p')
+	texto.innerHTML   = mensaje
+	
+
+	capa_mensaje.classList.add('mensaje')
+
+
+	capa_mensaje.appendChild(texto)
+	header.appendChild(capa_mensaje)
+
+
+	setTimeout(function(){ // Retrasamos el lanzamiento del mensaje
+
+		capa_mensaje.style.height = "80px"
+		capa_mensaje.style.color  = "#fff"
+
+				setTimeout(function(){ // Controlamos su duración
+					capa_mensaje.style.height = "0px"
+					capa_mensaje.style.color  = "transparent"
+				}, duracion_mensaje)
+
+	}, delay_mensaje)
+	
+
+	
+	
+
+	setTimeout(function(){
+		capa_mensaje.parentNode.removeChild(capa_mensaje)
+	}, 15000)
+}
+
+
+
+
+
+
+
+
+// document.getElementById('ver_correcto').addEventListener('click', function(){
+
+// 	entrada("incorrecto")
+// })
+
 
 
 

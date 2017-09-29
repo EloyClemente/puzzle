@@ -1,126 +1,48 @@
 @mixin suricata{
 	width: 200px;
-	height: 120px;
+	height: 113px;
 	position: absolute;
-	top: 80px;
+	top: 86px;
+	background-position: 0 0;
+	visibility: hidden;
+}
+
+
+.caminar,
+.flexion,
+.presentacion,
+.correcto,
+.incorrecto
+{
+@include suricata;
+}
+
+
+
+.caminar{
 	left: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	// background-color: red;
-}
-
-
-.capa-1{
-	width: 200px;
-	height: 120px;
-	position: absolute;
-	top: 80px;
-	left: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	background-image: url(../img/suricata/sprite-caminar-low.png);
 	visibility: visible;
-	// background: blue;
 }
 
 
-.capa-2{
-	width: 200px;
-	height: 120px;
-	position: absolute;
-	top: 80px;
-	left: 40%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	visibility: visible;
-	// background: green;
+.flexion{
+	background-image: url(../img/suricata/sprite-flexion-low.png);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@keyframes entrada{
-	0%{
-		left: 100%;
-	}
-	100%{
-		left: 40%;
-	}
+.presentacion{
+	background-image: url(../img/suricata/sprite-presentacion-low.png);
 }
 
 
-@keyframes salida{
-	0%{
-		left: 40%;
-	}
-	100%{
-		left: -120%;
-	}
+.correcto{
+	background-image: url(../img/suricata/sprite-correcto-low.png);
 }
 
 
-.suricata{
-	@include suricata;
-	// transition: all, 6s;
-}
-
-.entrada{
-	@include suricata;
-	animation-name: entrada;
-	animation-duration: 3s;
-	animation-iteration-count: 1;
-	animation-timing-function: linear;
-	background-image: url(../img/suricata/caminando.gif);
-}
-
-
-.parada{
-	@include suricata;
-	left: 40%;
-}
-
-
-.salida{
-	@include suricata;
-	animation-name: salida;
-	animation-duration: 4s;
-	animation-iteration-count: 1;
-	animation-timing-function: linear;
-	background-image: url(../img/suricata/caminando.gif);
+.incorrecto{
+	background-image: url(../img/suricata/sprite-incorrecto-low.png);
 }
 
 

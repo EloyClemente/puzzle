@@ -101,7 +101,7 @@ textarea {
   font-size: 14px; }
   @media (min-width: 480px) {
     .container-selector {
-      width: 30%;
+      width: 20%;
       height: 130px;
       border: none; } }
 
@@ -248,7 +248,7 @@ textarea {
   height: 80px; }
   @media (min-width: 480px) {
     .container-radio {
-      width: 40%;
+      width: 45%;
       height: 130px; } }
   .container-radio > p:first-of-type {
     font-size: 14px;
@@ -333,7 +333,7 @@ textarea {
   height: 70px; }
   @media (min-width: 480px) {
     .container-boton-rejilla {
-      width: 30%;
+      width: 20%;
       height: 130px;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -510,110 +510,34 @@ textarea {
 .rejilla {
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
-.capa-1 {
+.caminar,
+.flexion,
+.presentacion,
+.correcto,
+.incorrecto {
   width: 200px;
-  height: 120px;
+  height: 113px;
   position: absolute;
-  top: 80px;
+  top: 86px;
+  background-position: 0 0;
+  visibility: hidden; }
+
+.caminar {
   left: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url(../img/suricata/sprite-caminar-low.png);
   visibility: visible; }
 
-.capa-2 {
-  width: 200px;
-  height: 120px;
-  position: absolute;
-  top: 80px;
-  left: 40%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  visibility: visible; }
+.flexion {
+  background-image: url(../img/suricata/sprite-flexion-low.png); }
 
-@-webkit-keyframes entrada {
-  0% {
-    left: 100%; }
-  100% {
-    left: 40%; } }
+.presentacion {
+  background-image: url(../img/suricata/sprite-presentacion-low.png); }
 
-@keyframes entrada {
-  0% {
-    left: 100%; }
-  100% {
-    left: 40%; } }
+.correcto {
+  background-image: url(../img/suricata/sprite-correcto-low.png); }
 
-@-webkit-keyframes salida {
-  0% {
-    left: 40%; }
-  100% {
-    left: -120%; } }
-
-@keyframes salida {
-  0% {
-    left: 40%; }
-  100% {
-    left: -120%; } }
-
-.suricata {
-  width: 200px;
-  height: 120px;
-  position: absolute;
-  top: 80px;
-  left: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; }
-
-.entrada {
-  width: 200px;
-  height: 120px;
-  position: absolute;
-  top: 80px;
-  left: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-animation-name: entrada;
-  animation-name: entrada;
-  -webkit-animation-duration: 3s;
-  animation-duration: 3s;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  background-image: url(../img/suricata/caminando.gif); }
-
-.parada {
-  width: 200px;
-  height: 120px;
-  position: absolute;
-  top: 80px;
-  left: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 40%; }
-
-.salida {
-  width: 200px;
-  height: 120px;
-  position: absolute;
-  top: 80px;
-  left: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-animation-name: salida;
-  animation-name: salida;
-  -webkit-animation-duration: 4s;
-  animation-duration: 4s;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  background-image: url(../img/suricata/caminando.gif); }
+.incorrecto {
+  background-image: url(../img/suricata/sprite-incorrecto-low.png); }
 
 .mensaje {
   display: -webkit-box;
