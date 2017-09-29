@@ -222,6 +222,8 @@ function identificar_radio_buttons()
 {
 	let radio_buttons = document.getElementsByClassName('radio');
 
+	document.getElementById("radio-16").checked = true;
+
 	for(let i=0; i < 3; i++)
 	{
 		radio_buttons[i].addEventListener('change', enviar_por_radio);
