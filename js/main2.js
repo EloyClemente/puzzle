@@ -753,7 +753,7 @@ function correcto()
 
 
 		// Detener animación
-		if(iteraciones == 178)
+		if(iteraciones == 176)
 		{
 			agacharse()
 
@@ -954,7 +954,7 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 document.getElementById('ver_correcto').addEventListener('click', function(){
 
-	entrada("incorrecto")
+	entrada("correcto")
 })
 
 
