@@ -606,7 +606,7 @@ function entrada(respuesta_suricata)
 
 	}, 10)
 }
-entrada("presentacion")
+// entrada("presentacion")
 
 
 
@@ -672,7 +672,7 @@ function flexion(respuesta_suricata)
 
 			setTimeout(function(){
 				capa_flexion.style.visibility = "hidden" 
-			}, 40)
+			}, 90)
 
 			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
 			clearInterval(iniciar)
@@ -735,12 +735,11 @@ function presentacion()
 
 function correcto()
 {
-	var sprite_position_x = 0
-
 	var capa_correcto = document.getElementById('correcto')
 	capa_correcto.style.left =  ((header.offsetWidth / 2) - 100) + "px"
 	capa_correcto.style.visibility = "visible"
 
+	var sprite_position_x = 0
 	var iteraciones = 0
 
 
@@ -1013,10 +1012,10 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
-// document.getElementById('ver_correcto').addEventListener('click', function(){
+document.getElementById('ver_correcto').addEventListener('click', function(){
 
-// 	entrada("incorrecto")
-// })
+	entrada("incorrecto")
+})
 
 
 
