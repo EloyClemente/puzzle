@@ -606,7 +606,7 @@ function entrada(respuesta_suricata)
 
 	}, 10)
 }
-entrada("presentacion")
+// entrada("presentacion")
 
 
 
@@ -719,7 +719,7 @@ function presentacion()
 
 			setTimeout(function(){ // Para evitar el parpadeo
 				capa_presentacion.style.visibility = "hidden"
-			}, 10)
+			}, 90)
 
 			capa_presentacion.style.backgroundPosition = "0px 0px"
 			clearInterval(iniciar)
@@ -815,7 +815,7 @@ function incorrecto()
 
 function agacharse()
 {
-	var sprite_position_x    = -2400 // Nos saltamos un par de frames para un mejor resultado
+	var sprite_position_x    = -3000 // Nos saltamos un par de frames para un mejor resultado
 
 	var capa_flexion = document.getElementById('flexion')
 	capa_flexion.style.left =  ((header.offsetWidth / 2) - 100) + "px"
@@ -836,7 +836,7 @@ function agacharse()
 		iteraciones       = iteraciones + 1
 
 
-		if(iteraciones == 13)
+		if(iteraciones == 17)
 		{
 			salida()
 
@@ -910,66 +910,6 @@ function salida()
 
 
 
-
-// // MOVER SPRITE
-// function mover_sprite(nombre_de_capa, numero_de_frames)
-// {
-// 	console.log(numero_fotograma)
-// 	if(numero_fotograma == 1)
-// 	{
-// 		direccion_sprite = "izquierda"
-// 	}
-
-// 	if(numero_fotograma == numero_de_frames)
-// 	{
-// 		direccion_sprite = "derecha"
-// 	}
-
-
-
-// 	if(cont % 3 == 0) // Para que la imagen cambie sólo en los desplazamientos impares
-// 	{
-		
-// 		nombre_de_capa.style.backgroundPosition = position_x + "px" + " 0px"
-
-
-// 		if(direccion_sprite == "izquierda")
-// 		{
-// 			mover_izquierda()
-// 		}
-
-// 		if(direccion_sprite == "derecha")
-// 		{
-// 			mover_derecha()
-			
-// 		}
-// 	}	
-
-
-// 	function mover_izquierda()
-// 	{
-// 		position_x  = position_x - 200
-// 		numero_fotograma = numero_fotograma + 1
-// 	}
-
-
-// 	function mover_derecha()
-// 	{
-// 		position_x  = position_x + 200
-// 		numero_fotograma = numero_fotograma - 1
-// 	}
-
-	
-
-// 	cont = cont + 0.5
-// }
-	
-
-
-
-
-
-
 function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 {
 	var capa_mensaje  = document.createElement('div')
@@ -1012,10 +952,10 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
-// document.getElementById('ver_correcto').addEventListener('click', function(){
+document.getElementById('ver_correcto').addEventListener('click', function(){
 
-// 	entrada("incorrecto")
-// })
+	entrada("incorrecto")
+})
 
 
 
