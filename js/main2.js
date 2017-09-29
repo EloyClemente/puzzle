@@ -952,10 +952,10 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
-document.getElementById('ver_correcto').addEventListener('click', function(){
+// document.getElementById('ver_correcto').addEventListener('click', function(){
 
-	entrada("correcto")
-})
+// 	entrada("correcto")
+// })
 
 
 
