@@ -794,7 +794,7 @@ function incorrecto()
 		iteraciones = iteraciones + 1
 
 
-		if(iteraciones == 56)
+		if(iteraciones == 51)
 		{
 			agacharse()
 
@@ -954,7 +954,7 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 // document.getElementById('ver_correcto').addEventListener('click', function(){
 
-// 	entrada("correcto")
+// 	entrada("incorrecto")
 // })
 
 
