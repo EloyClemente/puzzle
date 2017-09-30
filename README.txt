@@ -8,10 +8,12 @@
 
 NOTAS: 
 
-- 100% vanilla javascript. Sin jQuery ni otras librerías.
+- 100% vanilla javascript. 
 
-- Desarrollado sin usar el API Drag and Drop.
+- Sin jQuery ni otras librerías.
 
-- La animación ha sido realizada únicamente con sprites.
+- Sin usar el API Drag and Drop.
+
+- Animación realizada únicamente con sprites.
 
 
