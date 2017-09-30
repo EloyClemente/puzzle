@@ -213,27 +213,44 @@ function miniaturas_ocultar(event)
 
 
 
-// ASIGNAR EVENTO A LOS RADIO BUTTONS
-function identificar_radio_buttons()
-{
-	let radio_buttons = document.getElementsByClassName('radio');
 
-	document.getElementById("radio-16").checked = true;
+// ASIGNAR EVENTO CLICK A LOS CUSTOM RADIO BUTTOMS Y SELECCIONAR RADIO BUTTOM
+function custom_radio_buttons()
+{
+	var radio_16 = document.getElementById("radio-16")
+	radio_16.checked = true;
+	radio_16.parentNode.lastElementChild.style.color = "#009688"
+	radio_16.parentNode.lastElementChild.style.fontWeight = "bold"
+
+
+	var custom_radio = document.getElementsByClassName('custom-radio')
+
 
 	for(let i=0; i < 3; i++)
 	{
-		radio_buttons[i].addEventListener('change', enviar_por_radio);
+		custom_radio[i].addEventListener('click', function(event){
+
+			this.previousElementSibling.checked = true
+			// this.nextElementSibling.classList.add('label')
+			enviar_por_radio()
+			formato_label(event)
+		})
 	}
-} identificar_radio_buttons();
+}
+custom_radio_buttons()
 
 
-
-
+// Al clicar el custom radio button, este identifica su hermano anterior,
+// que es el radio button adyacente, y lo pone en modo checked.
+// Inmediatamente llamamos a la función enviar_por_radio(), la cual a su 
+// vez llama a crear_rejillas(), pasando como parámetro la función radio_checked().
+// Esta lo que hace es identificar cual de los radio buttons hemos seleccionado
+// previamente, y obtiene de él el nº de piezas a través de su atributo data-piezas.
 
 
 
 // ENVIAR POR RADIO BUTTON
-function enviar_por_radio(event)
+function enviar_por_radio()
 {
 	crear_rejillas( radio_checked() )
 	insertar_puzzle( nombre_puzzle )
@@ -242,10 +259,7 @@ function enviar_por_radio(event)
 
 
 
-
-
-
-// REVISAR CHECKED DE LOS RADIO BUTTONS
+// REVISAR CHECKED DE LOS RADIO BUTTONS Y OBTENER EL Nº DE PIEZAS DESDE EL ATRIBUTO DATA-PIEZAS
 function radio_checked()
 {
 	let radio = document.getElementsByClassName('radio')
@@ -260,6 +274,31 @@ function radio_checked()
 }
 
 
+
+
+
+
+		
+// DAR FORMATO AL LABEL
+function formato_label(event)
+{
+
+	 var e = event || window.event;
+	 var custom_radio_button = e.target;
+
+
+	let radio = document.getElementsByClassName('radio')
+
+
+	for(let i=0; i < 3; i++)
+	{
+		radio[i].parentNode.lastElementChild.style.color      = "gray"
+		radio[i].parentNode.lastElementChild.style.fontWeight = "lighter"
+	}
+
+	custom_radio_button.nextElementSibling.style.color      = "#009688"
+	custom_radio_button.nextElementSibling.style.fontWeight = "bold"
+}
 
 
 
@@ -917,7 +956,7 @@ function salida()
 			cont = 0
 
 			boton_rejilla.style.transform = "translate(0, 0)"
-			fadeIn(boton_solucion, 30)
+			fadeIn(boton_solucion, 20)
 			
 		}
 
@@ -990,7 +1029,6 @@ capa_solucion.style.left = (header.offsetWidth - 410) + "px"
 capa_solucion.style.backgroundImage = "none"
 boton_solucion.value     = "Mostrar solución"
 
-console.log(header.offsetWidth)
 
 // Por si se redimensiona la página
 window.addEventListener('resize', posicion_solucion)
