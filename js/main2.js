@@ -16,6 +16,8 @@ var pulsado
 var contador = 0
 
 
+
+
 // VARIABLES PARA VER LA SOLUCIÓN
 var capa_solucion  = document.getElementById('capa_solucion')
 var boton_solucion = document.getElementById('mostrar_solucion')
@@ -23,6 +25,9 @@ var boton_rejilla  = document.getElementById('mostrar_rejilla')
 //**************************************************************
 
 
+// PARA LOS CUSTOM RADIO BUTTONS
+var custom_radio = document.getElementsByClassName('custom-radio')
+//**************************************************************
 
 
 
@@ -210,36 +215,52 @@ function miniaturas_ocultar(event)
 
 
 
+// FORMATO RADIO 16
+function formatear_radio_16()
+{
+	var radio_16 = document.getElementById("radio-16")
+	radio_16.checked = true; // Activar radio 16
+	// formato para el label
+	radio_16.parentNode.lastElementChild.style.color = "#009688"
+	radio_16.parentNode.lastElementChild.style.fontWeight = "bold"
+}
+formatear_radio_16()
 
 
 
 
 // ASIGNAR EVENTO CLICK A LOS CUSTOM RADIO BUTTOMS Y SELECCIONAR RADIO BUTTOM
+var circulo
+
 function custom_radio_buttons()
 {
-	var radio_16 = document.getElementById("radio-16")
-	radio_16.checked = true;
-	radio_16.parentNode.lastElementChild.style.color = "#009688"
-	radio_16.parentNode.lastElementChild.style.fontWeight = "bold"
+	sombra_custom() // Poner sombra y borde
+	border_custom()
 
 
-	var custom_radio = document.getElementsByClassName('custom-radio')
+	circulo = document.createElement('div')
+	circulo.classList.add('circulo')
+	custom_radio[1].appendChild(circulo) // Introducimos cículo en el custom radio button 16
+
 
 
 	for(let i=0; i < 3; i++)
 	{
+		// ASIGNAR EVENTO CLICK A LOS CUSTOM RADIO BUTTONS
 		custom_radio[i].addEventListener('click', function(event){
 
-			this.previousElementSibling.checked = true
-			// this.nextElementSibling.classList.add('label')
-			enviar_por_radio()
-			formato_label(event)
+				circulo_custom()
+				
+				this.appendChild(circulo) // Pero lo introducimos en el que ha sido clicado
+				this.previousElementSibling.checked = true // Activamos el radio button correspondiente
+
+				sombra_custom()
+				formato_label(event)
+				enviar_por_radio()
 		})
 	}
 }
 custom_radio_buttons()
-
-
 // Al clicar el custom radio button, este identifica su hermano anterior,
 // que es el radio button adyacente, y lo pone en modo checked.
 // Inmediatamente llamamos a la función enviar_por_radio(), la cual a su 
@@ -249,12 +270,55 @@ custom_radio_buttons()
 
 
 
+// GESTIONAR CÍRCULO
+function circulo_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].innerHTML = "" // Eliminamos el cículo de todos los custom radio
+	}
+}
+
+
+// GESTIONAR SOMBRA DE LOS CUSTOM RADIO
+function sombra_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].classList.add('custom-radio-sombra')
+
+		if(custom_radio[i].previousElementSibling.checked == true)
+		{
+			custom_radio[i].classList.remove('custom-radio-sombra')
+		}
+	}
+}
+
+
+// GESTIONAR BORDE DE LOS CUSTOM RADIO
+function border_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].classList.add('custom-radio-border')
+	}
+}
+
+
+
+
+
+
+
+
+
 // ENVIAR POR RADIO BUTTON
 function enviar_por_radio()
 {
 	crear_rejillas( radio_checked() )
 	insertar_puzzle( nombre_puzzle )
 }
+
 
 
 
@@ -299,6 +363,7 @@ function formato_label(event)
 	custom_radio_button.nextElementSibling.style.color      = "#009688"
 	custom_radio_button.nextElementSibling.style.fontWeight = "bold"
 }
+
 
 
 
@@ -542,7 +607,7 @@ function revisar_si_lleno()
 
 
 
-// var cont = 0
+
 
 function validar_resultado()
 {
@@ -590,10 +655,9 @@ function validar_resultado()
 
 
 
-
+// ANIMACIONES PARA LOS BOTONES REJILLA Y SOLUCIÓN
 function animacion_de_botones(respuesta_suricata)
 {
-	// ANIMACIONES PARA LOS BOTONES REJILLA Y SOLUCIÓN ***********************
 	if(respuesta_suricata == "correcto" || respuesta_suricata == "incorrecto")
 	{
 		fadeOut(boton_solucion, 20)
@@ -798,7 +862,8 @@ function correcto()
 	var iteraciones = 0
 
 
-	parpadeo_titulo() // Para el título estroboscópico
+	titulo_estroboscopico() // Para el título estroboscópico
+	fiesta_radio_buttons()
 
 
 	var iniciar = setInterval(function(){
@@ -1013,10 +1078,7 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
-// document.getElementById('ver_correcto').addEventListener('click', function(){
 
-// 	entrada("incorrecto")
-// })
 
 
 
@@ -1115,20 +1177,15 @@ function fadeOut(elemento, intervalos){
 
 
 // TÍTULO ESTROBOSCÓPICO
-function parpadeo_titulo()
+function titulo_estroboscopico()
 {
 	var titulo = document.getElementById('titulo')
 
+
 	var parpadeo = setInterval(function(){
-
 		titulo.classList.toggle('h1-2')
-		// titulo.classList.add('h1-2')
-
-		// setTimeout(function())
-		
-
-
 	}, 100)
+
 
 	setTimeout(function(){
 		clearInterval(parpadeo)
@@ -1143,9 +1200,71 @@ function parpadeo_titulo()
 
 
 
+// FIESTA RADIO BUTTONS
+function fiesta_radio_buttons()
+{
+	var i = 0
+	var intervalos = 0
+	
+
+
+	
+	for(let i=0; i < 3; i++) // Quitamos el formato de los custom radio buttons
+	{
+		custom_radio[i].style.transition = "all, .5s"
+		custom_radio[i].classList.add('fiesta-buttons-2')
+		custom_radio[i].classList.add('fiesta-buttons-3')
+		custom_radio[i].classList.remove('custom-radio-border')
+		custom_radio[i].innerHTML = ""
+		custom_radio[i].nextElementSibling.style.visibility = "hidden"
+	}
 
 
 
+	var iniciar = setInterval(function(){
+
+
+		i == 3 ? i = 0 : false
+
+		console.log(i)
+
+		
+		custom_radio[i].classList.add('fiesta-buttons-1') // Encender luz
+		
+
+
+		setTimeout(function(){ // Apagar luz
+			custom_radio[i].classList.remove('fiesta-buttons-1')
+			i = i + 1
+		}, 390)
+
+
+
+		intervalos = intervalos + 1
+
+		if(intervalos == 24)
+		{
+			clearInterval(iniciar)
+
+			for(let i=0; i < 3; i++)
+			{
+				custom_radio[i].classList.remove('fiesta-buttons-1')
+
+				setTimeout(function(){
+					custom_radio[i].classList.remove('fiesta-buttons-2')
+
+						setTimeout(function(){
+							formatear_radio_16()
+							custom_radio_buttons()
+							custom_radio[i].classList.remove('fiesta-buttons-3')
+							custom_radio[i].nextElementSibling.style.visibility = "visible"
+						}, 1000)
+				}, 1000)
+			}
+		}				
+	}, 400)
+}
+// fiesta_radio_buttons()
 
 
 
@@ -1193,5 +1312,15 @@ function outline()
 	}
 }
 document.getElementById('outline').addEventListener('click',outline);
+
+
+
+
+
+// document.getElementById('probar').addEventListener('click', function(){
+
+// 	correcto()
+// })
+
 
 });
