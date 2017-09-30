@@ -43,7 +43,9 @@ $anchura-li: 30px;
 }
 	
 
-
+.h1-2{
+	color: yellow;
+}
 
 
 
@@ -165,7 +167,6 @@ $anchura-li: 30px;
 	border: 3px solid #fff;
 	border-radius: 5px;
 	box-shadow: 5px 0px 10px #333;
-	
 	transition: all, .3s;
 }
 
@@ -260,6 +261,10 @@ $anchura-li: 30px;
 }
 
 
+.boton-solucion{
+	opacity: 0;
+}
+
 
 
 .boton-menu{
@@ -277,16 +282,14 @@ $anchura-li: 30px;
 
 
 
-
-
-.slide{
-	width: 80px;
-	height: 80px;
-	margin-left: 10%;
-	@media(min-width: 480px)
-	{
-		width: 90px;
-		height: 90px;
-	}
+.solucion{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 10px;
+	cursor: pointer;
+	box-shadow: 0 5px 10px -3px #333;
+	opacity: 0;
+	display: none;
 }
 

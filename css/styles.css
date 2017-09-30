@@ -51,6 +51,9 @@ textarea {
       height: 70px;
       font-size: 35px; } }
 
+.h1-2 {
+  color: yellow; }
+
 .container-selector {
   display: flex;
   justify-content: center;
@@ -235,6 +238,9 @@ textarea {
     box-shadow: 0 0 0  #fff;
     border-radius: 4px; }
 
+.boton-solucion {
+  opacity: 0; }
+
 .boton-menu {
   display: flex;
   justify-content: center;
@@ -246,14 +252,15 @@ textarea {
     .boton-menu {
       display: none; } }
 
-.slide {
-  width: 80px;
-  height: 80px;
-  margin-left: 10%; }
-  @media (min-width: 480px) {
-    .slide {
-      width: 90px;
-      height: 90px; } }
+.solucion {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px -3px #333;
+  opacity: 0;
+  display: none; }
 
 .container-puzzle {
   display: flex;

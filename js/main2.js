@@ -16,15 +16,11 @@ var pulsado
 var contador = 0
 
 
-
-// VARIABLES PARA LA ANIMACIÓN
-var direccion_sprite
-var position_x = 0
-var cont = 0
-var numero_fotograma = 1
-//****************************
-
-
+// VARIABLES PARA VER LA SOLUCIÓN
+var capa_solucion  = document.getElementById('capa_solucion')
+var boton_solucion = document.getElementById('mostrar_solucion')
+var boton_rejilla  = document.getElementById('mostrar_rejilla')
+//**************************************************************
 
 
 
@@ -507,7 +503,7 @@ function revisar_si_lleno()
 
 
 
-var cont = 0
+// var cont = 0
 
 function validar_resultado()
 {
@@ -534,14 +530,12 @@ function validar_resultado()
 			   resultado == "12101177222194155316131121149252482018236")
 			{
 				cont = 0 // Reseteamos las variables que usaremos en la animación
-				numero_fotograma = 1
-				entrada("correcto") 
+				animacion_de_botones("correcto")
 			}
 			else
 			{
 				cont = 0
-				numero_fotograma = 1
-				entrada("incorrecto")
+				animacion_de_botones("incorrecto")
 			}
 }
 
@@ -558,6 +552,28 @@ function validar_resultado()
 
 
 
+function animacion_de_botones(respuesta_suricata)
+{
+	// ANIMACIONES PARA LOS BOTONES REJILLA Y SOLUCIÓN ***********************
+	if(respuesta_suricata == "correcto" || respuesta_suricata == "incorrecto")
+	{
+		fadeOut(boton_solucion, 20)
+	}
+
+	setTimeout(function(){
+		boton_rejilla.style.transition = "all, .5s"
+		boton_rejilla.style.transform = "translate(0, -30px)"
+
+		entrada(respuesta_suricata)
+
+	}, 1000)
+	//************************************************************************
+}
+animacion_de_botones("presentacion")
+
+
+
+
 
 
 
@@ -565,6 +581,12 @@ function validar_resultado()
 // ENTRADA
 function entrada(respuesta_suricata)
 {
+
+	// ocultar_solucion()
+	// capa_solucion.style.opacity = "0"
+
+
+	// ANIMACIÓN DE LA CAPA
 	var capa_caminar = document.getElementById('caminar')
 
 	var position_capa = header.offsetWidth // Hay que tomar como referencia el contenedor padre (el header)
@@ -608,7 +630,7 @@ function entrada(respuesta_suricata)
 
 	}, 10)
 }
-entrada("presentacion")
+
 
 
 
@@ -622,8 +644,6 @@ function flexion(respuesta_suricata)
 {
 	var capa_flexion = document.getElementById('flexion')
 	capa_flexion.style.left = ((header.offsetWidth / 2) - 100) + "px"
-
-	console.log(header.offsetWidth)
 
 	capa_flexion.style.visibility = "visible"
 
@@ -641,8 +661,6 @@ function flexion(respuesta_suricata)
 
 
 	var iniciar = setInterval(function(){
-
-		console.log(sprite_position_x)
 
 		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
 		sprite_position_x = sprite_position_x - 200
@@ -678,11 +696,6 @@ function flexion(respuesta_suricata)
 
 			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
 			clearInterval(iniciar)
-
-			// Para la función mover_sprite()
-			numero_fotograma = 1
-			position_x = 0
-			cont = 0
 		}
 	}, 90)
 }
@@ -693,6 +706,7 @@ function flexion(respuesta_suricata)
 
 
 
+// PRESENTACIÓN
 function presentacion()
 {
 	var capa_presentacion = document.getElementById('presentacion')
@@ -734,7 +748,7 @@ function presentacion()
 
 
 
-
+// CORRECTO
 function correcto()
 {
 	var capa_correcto = document.getElementById('correcto')
@@ -743,6 +757,9 @@ function correcto()
 
 	var sprite_position_x = 0
 	var iteraciones = 0
+
+
+	parpadeo_titulo() // Para el título estroboscópico
 
 
 	var iniciar = setInterval(function(){
@@ -897,8 +914,11 @@ function salida()
 		{
 			clearInterval(iniciar)
 
-			position_x = 0
 			cont = 0
+
+			boton_rejilla.style.transform = "translate(0, 0)"
+			fadeIn(boton_solucion, 30)
+			
 		}
 
 	}, 10)
@@ -965,6 +985,132 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 
+// VER SOLUCIÓN
+capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+capa_solucion.style.backgroundImage = "none"
+boton_solucion.value     = "Mostrar solución"
+
+console.log(header.offsetWidth)
+
+// Por si se redimensiona la página
+window.addEventListener('resize', posicion_solucion)
+function posicion_solucion()
+{
+	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+}
+
+
+
+function asignar_puzzle_a_solucion(event)
+{
+	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+
+
+	if(event.target.nodeName == 'INPUT')
+	{
+		if(capa_solucion.style.backgroundImage == "none")
+		{
+			capa_solucion.style.display = "block"
+			fadeIn(capa_solucion, 15)
+			
+			capa_solucion.style.backgroundImage = "url(img/miniaturas/" + nombre_puzzle + "-200.jpg)"
+			boton_solucion.value = "Ocultar solución"
+
+		}
+		else
+		{
+			fadeOut(capa_solucion, 15)
+			boton_solucion.value = "Mostrar solución"
+		}
+	}
+	else
+	{
+		return
+	}
+}
+window.addEventListener('load', asignar_puzzle_a_solucion) // Al llamarla memoriza la variable nombre_puzzle
+boton_solucion.addEventListener('click', asignar_puzzle_a_solucion) // Al volver a llamarla ya conoce la variable
+
+
+
+
+
+function fadeIn(elemento, intervalos){
+
+	var opacidad   = 0;
+
+	var iniciar = setInterval(function(){
+	
+				  opacidad =  opacidad + 0.01;
+
+				  elemento.style.opacity = opacidad;
+
+				  if(opacidad >= 1)
+				  {
+					clearInterval(iniciar);
+				  }
+	}, intervalos);
+}
+
+
+
+function fadeOut(elemento, intervalos){
+
+	var opacidad   = 1;
+
+	var iniciar = setInterval(function(){
+	
+				  opacidad =  opacidad - 0.01;
+
+				  elemento.style.opacity = opacidad;
+
+				  if(opacidad <= 0)
+				  {
+					clearInterval(iniciar);
+					capa_solucion.style.backgroundImage = "none"
+					capa_solucion.style.display = "none"
+				  }
+	}, intervalos);
+}
+
+
+
+
+// TÍTULO ESTROBOSCÓPICO
+function parpadeo_titulo()
+{
+	var titulo = document.getElementById('titulo')
+
+	var parpadeo = setInterval(function(){
+
+		titulo.classList.toggle('h1-2')
+		// titulo.classList.add('h1-2')
+
+		// setTimeout(function())
+		
+
+
+	}, 100)
+
+	setTimeout(function(){
+		clearInterval(parpadeo)
+
+		if(titulo.classList.contains('h1-2'))
+		{
+			titulo.classList.remove('h1-2')
+		}
+	}, 9700)
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -992,8 +1138,6 @@ boton_rejilla.addEventListener('click', function(){
 		boton_rejilla.value = "Mostrar rejilla"
 		click = 0
 	}
-
-	console.log(click)
 })
 
 
