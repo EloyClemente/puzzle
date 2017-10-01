@@ -11,7 +11,6 @@ var casillas_actuales   = container_destino.getElementsByTagName('div')
 var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
 
 var nombre_puzzle
-// var pulsado
 
 var contador = 0
 
@@ -45,12 +44,39 @@ function limpiar_puzzle()
 
 
 
+// MOSTRAR / OCULTAR REJILLA
+var boton_rejilla = document.getElementById('mostrar_rejilla')
+var click = 0
+
+boton_rejilla.addEventListener('click', function(){
+
+	for(let i=0; i < casillas_destino.length; i++)
+	{
+		casillas_destino[i].classList.toggle('rejilla')
+	}
+
+	if(click == 0)
+	{
+		boton_rejilla.value = "Ocultar rejilla"
+		click = 1
+	}
+	else
+	{
+		boton_rejilla.value = "Mostrar rejilla"
+		click = 0
+	}
+})
+
+
+
+
 
 
 // CREACIÓN DE REJILLAS
 function crear_rejillas( numero_de_casillas )
 {
 	limpiar_puzzle()
+
 
 	for(let i=0; i < numero_de_casillas; i++)
 	{
@@ -61,11 +87,20 @@ function crear_rejillas( numero_de_casillas )
 		capa_casilla_destino.id      = "destino" + (i + 1)
 
 
-
 				estilo_casillas( capa_casilla_origen, capa_casilla_destino, numero_de_casillas )
 
-				container_origen.appendChild( capa_casilla_origen )
+				container_origen.appendChild(  capa_casilla_origen )
 				container_destino.appendChild( capa_casilla_destino )
+	}
+
+
+	
+	if(click == 1) // Si la opción "mostrar rejilla" está activada, mantener la clase rejilla
+	{
+		for(let i=0; i < casillas_destino.length; i++)
+		{
+			casillas_destino[i].classList.add('rejilla')
+		}
 	}
 }
 crear_rejillas( "16" ) // 16 por defecto
@@ -261,6 +296,7 @@ function custom_radio_buttons()
 
 				sombra_custom()
 				formato_label(event)
+
 				enviar_por_radio()
 		})
 	}
@@ -342,7 +378,7 @@ function formato_label(event)
 // ENVIAR POR RADIO BUTTON
 function enviar_por_radio()
 {
-	crear_rejillas( radio_checked() )
+	crear_rejillas(radio_checked())
 	insertar_puzzle( nombre_puzzle )
 }
 
@@ -768,7 +804,7 @@ function animacion_de_botones(respuesta_suricata)
 	
 	//************************************************************************
 }
-animacion_de_botones("presentacion")
+// animacion_de_botones("presentacion")
 
 
 
@@ -1291,28 +1327,7 @@ function fadeOut(elemento, intervalos){
 
 
 
-// MOSTRAR / OCULTAR REJILLA
-var boton_rejilla = document.getElementById('mostrar_rejilla')
-var click = 0
 
-boton_rejilla.addEventListener('click', function(){
-
-	for(let i=0; i < casillas_destino.length; i++)
-	{
-		casillas_destino[i].classList.toggle('rejilla')
-	}
-
-	if(click == 0)
-	{
-		boton_rejilla.value = "Ocultar rejilla"
-		click = 1
-	}
-	else
-	{
-		boton_rejilla.value = "Mostrar rejilla"
-		click = 0
-	}
-})
 
 
 
