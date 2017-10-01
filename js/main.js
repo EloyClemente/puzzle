@@ -461,8 +461,6 @@ var arrastrar_pieza
 
 function mouse_down(event)
 {
-	document.getElementById('boton_menu').innerHTML = "Entra"
-
 	var pieza = event.target
 	event.preventDefault()
 
@@ -479,6 +477,7 @@ function mouse_down(event)
 
 			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
 			{
+				document.getElementById('boton_menu').innerHTML = "Adentro"
 				// pieza.style.left = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
 			}
 
