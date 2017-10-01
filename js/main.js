@@ -804,7 +804,7 @@ function animacion_de_botones(respuesta_suricata)
 	
 	//************************************************************************
 }
-// animacion_de_botones("presentacion")
+animacion_de_botones("presentacion")
 
 
 
