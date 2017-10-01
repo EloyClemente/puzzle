@@ -416,6 +416,7 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mouseover' ,  poner_borde)
 		piezas[i].addEventListener('touchstart' ,  poner_borde)
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
+		piezas[i].addEventListener('touchend',  quitar_borde)
 
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 	}
