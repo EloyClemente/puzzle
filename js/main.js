@@ -14,10 +14,20 @@ var nombre_puzzle
 var pulsado
 
 var contador = 0
-var cont     = 0
 
 
 
+
+// VARIABLES PARA VER LA SOLUCIÓN
+var capa_solucion  = document.getElementById('capa_solucion')
+var boton_solucion = document.getElementById('mostrar_solucion')
+var boton_rejilla  = document.getElementById('mostrar_rejilla')
+//**************************************************************
+
+
+// PARA LOS CUSTOM RADIO BUTTONS
+var custom_radio = document.getElementsByClassName('custom-radio')
+//**************************************************************
 
 
 
@@ -156,13 +166,16 @@ function insertar_puzzle( nombre_puzzle )
 
 
 
-// ASIGNAR EVENTO A LA LISTA DE PUZZLES
+// ASIGNAR MINIATURAS A LA LISTA DE PUZZLES
+// ASIGNAR EVENTO CLICK A LA LISTA DE PUZZLES
 function evento_desplegable()
 {
 	let selector_puzzle = document.getElementsByClassName('li-lista')
 
 	for(let i=0; i < selector_puzzle.length; i++)
 	{
+		selector_puzzle[i].addEventListener('mouseenter', miniaturas_mostrar)
+		selector_puzzle[i].addEventListener('mouseleave', miniaturas_ocultar)
 		selector_puzzle[i].addEventListener('click', enviar_por_lista)
 	}
 } evento_desplegable()
@@ -172,19 +185,154 @@ function evento_desplegable()
 
 
 
-
-
-// ASIGNAR EVENTO A LOS RADIO BUTTONS
-function identificar_radio_buttons()
+// MOSTRAR MINIATURAS
+function miniaturas_mostrar(event)
 {
-	let radio_buttons = document.getElementsByClassName('radio');
+	let li = event.target
+
+	capa_miniatura = document.createElement('div')
+
+	capa_miniatura.classList.add('miniaturas-mostrar')
+
+	li.appendChild(capa_miniatura)
+
+
+	let imagen = li.dataset.name
+
+	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + "-200.jpg)"
+
+	event.stopPropagation()
+}
+
+
+
+function miniaturas_ocultar(event)
+{
+	capa_miniatura.parentNode.removeChild(capa_miniatura)
+}
+
+
+
+
+
+// FORMATO RADIO 16
+function formatear_radio_16()
+{
+	var radio_16 = document.getElementById("radio-16")
+	radio_16.checked = true; // Activar radio 16
+	// formato para el label
+	radio_16.parentNode.lastElementChild.style.color = "#009688"
+	radio_16.parentNode.lastElementChild.style.fontWeight = "bold"
+
+	custom_radio[0].nextElementSibling.style.color      = "#999"
+	custom_radio[0].nextElementSibling.style.fontWeight = "lighter"
+	custom_radio[2].nextElementSibling.style.color      = "#999"
+	custom_radio[2].nextElementSibling.style.fontWeight = "lighter"
+}
+formatear_radio_16()
+
+
+
+
+// ASIGNAR EVENTO CLICK A LOS CUSTOM RADIO BUTTOMS Y SELECCIONAR RADIO BUTTOM
+var circulo
+
+function custom_radio_buttons()
+{
+	sombra_custom() // Poner sombra y borde
+	border_custom()
+
+
+	circulo = document.createElement('div')
+	circulo.classList.add('circulo')
+	custom_radio[1].appendChild(circulo) // Introducimos cículo en el custom radio button 16
+
+
 
 	for(let i=0; i < 3; i++)
 	{
-		radio_buttons[i].addEventListener('change', enviar_por_radio);
-	}
-} identificar_radio_buttons();
+		// ASIGNAR EVENTO CLICK A LOS CUSTOM RADIO BUTTONS
+		custom_radio[i].addEventListener('click', function(event){
 
+				circulo_custom()
+				
+				this.appendChild(circulo) // Pero lo introducimos en el que ha sido clicado
+				this.previousElementSibling.checked = true // Activamos el radio button correspondiente
+
+				sombra_custom()
+				formato_label(event)
+				enviar_por_radio()
+		})
+	}
+}
+custom_radio_buttons()
+// Al clicar el custom radio button, este identifica su hermano anterior,
+// que es el radio button adyacente, y lo pone en modo checked.
+// Inmediatamente llamamos a la función enviar_por_radio(), la cual a su 
+// vez llama a crear_rejillas(), pasando como parámetro la función radio_checked().
+// Esta lo que hace es identificar cual de los radio buttons hemos seleccionado
+// previamente, y obtiene de él el nº de piezas a través de su atributo data-piezas.
+
+
+
+// GESTIONAR CÍRCULO
+function circulo_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].innerHTML = "" // Eliminamos el cículo de todos los custom radio
+	}
+}
+
+
+// GESTIONAR SOMBRA DE LOS CUSTOM RADIO
+function sombra_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].classList.add('custom-radio-sombra')
+
+		if(custom_radio[i].previousElementSibling.checked == true)
+		{
+			custom_radio[i].classList.remove('custom-radio-sombra')
+		}
+	}
+}
+
+
+// GESTIONAR BORDE DE LOS CUSTOM RADIO
+function border_custom()
+{
+	for(let i=0; i < 3; i++)
+	{
+		custom_radio[i].classList.add('custom-radio-border')
+	}
+}
+
+
+
+
+
+
+// DAR FORMATO AL LABEL
+function formato_label(event)
+{
+	 var e = event || window.event;
+	 var custom_radio_button = e.target;
+
+
+	let radio = document.getElementsByClassName('radio')
+
+
+	for(let i=0; i < 3; i++)
+	{
+		radio[i].parentNode.lastElementChild.style.color      = "gray"
+		radio[i].parentNode.lastElementChild.style.fontWeight = "lighter"
+	}
+
+	custom_radio_button.nextElementSibling.style.color      = "#009688"
+	custom_radio_button.nextElementSibling.style.fontWeight = "bold"
+}
 
 
 
@@ -192,7 +340,7 @@ function identificar_radio_buttons()
 
 
 // ENVIAR POR RADIO BUTTON
-function enviar_por_radio(event)
+function enviar_por_radio()
 {
 	crear_rejillas( radio_checked() )
 	insertar_puzzle( nombre_puzzle )
@@ -202,9 +350,7 @@ function enviar_por_radio(event)
 
 
 
-
-
-// REVISAR CHECKED DE LOS RADIO BUTTONS
+// REVISAR CHECKED DE LOS RADIO BUTTONS Y OBTENER EL Nº DE PIEZAS DESDE EL ATRIBUTO DATA-PIEZAS
 function radio_checked()
 {
 	let radio = document.getElementsByClassName('radio')
@@ -217,7 +363,6 @@ function radio_checked()
 		}
 	}
 }
-
 
 
 
@@ -281,7 +426,7 @@ asignar_eventos_a_piezas()
 
 
 
-
+// ARRASTRAR PIEZAS
 var arrastrar_pieza
 
 function mouse_down(event)
@@ -298,12 +443,12 @@ function mouse_down(event)
 		window.addEventListener('mousemove', mover)
 		function mover(event)
 		{
-			pieza.style.left   = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
-			pieza.style.top    = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
+			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			pieza.style.top       = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
-			pieza.style.zIndex = 100
-
-			arrastrar_pieza = "yes" // Da permiso para activar las casillas
+			pieza.style.boxShadow = "0 5px 15px #333"
+			pieza.style.zIndex    = 100
+			arrastrar_pieza       = "yes" // Da permiso para activar las casillas
 		}
 
 
@@ -315,11 +460,11 @@ function mouse_down(event)
 		{
 			window.removeEventListener('mousemove', mover)
 
-			pieza.style.left   = "0px"
-			pieza.style.top    = "0px"
-			pieza.style.zIndex = 0
-
-			arrastrar_pieza = "no" // Deshabilita el permiso
+			pieza.style.left      = "0px"
+			pieza.style.top       = "0px"
+			pieza.style.boxShadow = "none"
+			pieza.style.zIndex    = 0
+			arrastrar_pieza       = "no" // Deshabilita el permiso
 
 			contador = 0 
 			// Para revisar si el puzzle está bien construído. 
@@ -410,12 +555,7 @@ window.addEventListener('mousemove', function(event)
 
 
 
-
-
 				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
-
-					document.getElementById( atributo_destino ).style.backgroundColor = "transparent" // Quitamos el color a la casilla. Con lista_destino[0] da error
-
 
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
@@ -467,7 +607,7 @@ function revisar_si_lleno()
 
 
 
-var cont = 0
+
 
 function validar_resultado()
 {
@@ -487,114 +627,416 @@ function validar_resultado()
 		var pieza_ID = pieza.getAttribute('id')
 
 		resultado = resultado + pieza_ID
-		console.log(resultado)
 	}	
 
 			if(resultado == "574632198" || 
 			   resultado == "57463219151114161210138" || 
 			   resultado == "12101177222194155316131121149252482018236")
 			{
-				suricata("correcto") 
+				cont = 0 // Reseteamos las variables que usaremos en la animación
+				animacion_de_botones("correcto")
 			}
 			else
 			{
-				suricata("incorrecto")
+				cont = 0
+				animacion_de_botones("incorrecto")
 			}
 }
 
 
 
 
-function suricata(validacion)
+
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+
+
+
+
+// ANIMACIONES PARA LOS BOTONES REJILLA Y SOLUCIÓN
+function animacion_de_botones(respuesta_suricata)
 {
-	var mensaje
-	var resultado = validacion
-	var capa      = document.createElement('div')
-
-	capa.classList.add('suricata')
-
-	header.appendChild(capa)
-
-
-	if(resultado == "presentacion")
+	if(respuesta_suricata == "correcto" || respuesta_suricata == "incorrecto")
 	{
+		fadeOut(boton_solucion, 20)
+	}
+
+	setTimeout(function(){
+		boton_rejilla.style.transition = "all, .5s"
+		boton_rejilla.style.transform = "translate(0, -30px)"
+
+		entrada(respuesta_suricata)
+
+	}, 1000)
+	//************************************************************************
+}
+animacion_de_botones("presentacion")
+
+
+
+
+
+
+
+
+// ENTRADA
+function entrada(respuesta_suricata)
+{
+
+	// ocultar_solucion()
+	// capa_solucion.style.opacity = "0"
+
+
+	// ANIMACIÓN DE LA CAPA
+	var capa_caminar = document.getElementById('caminar')
+
+	var position_capa = header.offsetWidth // Hay que tomar como referencia el contenedor padre (el header)
+	var sprite_position_x = 0
+	var cont = 0
+
+
+
+	var iniciar = setInterval(function()
+	{
+		// Mover capa *********************************
+		capa_caminar.style.left = position_capa + "px"
+		position_capa           = position_capa - 1.4 // Velocidad de la capa
+		//*********************************************
+
+
+
+		// Mover sprite ****************************************************************************
+		if(cont % 3 == 0) // Para que el sprite se mueva sólo en los desplazamientos de capa impares
+		{
+			capa_caminar.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+			sprite_position_x = sprite_position_x - 200
+		}
+		cont = cont + 0.5
+		//******************************************************************************************
 		
-		mensaje                    = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
-		animacion_capa(capa, mensaje, "presentacion")
-	}
-	else if(resultado == "correcto")
-	{
-		capa.style.backgroundImage = "url('img/suricata/correcto.gif" + "?a=" + Math.random() + "')"
-		mensaje                    = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
-		animacion_capa(capa, mensaje, "correcto")
-	}
-	else
-	{
-		capa.style.backgroundImage = "url('img/suricata/incorrecto.gif" + "?a=" + Math.random() + "')"
-		mensaje                    = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
-		animacion_capa(capa, mensaje, "incorrecto")
-	}
+		
+
+
+		// Detener capa
+		if(capa_caminar.offsetLeft <= (header.offsetWidth / 2) - 100) // Detener en el 50% del header
+		{
+			flexion(respuesta_suricata)
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				caminar.style.visibility = "hidden"
+			}, 10)
+			
+			clearInterval(iniciar)
+		}
+
+	}, 10)
 }
-suricata("presentacion")
 
 
 
 
 
-function animacion_capa(capa, mensaje, tipo_de_animacion)
+
+
+
+
+// FLEXIÓN
+function flexion(respuesta_suricata)
 {
-	capa.style.left                     = "100%"
-	capa.style.transition               = "all, 3.1s" // Duración de la entrada
-	capa.style.transitionTimingFunction = "linear"
-	
-	var tipo_de_animacion
-	var duracion_pausa
-	var delay_mensaje
-	var duracion_mensaje
+	var capa_flexion = document.getElementById('flexion')
+	capa_flexion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+
+	capa_flexion.style.visibility = "visible"
+
+	var sprite_position_x  = 0 // Esto hace falta
+	var iteraciones = 0
 
 
-	if(tipo_de_animacion == "presentacion")
-	{
-		duracion_pausa   = 10000 
-		delay_mensaje    = 4000
-		duracion_mensaje = 3000
-	}
-	else if(tipo_de_animacion == "correcto")
-	{
-		duracion_pausa   = 11600
-		delay_mensaje    = 4000
-		duracion_mensaje = 4000	
-	}
-	else
-	{
-		duracion_pausa   = 8100
-		delay_mensaje    = 4900
-		duracion_mensaje = 2500	
-	}
-	
-
-		setTimeout(function(){
-
-				capa.style.left = "40%" // Entra en escena
-				capa.style.backgroundImage = "url('img/suricata/presentacion.gif" + "?a=" + Math.random() + "')"
-
-				setTimeout(function(){
-					suricata_mensaje(mensaje, duracion_mensaje)
-				}, delay_mensaje) // Espera antes de lanzar el mensaje
 
 
-						setTimeout(function(){
-							capa.style.left = "-30%"
-						}, duracion_pausa) // Duración de la pausa
+	var mensaje_presentacion = "Completa el puzzle" + "<br/>" + "y te diré si es correcto"
+	var mensaje_correcto     = "¡BRAVO!" + "<br/>" + "¡Has completado el puzzle!"
+	var mensaje_incorrecto   = "No es correcto..." + "<br/>" + "Inténtalo de nuevo"
 
-		}, 2000) // Delay antes de entrar en escena
+
+
+
+	var iniciar = setInterval(function(){
+
+		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones       = iteraciones + 1
+
+
+		if(iteraciones == 16) // -3000
+		{
+			switch(respuesta_suricata)
+			{
+				case "presentacion":
+				presentacion();
+				mensaje(mensaje_presentacion, 1000, 4500) // Mensaje, delay y duración
+				break;
+
+				case "correcto":
+				correcto();
+				mensaje(mensaje_correcto, 700, 6000)
+				break;
+
+				case "incorrecto":
+				incorrecto();
+				mensaje(mensaje_incorrecto, 1500, 2500)
+				break;
+			}
+
+
+			setTimeout(function(){
+				capa_flexion.style.visibility = "hidden" 
+			}, 100)
+
+			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
+			clearInterval(iniciar)
+		}
+	}, 90)
 }
 
 
 
 
 
-function suricata_mensaje(mensaje, duracion_mensaje)
+
+
+// PRESENTACIÓN
+function presentacion()
+{
+	var capa_presentacion = document.getElementById('presentacion')
+	capa_presentacion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+	capa_presentacion.style.visibility = "visible"
+
+
+	var sprite_position_x = 0
+	var iteraciones = 0
+
+	
+
+	// Mover sprite
+	var iniciar = setInterval(function(){
+
+		capa_presentacion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+	
+		iteraciones = iteraciones + 1
+
+
+		if(iteraciones == 90)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_presentacion.style.visibility = "hidden"
+			}, 90)
+
+			capa_presentacion.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 90)
+}
+
+
+
+
+
+
+// CORRECTO
+function correcto()
+{
+	var capa_correcto = document.getElementById('correcto')
+	capa_correcto.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_correcto.style.visibility = "visible"
+
+	var sprite_position_x = 0
+	var iteraciones = 0
+
+
+	titulo_estroboscopico() // Para el título estroboscópico
+	fiesta_radio_buttons()
+
+
+	var iniciar = setInterval(function(){
+
+		capa_correcto.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones = iteraciones + 1
+
+
+		// Detener animación
+		if(iteraciones == 174)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_correcto.style.visibility = "hidden"
+			}, 10)
+
+			capa_correcto.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 60)
+}
+
+
+
+
+
+function incorrecto()
+{
+	var capa_incorrecto = document.getElementById('incorrecto')
+	capa_incorrecto.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_incorrecto.style.visibility = "visible"
+
+	capa_incorrecto.style.left = header.offsetWidth / 2
+
+
+	var sprite_position_x = 0
+	var iteraciones = 0
+
+
+	// Mover sprite
+	var iniciar = setInterval(function(){
+
+		capa_incorrecto.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+		sprite_position_x = sprite_position_x - 200
+
+
+		iteraciones = iteraciones + 1
+
+
+		if(iteraciones == 51)
+		{
+			agacharse()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_incorrecto.style.visibility = "hidden"
+			}, 10)
+
+			capa_incorrecto.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 100)
+}
+
+
+
+
+
+
+function agacharse()
+{
+	var sprite_position_x    = -3000 // Nos saltamos un par de frames para un mejor resultado
+
+	var capa_flexion = document.getElementById('flexion')
+	capa_flexion.style.left =  ((header.offsetWidth / 2) - 100) + "px"
+	capa_flexion.style.visibility = "visible"
+
+	
+	var iteraciones = 0
+	
+	
+	// capa_flexion.style.backgroundPosition = "-3400px 0px"  // Preparar su posición antes de hacerlo visible
+	
+
+	var iniciar = setInterval(function(){
+
+		capa_flexion.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+
+		sprite_position_x = sprite_position_x + 200
+		iteraciones       = iteraciones + 1
+
+
+		if(iteraciones == 17)
+		{
+			salida()
+
+			setTimeout(function(){ // Para evitar el parpadeo
+				capa_flexion.style.visibility = "hidden"
+			}, 10)
+
+			capa_flexion.style.backgroundPosition = "0px 0px"
+			clearInterval(iniciar)
+		}
+	}, 90)
+}
+
+
+
+
+
+
+
+
+function salida()
+{
+	var cont = 0
+	var capa_caminar = document.getElementById('caminar')
+	caminar.style.visibility = "visible"
+
+	var sprite_position_x = 0
+
+
+	var position_capa = (header.offsetWidth / 2) - 100
+
+	
+
+	var iniciar = setInterval(function(){
+
+		// Mover la capa ******************************
+		capa_caminar.style.left = position_capa + "px"
+		position_capa           = position_capa - 1.4 // Velocidad de la capa
+		//*********************************************
+
+
+
+		// Mover sprite ****************************************************************************
+		if(cont % 3 == 0) // Para que el sprite se mueva sólo en los desplazamientos de capa impares
+		{
+			capa_caminar.style.backgroundPosition = sprite_position_x + "px" + " 0px"
+			sprite_position_x = sprite_position_x - 200
+		}
+		cont = cont + 0.5
+		//******************************************************************************************
+
+
+
+		// Detener
+		if(caminar.getBoundingClientRect().left < header.getBoundingClientRect().left - 200)
+		{
+			clearInterval(iniciar)
+
+			cont = 0
+
+			boton_rejilla.style.transform = "translate(0, 0)"
+			fadeIn(boton_solucion, 20)
+			
+		}
+
+	}, 10)
+}
+
+
+
+
+
+
+
+
+
+function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 {
 	var capa_mensaje  = document.createElement('div')
 	var texto         = document.createElement('p')
@@ -607,19 +1049,21 @@ function suricata_mensaje(mensaje, duracion_mensaje)
 	capa_mensaje.appendChild(texto)
 	header.appendChild(capa_mensaje)
 
-	
 
-	setTimeout(function(){
+	setTimeout(function(){ // Retrasamos el lanzamiento del mensaje
 
 		capa_mensaje.style.height = "80px"
 		capa_mensaje.style.color  = "#fff"
 
-			setTimeout(function(){
-				capa_mensaje.style.height = "0px"
-				capa_mensaje.style.color  = "transparent"
-			}, duracion_mensaje)
+				setTimeout(function(){ // Controlamos su duración
+					capa_mensaje.style.height = "0px"
+					capa_mensaje.style.color  = "transparent"
+				}, duracion_mensaje)
 
-	}, 20) // Para que le de tiempo a cargar la hoja de estilos
+	}, delay_mensaje)
+	
+
+	
 	
 
 	setTimeout(function(){
@@ -630,6 +1074,197 @@ function suricata_mensaje(mensaje, duracion_mensaje)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// VER SOLUCIÓN
+capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+capa_solucion.style.backgroundImage = "none"
+boton_solucion.value     = "Mostrar solución"
+
+
+// Por si se redimensiona la página
+window.addEventListener('resize', posicion_solucion)
+function posicion_solucion()
+{
+	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+}
+
+
+
+function asignar_puzzle_a_solucion(event)
+{
+	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+
+
+	if(event.target.nodeName == 'INPUT')
+	{
+		if(capa_solucion.style.backgroundImage == "none")
+		{
+			capa_solucion.style.display = "block"
+			fadeIn(capa_solucion, 15)
+			
+			capa_solucion.style.backgroundImage = "url(img/miniaturas/" + nombre_puzzle + "-200.jpg)"
+			boton_solucion.value = "Ocultar solución"
+
+		}
+		else
+		{
+			fadeOut(capa_solucion, 15)
+			boton_solucion.value = "Mostrar solución"
+		}
+	}
+	else
+	{
+		return
+	}
+}
+window.addEventListener('load', asignar_puzzle_a_solucion) // Al llamarla memoriza la variable nombre_puzzle
+boton_solucion.addEventListener('click', asignar_puzzle_a_solucion) // Al volver a llamarla ya conoce la variable
+
+
+
+
+
+function fadeIn(elemento, intervalos){
+
+	var opacidad   = 0;
+
+	var iniciar = setInterval(function(){
+	
+				  opacidad =  opacidad + 0.01;
+
+				  elemento.style.opacity = opacidad;
+
+				  if(opacidad >= 1)
+				  {
+					clearInterval(iniciar);
+				  }
+	}, intervalos);
+}
+
+
+
+function fadeOut(elemento, intervalos){
+
+	var opacidad   = 1;
+
+	var iniciar = setInterval(function(){
+	
+				  opacidad =  opacidad - 0.01;
+
+				  elemento.style.opacity = opacidad;
+
+				  if(opacidad <= 0)
+				  {
+					clearInterval(iniciar);
+					capa_solucion.style.backgroundImage = "none"
+					capa_solucion.style.display = "none"
+				  }
+	}, intervalos);
+}
+
+
+
+
+// TÍTULO ESTROBOSCÓPICO
+function titulo_estroboscopico()
+{
+	var titulo = document.getElementById('titulo')
+
+
+	var parpadeo = setInterval(function(){
+		titulo.classList.toggle('h1-2')
+	}, 100)
+
+
+	setTimeout(function(){
+		clearInterval(parpadeo)
+
+		if(titulo.classList.contains('h1-2'))
+		{
+			titulo.classList.remove('h1-2')
+		}
+	}, 9700)
+}
+
+
+
+
+// FIESTA RADIO BUTTONS
+function fiesta_radio_buttons()
+{
+	var i = 0
+	var intervalos = 0
+	
+
+
+	
+	for(let i=0; i < 3; i++) // Quitamos el formato de los custom radio buttons
+	{
+		custom_radio[i].style.transition = "all, .5s"
+		custom_radio[i].classList.add('fiesta-buttons-2')
+		custom_radio[i].classList.add('fiesta-buttons-3')
+		custom_radio[i].classList.remove('custom-radio-border')
+		custom_radio[i].innerHTML = ""
+		custom_radio[i].nextElementSibling.style.visibility = "hidden"
+	}
+
+
+
+	var iniciar = setInterval(function(){
+
+
+		i == 3 ? i = 0 : false
+
+		console.log(i)
+
+		
+		custom_radio[i].classList.add('fiesta-buttons-1') // Encender luz
+		
+
+
+		setTimeout(function(){ // Apagar luz
+			custom_radio[i].classList.remove('fiesta-buttons-1')
+			i = i + 1
+		}, 390)
+
+
+
+		intervalos = intervalos + 1
+
+		if(intervalos == 24)
+		{
+			clearInterval(iniciar)
+
+			for(let i=0; i < 3; i++)
+			{
+				custom_radio[i].classList.remove('fiesta-buttons-1')
+
+				setTimeout(function(){
+					custom_radio[i].classList.remove('fiesta-buttons-2')
+
+						setTimeout(function(){
+							formatear_radio_16()
+							custom_radio_buttons()
+							custom_radio[i].classList.remove('fiesta-buttons-3')
+							custom_radio[i].nextElementSibling.style.visibility = "visible"
+						}, 1000)
+				}, 1000)
+			}
+		}				
+	}, 400)
+}
+// fiesta_radio_buttons()
 
 
 
@@ -660,8 +1295,6 @@ boton_rejilla.addEventListener('click', function(){
 		boton_rejilla.value = "Mostrar rejilla"
 		click = 0
 	}
-
-	console.log(click)
 })
 
 
@@ -679,5 +1312,15 @@ function outline()
 	}
 }
 document.getElementById('outline').addEventListener('click',outline);
+
+
+
+
+
+// document.getElementById('probar').addEventListener('click', function(){
+
+// 	correcto()
+// })
+
 
 });

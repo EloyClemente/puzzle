@@ -1,0 +1,123 @@
+
+@mixin flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+$anchura-li: 30px;
+
+
+
+
+.container-selector{
+	@include flex;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 70px;
+	padding-left: 2%;
+	border-bottom: 1px solid rgba(#000, .2);
+	font-size: 14px;
+	@media(min-width: 480px)
+	{
+		width: 20%;
+		height: 130px;
+		border: none;
+	}
+}
+
+
+
+
+
+
+.elige-puzzle{
+	@include boton-01( #009688);
+	width: 130px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+
+.container-lista{
+	@include flex;
+	flex-wrap: wrap;
+	width: 130px;
+	height: 30px;
+	font-size: 14px;
+	@media(min-width: 480px)
+	{
+	}
+}
+
+
+
+
+
+.ul-lista{
+	width: 100%;
+	transition: all, .3s;
+	box-shadow: 0 5px 10px -4px #666;
+	z-index: 10;
+}
+
+
+
+
+.li-lista{
+	@include flex;
+	width: 100%;
+	height: 0;
+	color: #333;
+	background-color: #fff;
+	font-size: 0;
+	cursor: pointer;
+	transition: all, .3s;
+	position: relative;
+	&:hover{
+		color: #fff;
+		background-color: #009688;
+	}
+	&:active{
+		background-color: lighten(#009688, 10%);
+		font-size: 13px;
+		transition: none;
+	}
+}
+	
+.container-lista:hover .li-lista{
+	height: $anchura-li;
+	border-bottom: 1px solid rgba(#000, .2);
+	font-size: 14px;
+}
+
+
+
+
+.container-lista:hover .letras{
+	width: 100%;
+	height: 100%;
+}
+
+
+.ul-lista > li:last-child{
+	border-radius: 0 0 5px 5px;
+}
+
+
+.miniaturas-mostrar{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	background-size: cover;
+	border: 3px solid #fff;
+	border-radius: 5px;
+	box-shadow: 5px 0px 10px #333;
+	transition: all, .3s;
+}

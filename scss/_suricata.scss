@@ -13,38 +13,31 @@
 .presentacion,
 .correcto,
 .incorrecto
-{
-@include suricata;
-}
+{@include suricata;}
 
 
 
 .caminar{
 	left: 100%;
-	background-image: url(../img/suricata/sprite-caminar-low.png);
+	background-image: url(../img/suricata/caminar.png);
 	visibility: visible;
 }
 
-
 .flexion{
-	background-image: url(../img/suricata/sprite-flexion-low.png);
+	background-image: url(../img/suricata/flexion.png);
 }
-
 
 .presentacion{
-	background-image: url(../img/suricata/sprite-presentacion-low.png);
+	background-image: url(../img/suricata/presentacion.png);
 }
-
 
 .correcto{
-	background-image: url(../img/suricata/sprite-correcto-low.png);
+	background-image: url(../img/suricata/correcto.png);
 }
-
 
 .incorrecto{
-	background-image: url(../img/suricata/sprite-incorrecto-low.png);
+	background-image: url(../img/suricata/incorrecto.png);
 }
-
 
 
 
