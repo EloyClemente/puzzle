@@ -470,13 +470,14 @@ function mouse_down(event)
 
 
 
-		window.addEventListener('mouseup', soltar)
-		window.addEventListener('touchend', soltar)
+		window.addEventListener('mouseup', soltar) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		window.addEventListener('touchend', soltar) // EL PROBLEMA ES QUE ARRASTRA LAS PIEZAS ANTERIORES, COMO SI LAS MEMORIZASE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		function soltar()
 		{
 			document.getElementById('boton_menu').innerHTML = "pieza soltada"
 			window.removeEventListener('mousemove', mover)
+			window.removeEventListener('touchmove', mover)
 
 			pieza.style.left      = "0px"
 			pieza.style.top       = "0px"
