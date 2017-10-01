@@ -661,6 +661,7 @@ function colocar_piezas(event)
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
 							document.getElementById( lista_destino[0] ).appendChild(event.target)
+							document.getElementById( lista_destino[0] ).style.border = "none"
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 
 							setTimeout(function(){
