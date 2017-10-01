@@ -1364,8 +1364,6 @@ function fiesta_radio_buttons()
 	var i = 0
 	var intervalos = 0
 	
-
-
 	
 	for(let i=0; i < 3; i++) // Quitamos el formato de los custom radio buttons
 	{
@@ -1426,6 +1424,22 @@ function fiesta_radio_buttons()
 
 
 
+
+
+
+
+// OCULTAR MENÚ
+var boton_menu = document.getElementById('boton_menu')
+boton_menu.addEventListener('click', function(){
+	header.style.transition = "all, .3s"
+	header.classList.add('boton-menu-ocultar')
+})
+
+// MOSTRAR MENÚ
+var icono_menu = document.getElementById('icono_menu')
+icono_menu.addEventListener('click', function(){
+	header.classList.remove('boton-menu-ocultar')
+})
 
 
 

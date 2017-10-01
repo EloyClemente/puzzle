@@ -54,21 +54,5 @@ body{
 
 
 
-.icono-menu{
-	@include flex;
-	width: 12vw;
-	height: 50px;
-	position: absolute;
-	left: 88%;
-	font-size: 27px;
-	padding-top: 5px;
-	color: #009688;
-	@media(min-width: 480px){
-		display: none;
-	}
-}
 
 
-i{
-@include flex;
-}
