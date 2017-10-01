@@ -522,21 +522,47 @@ window.addEventListener('touchend', function(){
 
 
 
-window.addEventListener('mousemove', function(event)
-{
 
+// COLOCAR PIEZAS
+window.addEventListener('mousemove', colocar_piezas)
+window.addEventListener('touchmove', colocar_piezas) // MÓVIL
+
+function colocar_piezas(event)
+{
 	if(arrastrar_pieza == "yes") // Si arrastramos una pieza se activan las casillas. Si no, no
 	{
 		for(var i=0; i < casillas_destino.length; i++)
 		{
 			var casilla_origen  = document.getElementById('origen'  + (i + 1))
 
+
+			// INSTRUCCIONES PARA VERSIÓN MÓVIL **************************************************************************
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
+			{
+				if( event.changedTouches[0].clientX > casilla_origen.getBoundingClientRect().left &&
+				    event.changedTouches[0].clientX < casilla_origen.getBoundingClientRect().right &&
+				    event.changedTouches[0].clientY > casilla_origen.getBoundingClientRect().top &&
+				    event.changedTouches[0].clientY < casilla_origen.getBoundingClientRect().bottom)
+				{
+					panel_origen()
+				}
+			}
+			//************************************************************************************************************
+
+
 			if( event.clientX > casilla_origen.getBoundingClientRect().left &&
 			    event.clientX < casilla_origen.getBoundingClientRect().right &&
 			    event.clientY > casilla_origen.getBoundingClientRect().top &&
 			    event.clientY < casilla_origen.getBoundingClientRect().bottom)
 			{
+				panel_origen()
+			} 
 
+
+			function panel_origen()
+			{
 				var atributo_origen = casilla_origen.getAttribute('id')
 
 				var lista_origen = []
@@ -550,9 +576,24 @@ window.addEventListener('mousemove', function(event)
 				// contiene un sólo elemento: el último almacenado.
 
 
+				// window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 
-				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+				// 	if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
+				// 	{
+				// 		if(lista_origen.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
+				// 		{
+				// 			document.getElementById( lista_origen[0] ).appendChild(event.target)
+				// 			lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+				// 		}
+				// 	}
+				// })
 
+
+				window.addEventListener('mouseup', soltar_origen)
+				window.addEventListener('touchend', soltar_origen) // MÓVIL
+
+				function soltar_origen(event) // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+				{
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
 						if(lista_origen.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
@@ -561,34 +602,92 @@ window.addEventListener('mousemove', function(event)
 							lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 						}
 					}
-				})
-				
-			}
+				}
+
+			} // panel_origen()
 
 		} // for(var i=0; i < piezas.length; i++)
+
+
+
+
 
 
 		for(var i=0; i < casillas_destino.length; i++)
 		{
 			var casilla_seleccionada = document.getElementById('destino' + (i + 1))
 
+
+			// INSTRUCCIONES PARA VERSIÓN MÓVIL **************************************************************************
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
+			{
+				if( event.changedTouches[0].clientX > casilla_seleccionada.getBoundingClientRect().left &&
+				    event.changedTouches[0].clientX < casilla_seleccionada.getBoundingClientRect().right &&
+				    event.changedTouches[0].clientY > casilla_seleccionada.getBoundingClientRect().top &&
+				    event.changedTouches[0].clientY < casilla_seleccionada.getBoundingClientRect().bottom)
+				{
+					panel_destino()
+				}
+				else
+				{
+					casilla_seleccionada.style.backgroundColor = "transparent"
+				}
+			}
+			//************************************************************************************************************
+
+
+
+
 			if( event.clientX > casilla_seleccionada.getBoundingClientRect().left &&
 			    event.clientX < casilla_seleccionada.getBoundingClientRect().right &&
 			    event.clientY > casilla_seleccionada.getBoundingClientRect().top &&
 			    event.clientY < casilla_seleccionada.getBoundingClientRect().bottom)
 			{
+				panel_destino()
+			}
+			else
+			{
+				casilla_seleccionada.style.backgroundColor = "transparent"
+			}
 
+
+			function panel_destino()
+			{
 				casilla_seleccionada.style.backgroundColor = "red"
 
-				var atributo_destino = casilla_seleccionada.getAttribute('id')
+				var atributo_destino = casilla_seleccionada.getAttribute('id')  //document.getElementById('boton_menu').innerHTML = casilla_seleccionada.backgroundColor
 
 				var lista_destino = []
 				lista_destino.push(atributo_destino)
 
 
 
-				window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+				// window.addEventListener('mouseup', function(event){ // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 
+				// 	if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
+				// 	{
+				// 		if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
+				// 		{
+				// 			document.getElementById( lista_destino[0] ).appendChild(event.target)
+				// 			lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+
+				// 			setTimeout(function(){
+				// 				revisar_si_lleno()
+				// 			}, 300) // Para que le de tiempo a insertar la pieza. Por extraño que parezca, esta es la solución
+							
+				// 		}
+				// 	}
+				// }) // window.addEventListener('mouseup')
+
+
+
+				window.addEventListener('mouseup', soltar_destino)
+				window.addEventListener('touchend', soltar_destino)
+
+				function soltar_destino(event) // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
+				{
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
@@ -602,17 +701,21 @@ window.addEventListener('mousemove', function(event)
 							
 						}
 					}
-				}) // window.addEventListener('mouseup')
+				}
+
+
+
+
+
+
+
+			} // panel_destino()
 
 				
-			}
-			else
-			{
-				casilla_seleccionada.style.backgroundColor = "transparent"
-			}
+			
 		} // for(var i=0; i < piezas.length; i++)
 	} // if(pulsado == true)
-}) // window.addEventListener('mousemove)
+} // function colocar_piezas()
 
 
 
