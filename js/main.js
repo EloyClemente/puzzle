@@ -15,9 +15,12 @@ var nombre_puzzle
 var contador = 0
 
 
+// PARA LA ANIMACIÓN DE LA DISCOTECA
+var color_texto = document.getElementById('color_texto')
+//******************************************************
 
 
-// VARIABLES PARA VER LA SOLUCIÓN
+// PARA VER LA SOLUCIÓN
 var capa_solucion  = document.getElementById('capa_solucion')
 var boton_solucion = document.getElementById('mostrar_solucion')
 var boton_rejilla  = document.getElementById('mostrar_rejilla')
@@ -26,7 +29,7 @@ var boton_rejilla  = document.getElementById('mostrar_rejilla')
 
 // PARA LOS CUSTOM RADIO BUTTONS
 var custom_radio = document.getElementsByClassName('custom-radio')
-//**************************************************************
+//****************************************************************
 
 
 
@@ -1402,8 +1405,6 @@ function fiesta_radio_buttons()
 
 
 // FIESTA COLOR TEXTO
-var color_texto = document.getElementById('color_texto')
-
 function fiesta_color_texto()
 {
 	color_texto.classList.add('fiesta-color-texto')
