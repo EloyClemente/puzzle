@@ -418,9 +418,11 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 
 
-		// piezas[i].addEventListener('touchstart',  escribir)
+		// piezas[i].addEventListener('touchstart',  detectar_movil)
+		piezas[i].addEventListener('touchstart',  mouse_down)
 		piezas[i].addEventListener('touchend',  borrar)
-		piezas[i].addEventListener('touchstart',  detectar_movil)
+		
+		
 
 		
 
@@ -432,25 +434,25 @@ asignar_eventos_a_piezas()
 
 
 
-function escribir()
-{
-	document.getElementById('boton_menu').innerHTML = "touchstart"
-}
+// function escribir()
+// {
+// 	document.getElementById('boton_menu').innerHTML = "touchstart"
+// }
 
 function borrar()
 {
 	document.getElementById('boton_menu').innerHTML = "touchend"
 }
 
-function detectar_movil()
-{
-	var userAgent = navigator.userAgent || navigator.vendor || window.opera
+// function detectar_movil()
+// {
+// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera
 
-	if (/android/i.test(userAgent))
-	{
-		document.getElementById('boton_menu').innerHTML = "android"
-	}
-}
+// 	if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
+// 	{
+// 		document.getElementById('boton_menu').innerHTML = "android"
+// 	}
+// }
 
 
 
@@ -459,6 +461,8 @@ var arrastrar_pieza
 
 function mouse_down(event)
 {
+	document.getElementById('boton_menu').innerHTML = "Entra"
+
 	var pieza = event.target
 	event.preventDefault()
 
@@ -471,13 +475,14 @@ function mouse_down(event)
 
 		function mover(event)
 		{
-			// var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-			// if (/android/i.test(userAgent))  //  || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)
-			// {
-			// }
+			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
+			{
+				// pieza.style.left = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			}
 
-			// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			
 
 
 			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
