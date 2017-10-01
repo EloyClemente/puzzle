@@ -663,7 +663,7 @@ function animacion_de_botones(respuesta_suricata)
 		fadeOut(boton_solucion, 20)
 	}
 
-	if(innerWidth > 480)
+	if(window.matchMedia("(min-width: 480px)").matches)
 	{
 		setTimeout(function(){
 			boton_rejilla.style.transition = "all, .5s"

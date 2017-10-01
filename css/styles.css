@@ -410,7 +410,8 @@ input[type=radio] {
       -webkit-box-direction: normal;
       -webkit-flex-direction: column;
       -ms-flex-direction: column;
-      flex-direction: column; } }
+      flex-direction: column;
+      border-bottom: none; } }
 
 .boton-solucion,
 .boton-rejilla {
