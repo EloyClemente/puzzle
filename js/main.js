@@ -447,6 +447,15 @@ function mouse_down(event)
 
 		function mover(event)
 		{
+			if (/android/i.test(userAgent)) 
+			{
+				document.body.style.backgroundColor = "red"
+				// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+			}
+
+			
+
+
 			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
 			pieza.style.top       = (event.clientY - posicion_pieza_y) - pieza.offsetHeight / 2 + 'px'
 
