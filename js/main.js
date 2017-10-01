@@ -1035,7 +1035,7 @@ function salida()
 
 
 
-
+// MENSAJE
 function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 {
 	var capa_mensaje  = document.createElement('div')
@@ -1044,6 +1044,7 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 	
 
 	capa_mensaje.classList.add('mensaje')
+	capa_mensaje.style.left = (header.offsetWidth / 2) - 120 + "px"
 
 
 	capa_mensaje.appendChild(texto)
