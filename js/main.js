@@ -447,7 +447,9 @@ function mouse_down(event)
 
 		function mover(event)
 		{
-			if (/android/i.test(userAgent)) 
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)) 
 			{
 				document.body.style.backgroundColor = "red"
 				// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
