@@ -418,15 +418,9 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 
 
-		// piezas[i].addEventListener('touchstart',  detectar_movil)
 		piezas[i].addEventListener('touchstart',  mouse_down)
-		piezas[i].addEventListener('touchend',  borrar)
+	
 		
-		
-
-		
-
-
 		
 	}
 }
@@ -434,25 +428,6 @@ asignar_eventos_a_piezas()
 
 
 
-// function escribir()
-// {
-// 	document.getElementById('boton_menu').innerHTML = "touchstart"
-// }
-
-function borrar()
-{
-	document.getElementById('boton_menu').innerHTML = "touchend"
-}
-
-// function detectar_movil()
-// {
-// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera
-
-// 	if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
-// 	{
-// 		document.getElementById('boton_menu').innerHTML = "android"
-// 	}
-// }
 
 
 
@@ -473,16 +448,15 @@ function mouse_down(event)
 
 		function mover(event)
 		{
+			// INSTRUCCIONES PARA VERSIÓN MÓVIL **************************************************************************
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
 			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
 			{
-				// document.getElementById('boton_menu').innerHTML = "Adentro"
 				pieza.style.left = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth   / 2 + 'px'
 				pieza.style.top  = (event.changedTouches[0].clientY - posicion_pieza_y) - pieza.offsetHeight  / 2 + 'px'
 			}
-
-			
+			//************************************************************************************************************
 
 
 			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
@@ -497,9 +471,11 @@ function mouse_down(event)
 
 
 		window.addEventListener('mouseup', soltar)
+		window.addEventListener('touchend', soltar)
 
 		function soltar()
 		{
+			document.getElementById('boton_menu').innerHTML = "pieza soltada"
 			window.removeEventListener('mousemove', mover)
 
 			pieza.style.left      = "0px"
