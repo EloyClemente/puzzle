@@ -414,17 +414,31 @@ function asignar_eventos_a_piezas()
 		piezas[i].style.cursor     = "move"
 
 		piezas[i].addEventListener('mouseover' ,  poner_borde)
-		piezas[i].addEventListener('touchstart' ,  poner_borde)
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
-		piezas[i].addEventListener('touchend',  quitar_borde)
-
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
+
+
+		// piezas[i].addEventListener('touchstart' ,  mouse_down)
+		piezas[i].addEventListener('touchstart',  escribir)
+		piezas[i].addEventListener('touchend',  borrar)
+
+
+		
 	}
 }
 asignar_eventos_a_piezas()
 
 
 
+function escribir()
+{
+	document.getElementById('boton_menu').innerHTML = "touchstart"
+}
+
+function borrar()
+{
+	document.getElementById('boton_menu').innerHTML = "touchend"
+}
 
 
 
@@ -440,22 +454,18 @@ function mouse_down(event)
 	var posicion_pieza_y = pieza.getBoundingClientRect().top
 
 	
-
-
 		window.addEventListener('mousemove', mover)
 		window.addEventListener('touchmove', mover)
 
 		function mover(event)
 		{
-			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			// var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-			if (/android/i.test(userAgent))  //  || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)
-			{
-				document.body.style.backgroundColor = "red"
-				// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
-			}
+			// if (/android/i.test(userAgent))  //  || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)
+			// {
+			// }
 
-			
+			// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
 
 
 			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
