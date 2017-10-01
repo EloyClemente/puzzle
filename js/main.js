@@ -418,9 +418,11 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 
 
-		// piezas[i].addEventListener('touchstart' ,  mouse_down)
-		piezas[i].addEventListener('touchstart',  escribir)
+		// piezas[i].addEventListener('touchstart',  escribir)
 		piezas[i].addEventListener('touchend',  borrar)
+		piezas[i].addEventListener('touchstart',  detectar_movil)
+
+		
 
 
 		
@@ -438,6 +440,16 @@ function escribir()
 function borrar()
 {
 	document.getElementById('boton_menu').innerHTML = "touchend"
+}
+
+function detectar_movil()
+{
+	var userAgent = navigator.userAgent || navigator.vendor || window.opera
+
+	if (/android/i.test(userAgent))
+	{
+		document.getElementById('boton_menu').innerHTML = "android"
+	}
 }
 
 
