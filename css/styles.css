@@ -45,14 +45,18 @@ textarea {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
-  height: 200px;
-  position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+  height: 320px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: absolute;
+  background-color: #fff;
+  z-index: 1; }
   @media (min-width: 480px) {
     .header {
+      height: 200px;
       -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
-      justify-content: space-around; } }
+      justify-content: space-around;
+      position: relative; } }
 
 .h1 {
   display: -webkit-box;
@@ -82,6 +86,25 @@ textarea {
 .h1-2 {
   color: yellow; }
 
+.boton-menu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 50px; }
+  @media (min-width: 480px) {
+    .boton-menu {
+      display: none; } }
+
 .container-selector {
   display: -webkit-box;
   display: -webkit-flex;
@@ -95,6 +118,10 @@ textarea {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -105,6 +132,10 @@ textarea {
   font-size: 14px; }
   @media (min-width: 480px) {
     .container-selector {
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       width: 20%;
       height: 130px;
       border: none; } }
@@ -249,11 +280,13 @@ textarea {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
-  height: 80px; }
+  height: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 480px) {
     .container-radio {
       width: 45%;
-      height: 130px; } }
+      height: 130px;
+      border-bottom: none; } }
   .container-radio > p:first-of-type {
     font-size: 14px;
     font-weight: bold;
@@ -367,7 +400,8 @@ input[type=radio] {
   -ms-flex-pack: distribute;
   justify-content: space-around;
   width: 100%;
-  height: 70px; }
+  height: 70px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 480px) {
     .container-boton-rejilla {
       width: 20%;
@@ -412,26 +446,6 @@ input[type=radio] {
 .boton-solucion {
   opacity: 0; }
 
-.boton-menu {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-  @media (min-width: 480px) {
-    .boton-menu {
-      display: none; } }
-
 .solucion {
   width: 200px;
   height: 200px;
@@ -440,7 +454,6 @@ input[type=radio] {
   cursor: pointer;
   -webkit-box-shadow: 0 5px 10px -3px #333;
   box-shadow: 0 5px 10px -3px #333;
-  opacity: 0;
   display: none; }
 
 .container-puzzle {
@@ -469,7 +482,7 @@ input[type=radio] {
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px; }
+  margin-top: 1%; }
   @media (min-width: 480px) {
     .container-puzzle {
       -webkit-box-pack: justify;
@@ -618,10 +631,9 @@ input[type=radio] {
   outline: 1px solid #e0e0e0; }
 
 body {
-  font-family: "Open Sans", sans-serif; }
-
-body {
-  overflow-y: hidden; }
+  font-family: "Open Sans", sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden; }
 
 .container {
   width: 100%;

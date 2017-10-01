@@ -663,13 +663,19 @@ function animacion_de_botones(respuesta_suricata)
 		fadeOut(boton_solucion, 20)
 	}
 
+	if(innerWidth > 480)
+	{
+		setTimeout(function(){
+			boton_rejilla.style.transition = "all, .5s"
+			boton_rejilla.style.transform = "translate(0, -30px)"
+		}, 1000)
+	}
+
+
 	setTimeout(function(){
-		boton_rejilla.style.transition = "all, .5s"
-		boton_rejilla.style.transform = "translate(0, -30px)"
-
-		entrada(respuesta_suricata)
-
+			entrada(respuesta_suricata)
 	}, 1000)
+	
 	//************************************************************************
 }
 animacion_de_botones("presentacion")
@@ -684,11 +690,6 @@ animacion_de_botones("presentacion")
 // ENTRADA
 function entrada(respuesta_suricata)
 {
-
-	// ocultar_solucion()
-	// capa_solucion.style.opacity = "0"
-
-
 	// ANIMACIÓN DE LA CAPA
 	var capa_caminar = document.getElementById('caminar')
 
