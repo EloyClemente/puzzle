@@ -477,8 +477,9 @@ function mouse_down(event)
 
 			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent))
 			{
-				document.getElementById('boton_menu').innerHTML = "Adentro"
-				// pieza.style.left = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
+				// document.getElementById('boton_menu').innerHTML = "Adentro"
+				pieza.style.left = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth   / 2 + 'px'
+				pieza.style.top  = (event.changedTouches[0].clientY - posicion_pieza_y) - pieza.offsetHeight  / 2 + 'px'
 			}
 
 			
