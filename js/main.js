@@ -418,6 +418,8 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 
 
+		piezas[i].addEventListener('touchstart',  poner_borde) // MÓVIL
+		piezas[i].addEventListener('touchend',  quitar_borde)
 		piezas[i].addEventListener('touchstart',  mouse_down)
 	
 		
@@ -444,7 +446,7 @@ function mouse_down(event)
 
 	
 		window.addEventListener('mousemove', mover)
-		window.addEventListener('touchmove', mover)
+		window.addEventListener('touchmove', mover) // MÓVIL
 
 		function mover(event)
 		{
@@ -470,14 +472,13 @@ function mouse_down(event)
 
 
 
-		window.addEventListener('mouseup', soltar) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		window.addEventListener('touchend', soltar) // EL PROBLEMA ES QUE ARRASTRA LAS PIEZAS ANTERIORES, COMO SI LAS MEMORIZASE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		window.addEventListener('mouseup', soltar)
+		window.addEventListener('touchend', soltar) // MÓVIL
 
 		function soltar()
 		{
-			document.getElementById('boton_menu').innerHTML = "pieza soltada"
 			window.removeEventListener('mousemove', mover)
-			window.removeEventListener('touchmove', mover)
+			window.removeEventListener('touchmove', mover) // MÓVIL
 
 			pieza.style.left      = "0px"
 			pieza.style.top       = "0px"
@@ -505,6 +506,18 @@ window.addEventListener('mousedown', function(){
 window.addEventListener('mouseup', function(){
 	pulsado = false
 })
+
+
+// PARA MÓVIL ***********************************
+window.addEventListener('touchstart', function(){
+	pulsado = true
+})
+window.addEventListener('touchend', function(){
+	pulsado = false
+})
+//***********************************************
+
+
 
 
 
