@@ -970,8 +970,11 @@ function correcto()
 	var iteraciones = 0
 
 
-	titulo_estroboscopico() // Para el título estroboscópico
+	// ACTIVAR DISCOTECA
+	titulo_estroboscopico() 
 	fiesta_radio_buttons()
+	fiesta_color_texto()
+
 
 
 	var iniciar = setInterval(function(){
@@ -1379,6 +1382,8 @@ function fiesta_radio_buttons()
 
 				setTimeout(function(){
 					custom_radio[i].classList.remove('fiesta-buttons-2')
+					color_texto.classList.remove('fiesta-color-texto')
+					color_texto.innerHTML = "Elige el número de piezas"
 
 						setTimeout(function(){
 							formatear_radio_16()
@@ -1391,7 +1396,20 @@ function fiesta_radio_buttons()
 		}				
 	}, 400)
 }
-// fiesta_radio_buttons()
+
+
+
+
+
+// FIESTA COLOR TEXTO
+var color_texto = document.getElementById('color_texto')
+
+function fiesta_color_texto()
+{
+	color_texto.classList.add('fiesta-color-texto')
+	color_texto.innerHTML = "¡Prueba superada!"
+}
+
 
 
 
@@ -1431,7 +1449,7 @@ function outline()
 		elem.classList.toggle('outline');
 	}
 }
-document.getElementById('outline').addEventListener('click',outline);
+// document.getElementById('outline').addEventListener('click',outline);
 
 
 
