@@ -443,6 +443,8 @@ function mouse_down(event)
 
 
 		window.addEventListener('mousemove', mover)
+		window.addEventListener('touchmove', mover)
+
 		function mover(event)
 		{
 			pieza.style.left      = (event.clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
