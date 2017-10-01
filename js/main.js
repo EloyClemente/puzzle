@@ -449,7 +449,7 @@ function mouse_down(event)
 		{
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-			if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)) 
+			if (/android/i.test(userAgent))  //  || /iPad|iPhone|iPod/.test(userAgent) || /windows phone/i.test(userAgent)
 			{
 				document.body.style.backgroundColor = "red"
 				// pieza.styel.left      = (event.changedTouches[0].clientX - posicion_pieza_x) - pieza.offsetWidth  / 2 + 'px'
