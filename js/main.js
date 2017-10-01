@@ -201,8 +201,8 @@ function insertar_puzzle( nombre_puzzle )
 
 
 
-// ASIGNAR MINIATURAS A LA LISTA DE PUZZLES
-// ASIGNAR EVENTO CLICK A LA LISTA DE PUZZLES
+
+// ASIGNAR EVENTOS A LA LISTA DE PUZZLES
 function evento_desplegable()
 {
 	let selector_puzzle = document.getElementsByClassName('li-lista')
@@ -240,7 +240,7 @@ function miniaturas_mostrar(event)
 }
 
 
-
+// OCULTAR MINIATURAS
 function miniaturas_ocultar(event)
 {
 	capa_miniatura.parentNode.removeChild(capa_miniatura)
@@ -321,6 +321,7 @@ function circulo_custom()
 }
 
 
+
 // GESTIONAR SOMBRA DE LOS CUSTOM RADIO
 function sombra_custom()
 {
@@ -334,6 +335,7 @@ function sombra_custom()
 		}
 	}
 }
+
 
 
 // GESTIONAR BORDE DE LOS CUSTOM RADIO
@@ -441,7 +443,7 @@ function quitar_borde()
 
 
 
-
+// ASIGNAR EVENTOS A PIEZAS
 function asignar_eventos_a_piezas()
 {
 	for(let i=0; i < piezas.length; i++)
@@ -453,13 +455,9 @@ function asignar_eventos_a_piezas()
 		piezas[i].addEventListener('mouseleave',  quitar_borde)
 		piezas[i].addEventListener('mousedown' ,  mouse_down)
 
-
 		piezas[i].addEventListener('touchstart',  poner_borde) // MÓVIL
 		piezas[i].addEventListener('touchend',  quitar_borde)
 		piezas[i].addEventListener('touchstart',  mouse_down)
-	
-		
-		
 	}
 }
 asignar_eventos_a_piezas()
@@ -531,27 +529,6 @@ function mouse_down(event)
 
 
 
-
-
-
-
-
-// window.addEventListener('mousedown', function(){
-// 	pulsado = true
-// })
-// window.addEventListener('mouseup', function(){
-// 	pulsado = false
-// })
-
-
-// // PARA MÓVIL ***********************************
-// window.addEventListener('touchstart', function(){
-// 	pulsado = true
-// })
-// window.addEventListener('touchend', function(){
-// 	pulsado = false
-// })
-// //***********************************************
 
 
 
@@ -816,6 +793,12 @@ animacion_de_botones("presentacion")
 // ENTRADA
 function entrada(respuesta_suricata)
 {
+	// Para ver la animación tras cada juego
+	header.style.top = "0px"
+	//****************************************
+
+
+
 	// ANIMACIÓN DE LA CAPA
 	var capa_caminar = document.getElementById('caminar')
 
@@ -877,9 +860,8 @@ function flexion(respuesta_suricata)
 
 	capa_flexion.style.visibility = "visible"
 
-	var sprite_position_x  = 0 // Esto hace falta
+	var sprite_position_x  = 0
 	var iteraciones = 0
-
 
 
 
@@ -924,7 +906,6 @@ function flexion(respuesta_suricata)
 				capa_flexion.style.visibility = "hidden" 
 			}, 100)
 
-			// capa_flexion.style.backgroundPosition = "-2600px 0px" // Nos saltamos un par de frames para un mejor resultado
 			clearInterval(iniciar)
 		}
 	}, 90)
@@ -1073,9 +1054,6 @@ function agacharse()
 
 	
 	var iteraciones = 0
-	
-	
-	// capa_flexion.style.backgroundPosition = "-3400px 0px"  // Preparar su posición antes de hacerlo visible
 	
 
 	var iniciar = setInterval(function(){
@@ -1231,9 +1209,8 @@ function posicion_solucion()
 	{
 		capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
 	}
-
-
 }
+
 
 
 
@@ -1242,10 +1219,6 @@ function asignar_puzzle_a_solucion(event)
 {
 	capa_solucion.style.left = (container_solucion_rejilla.getBoundingClientRect().left - 200) + "px"
 
-	if(window.matchMedia("(min-width: 480px)").matches)
-	{
-		
-	}
 
 	if(innerWidth < 480)
 	{
@@ -1431,14 +1404,13 @@ function fiesta_radio_buttons()
 // OCULTAR MENÚ
 var boton_menu = document.getElementById('boton_menu')
 boton_menu.addEventListener('click', function(){
-	header.style.transition = "all, .3s"
-	header.classList.add('boton-menu-ocultar')
+	header.style.top = "-310px"
 })
 
 // MOSTRAR MENÚ
 var icono_menu = document.getElementById('icono_menu')
 icono_menu.addEventListener('click', function(){
-	header.classList.remove('boton-menu-ocultar')
+	header.style.top = "0px"
 })
 
 
