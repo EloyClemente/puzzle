@@ -478,9 +478,11 @@ input[type=radio] {
   height: 200px;
   position: absolute;
   top: 10px;
-  cursor: pointer;
+  border: 3px solid #fff;
+  border-radius: 5px;
   -webkit-box-shadow: 0 5px 10px -3px #333;
   box-shadow: 0 5px 10px -3px #333;
+  cursor: pointer;
   display: none; }
 
 .container-puzzle {
@@ -550,6 +552,7 @@ input[type=radio] {
   margin-bottom: 1%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
   -webkit-box-shadow: 0 5px 10px -5px #666;
   box-shadow: 0 5px 10px -5px #666; }
   @media (min-width: 480px) {

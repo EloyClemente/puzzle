@@ -48,8 +48,10 @@ $anchura-li: 30px;
 	height: 200px;
 	position: absolute;
 	top: 10px;
-	cursor: pointer;
+	border: 3px solid #fff;
+	border-radius: 5px;
 	box-shadow: 0 5px 10px -3px #333;
+	cursor: pointer;
 	display: none;
 }
 

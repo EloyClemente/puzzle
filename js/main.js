@@ -1188,14 +1188,34 @@ boton_solucion.value     = "Mostrar solución"
 window.addEventListener('resize', posicion_solucion)
 function posicion_solucion()
 {
-	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+	var container_solucion_rejilla = document.getElementById('container_solucion_rejilla')
+	capa_solucion.style.left = (container_solucion_rejilla.getBoundingClientRect().left - 200) + "px"
+
+	if(window.matchMedia("(min-width: 480px)").matches)
+	{
+		capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+	}
+
+
 }
 
 
 
+// ASIGNAR PUZZLE A SOLUCIÓN
 function asignar_puzzle_a_solucion(event)
 {
-	capa_solucion.style.left = (header.offsetWidth - 410) + "px"
+	capa_solucion.style.left = (container_solucion_rejilla.getBoundingClientRect().left - 200) + "px"
+
+	if(window.matchMedia("(min-width: 480px)").matches)
+	{
+		
+	}
+
+	if(innerWidth < 480)
+	{
+		capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+	}
+	
 
 
 	if(event.target.nodeName == 'INPUT')
