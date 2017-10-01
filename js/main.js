@@ -1113,7 +1113,7 @@ function asignar_puzzle_a_solucion(event)
 		if(capa_solucion.style.backgroundImage == "none")
 		{
 			capa_solucion.style.display = "block"
-			fadeIn(capa_solucion, 15)
+			fadeIn(capa_solucion, 10)
 			
 			capa_solucion.style.backgroundImage = "url(img/miniaturas/" + nombre_puzzle + "-200.jpg)"
 			boton_solucion.value = "Ocultar solución"
@@ -1121,7 +1121,7 @@ function asignar_puzzle_a_solucion(event)
 		}
 		else
 		{
-			fadeOut(capa_solucion, 15)
+			fadeOut(capa_solucion, 10)
 			boton_solucion.value = "Mostrar solución"
 		}
 	}
@@ -1136,7 +1136,7 @@ boton_solucion.addEventListener('click', asignar_puzzle_a_solucion) // Al volver
 
 
 
-
+// FADE IN
 function fadeIn(elemento, intervalos){
 
 	var opacidad   = 0;
@@ -1156,6 +1156,7 @@ function fadeIn(elemento, intervalos){
 
 
 
+// FADE OUT
 function fadeOut(elemento, intervalos){
 
 	var opacidad   = 1;
@@ -1174,6 +1175,36 @@ function fadeOut(elemento, intervalos){
 				  }
 	}, intervalos);
 }
+
+
+
+
+
+
+// MOSTRAR / OCULTAR REJILLA
+var boton_rejilla = document.getElementById('mostrar_rejilla')
+var click = 0
+
+boton_rejilla.addEventListener('click', function(){
+
+	for(let i=0; i < casillas_destino.length; i++)
+	{
+		casillas_destino[i].classList.toggle('rejilla')
+	}
+
+	if(click == 0)
+	{
+		boton_rejilla.value = "Ocultar rejilla"
+		click = 1
+	}
+	else
+	{
+		boton_rejilla.value = "Mostrar rejilla"
+		click = 0
+	}
+})
+
+
 
 
 
@@ -1276,28 +1307,6 @@ function fiesta_radio_buttons()
 
 
 
-// MOSTRAR / OCULTAR REJILLA
-var boton_rejilla = document.getElementById('mostrar_rejilla')
-var click = 0
-
-boton_rejilla.addEventListener('click', function(){
-
-	for(let i=0; i < casillas_destino.length; i++)
-	{
-		casillas_destino[i].classList.toggle('rejilla')
-	}
-
-	if(click == 0)
-	{
-		boton_rejilla.value = "Ocultar rejilla"
-		click = 1
-	}
-	else
-	{
-		boton_rejilla.value = "Mostrar rejilla"
-		click = 0
-	}
-})
 
 
 
