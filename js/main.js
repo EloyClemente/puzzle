@@ -1189,7 +1189,6 @@ function mensaje(mensaje, delay_mensaje, duracion_mensaje)
 
 
 // VER SOLUCIÓN
-capa_solucion.style.left = (header.offsetWidth - 410) + "px"
 capa_solucion.style.backgroundImage = "none"
 boton_solucion.value     = "Mostrar solución"
 
@@ -1199,12 +1198,13 @@ window.addEventListener('resize', posicion_solucion)
 function posicion_solucion()
 {
 	var container_solucion_rejilla = document.getElementById('container_solucion_rejilla')
-	capa_solucion.style.left = (container_solucion_rejilla.getBoundingClientRect().left - 200) + "px"
 
-	if(window.matchMedia("(min-width: 480px)").matches)
-	{
-		capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
-	}
+	capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+
+	// if(window.matchMedia("(min-width: 480px)").matches)
+	// {
+	// 	capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+	// }
 }
 
 
@@ -1213,7 +1213,8 @@ function posicion_solucion()
 // ASIGNAR PUZZLE A SOLUCIÓN
 function asignar_puzzle_a_solucion(event)
 {
-	capa_solucion.style.left = (container_solucion_rejilla.getBoundingClientRect().left - 200) + "px"
+	capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
+
 
 
 	if(innerWidth < 480)
@@ -1458,28 +1459,30 @@ function formato_landscape()
 {
 	var container_puzzle = document.getElementById('container_puzzle')
 
-	console.log(header.offsetHeight + container_puzzle.offsetHeight)
-	console.log(innerHeight)
+
 
 	if(innerHeight < (header.offsetHeight + container_puzzle.offsetHeight))
 	{
 		header.style.position = "absolute"
+		header.style.maxWidth = "1200px"
 		boton_menu.style.display = "flex"
 		icono_menu.style.display = "flex"
-		container_puzzle.style.marginTop = "30px"
+		container_puzzle.style.marginTop = "25px"
 	}
 	else
 	{
 		header.style.position = "relative"
+		header.style.top = "0px"
 		boton_menu.style.display = "none"
 		icono_menu.style.display = "none"
-		container_puzzle.style.marginTop = "0px"
+		container_puzzle.style.marginTop = "2%"
 	}
 	
 }
 formato_landscape()
 
-
+console.log('base puzzle: ' + container_destino.getBoundingClientRect().bottom)
+console.log('viewport height: ' + innerHeight)
 
 
 
