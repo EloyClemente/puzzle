@@ -1466,12 +1466,14 @@ function formato_landscape()
 		header.style.position = "absolute"
 		boton_menu.style.display = "flex"
 		icono_menu.style.display = "flex"
+		container_puzzle.style.marginTop = "30px"
 	}
 	else
 	{
 		header.style.position = "relative"
 		boton_menu.style.display = "none"
 		icono_menu.style.display = "none"
+		container_puzzle.style.marginTop = "0px"
 	}
 	
 }
