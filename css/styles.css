@@ -410,7 +410,8 @@ input[type=radio] {
   box-shadow: 0 2px 4px #666 inset;
   cursor: pointer;
   position: relative;
-  -webkit-user-select: none; }
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; }
 
 .radio-button-seleccionado {
   -webkit-box-shadow: none;
