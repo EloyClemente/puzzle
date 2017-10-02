@@ -103,12 +103,7 @@ $anchura-li: 30px;
 	padding-top: 5px;
 	color: #009688;
 	cursor: pointer;
-	&:hover{
-		background: transparent;
-	}
-	&:active{
-		background: transparent;
-	}
+	tap-highlight-color: transparent;
 	@media(min-width: 480px){
 		display: none;
 	}
