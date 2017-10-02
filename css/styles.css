@@ -140,7 +140,9 @@ textarea {
   padding-top: 5px;
   color: #009688;
   cursor: pointer; }
-  .icono-menu:selection {
+  .icono-menu:hover {
+    background: transparent; }
+  .icono-menu:active {
     background: transparent; }
   @media (min-width: 480px) {
     .icono-menu {

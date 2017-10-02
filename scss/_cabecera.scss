@@ -103,7 +103,10 @@ $anchura-li: 30px;
 	padding-top: 5px;
 	color: #009688;
 	cursor: pointer;
-	&:selection{
+	&:hover{
+		background: transparent;
+	}
+	&:active{
 		background: transparent;
 	}
 	@media(min-width: 480px){
