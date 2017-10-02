@@ -1421,37 +1421,36 @@ function focos_radio_buttons()
 	var i = 0
 	var intervalos = 0
 	
-	
 
 
 	var iniciar = setInterval(function(){
 
-
 		i == 3 ? i = 0 : false
 
 
-		custom_radio[i].classList.add('foco-buttons-color')
+		// custom_radio[i].classList.add('foco-buttons-color')
+
+		// setTimeout(function(){
+		// 	custom_radio[i].classList.remove('foco-buttons-color')
+		// 	i = i + 1
+		// }, 390)
 
 
 
-		setTimeout(function(){
-			console.log(i)
-			custom_radio[i].classList.remove('foco-buttons-color')
-			i = i + 1
-		}, 390)
 
+		custom_radio[i].classList.toggle('foco-buttons-color')
+		i = i + 1
 
-	
 
 
 		intervalos = intervalos + 1
 
-		if(intervalos == 24)
+		if(intervalos == 96) // 24 en modo normal
 		{
 			clearInterval(iniciar)
 		}		
 
-	}, 400)
+	}, 100)
 }
 
 
