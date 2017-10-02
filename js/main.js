@@ -258,6 +258,7 @@ function formatear_radio_16()
 {
 	var radio_16 = document.getElementById("radio-16")
 	radio_16.checked = true; // Activar radio 16
+
 	// formato para el label
 	radio_16.parentNode.lastElementChild.style.color = "#009688"
 	radio_16.parentNode.lastElementChild.style.fontWeight = "bold"
@@ -279,11 +280,12 @@ function custom_radio_buttons()
 {
 	sombra_custom() // Poner sombra y borde
 	border_custom()
+	crear_circulo()
 
 
-	circulo = document.createElement('div')
-	circulo.classList.add('circulo')
-	custom_radio[1].appendChild(circulo) // Introducimos cículo en el custom radio button 16
+	// circulo = document.createElement('div')
+	// circulo.classList.add('circulo')
+	// custom_radio[1].appendChild(circulo) // Introducimos cículo en el custom radio button 16
 
 
 
@@ -314,6 +316,21 @@ custom_radio_buttons()
 
 
 
+
+// CR4EAR CÍRCULO E INSERTARLO EN CUSTOM RADIO 16
+function crear_circulo()
+{
+	circulo = document.createElement('div')
+	circulo.classList.add('circulo')
+
+	setTimeout(function(){
+		custom_radio[1].appendChild(circulo) // Retrasamos la inserción por estética
+	}, 500)
+}
+
+
+
+
 // GESTIONAR CÍRCULO
 function circulo_custom()
 {
@@ -330,6 +347,7 @@ function sombra_custom()
 {
 	for(let i=0; i < 3; i++)
 	{
+		custom_radio[i].style.transition = "all, .3s"
 		custom_radio[i].classList.add('custom-radio-sombra')
 
 		if(custom_radio[i].previousElementSibling.checked == true)
@@ -784,7 +802,7 @@ function animacion_de_botones(respuesta_suricata)
 	
 	//************************************************************************
 }
-animacion_de_botones("presentacion")
+// animacion_de_botones("presentacion")
 
 
 
@@ -913,7 +931,7 @@ function flexion(respuesta_suricata)
 		}
 	}, 90)
 }
-
+flexion("correcto")
 
 
 
@@ -975,7 +993,8 @@ function correcto()
 
 	// ACTIVAR DISCOTECA
 	titulo_estroboscopico() 
-	fiesta_radio_buttons()
+	formato_focos()
+	focos_radio_buttons()
 	fiesta_color_texto()
 
 
@@ -1311,7 +1330,8 @@ function fadeOut(elemento, intervalos){
 
 
 
-
+// DISCOTECA
+//*********************************************************************************************************
 
 // TÍTULO ESTROBOSCÓPICO
 function titulo_estroboscopico()
@@ -1337,69 +1357,105 @@ function titulo_estroboscopico()
 
 
 
-// FIESTA RADIO BUTTONS
-function fiesta_radio_buttons()
+// FORMATO PARA LOS FOCOS
+function formato_focos()
+{
+	// NOTA: 
+	// Este juego de retrasos en la ejecución de las acciones,
+	// tiene por objetivo mejorar el aspecto de la animación.
+
+
+	var index = 0
+
+	for(var i=0; i < 3; i++) // Quitamos el formato de los custom radio buttons
+	{
+		custom_radio[i].style.transition = "all, .4s"
+		custom_radio[i].innerHTML = ""
+		custom_radio[i].nextElementSibling.style.visibility = "hidden"
+		custom_radio[i].classList.add('foco-buttons-sombra')
+		custom_radio[i].classList.add('foco-buttons-size')
+
+
+
+			function quitar_borde()
+			{
+				var z = i // Capturamos los tres valores de i
+
+				setTimeout(function(){
+					custom_radio[z].classList.remove('custom-radio-border')
+				}, 300)
+			}
+			quitar_borde()
+
+
+
+
+			function restaurar_formato()
+			{
+				var z = i // Capturamos los tres valores de i
+
+				setTimeout(function(){
+
+					custom_radio[z].classList.remove('foco-buttons-size')
+					custom_radio_buttons()
+					custom_radio[z].classList.remove('foco-buttons-sombra')
+					custom_radio[z].nextElementSibling.style.visibility = "visible"
+
+					setTimeout(function(){
+						formatear_radio_16()
+					}, 500)
+					
+
+				}, 10000)
+			}
+			restaurar_formato()
+	}
+}
+
+
+
+
+// FOCOS RADIO BUTTONS LUCES
+function focos_radio_buttons()
 {
 	var i = 0
 	var intervalos = 0
 	
 	
-	for(let i=0; i < 3; i++) // Quitamos el formato de los custom radio buttons
-	{
-		custom_radio[i].style.transition = "all, .5s"
-		custom_radio[i].classList.add('fiesta-buttons-2')
-		custom_radio[i].classList.add('fiesta-buttons-3')
-		custom_radio[i].classList.remove('custom-radio-border')
-		custom_radio[i].innerHTML = ""
-		custom_radio[i].nextElementSibling.style.visibility = "hidden"
-	}
-
-
-
 	var iniciar = setInterval(function(){
 
 
-		i == 3 ? i = 0 : false
+	i == 3 ? i = 0 : false
 
 		
-		custom_radio[i].classList.add('fiesta-buttons-1') // Encender luz
-		
+			// custom_radio[i].classList.add('foco-buttons-color') // Encender focos
+
+			custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
 
 
-		setTimeout(function(){ // Apagar luz
-			custom_radio[i].classList.remove('fiesta-buttons-1')
-			i = i + 1
-		}, 390)
+			setTimeout(function(){ 
+
+				custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
+
+
+				// // Si contiene la clase quítala
+				// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
+
+				i = i + 1
+
+			}, 390)
 
 
 
-		intervalos = intervalos + 1
+			intervalos = intervalos + 1
 
-		if(intervalos == 24)
-		{
-			clearInterval(iniciar)
-
-			for(let i=0; i < 3; i++)
+			if(intervalos == 24)
 			{
-				custom_radio[i].classList.remove('fiesta-buttons-1')
+				clearInterval(iniciar)
+			}		
 
-				setTimeout(function(){
-					custom_radio[i].classList.remove('fiesta-buttons-2')
-					color_texto.classList.remove('fiesta-color-texto')
-					color_texto.innerHTML = "Elige el número de piezas"
-
-						setTimeout(function(){
-							formatear_radio_16()
-							custom_radio_buttons()
-							custom_radio[i].classList.remove('fiesta-buttons-3')
-							custom_radio[i].nextElementSibling.style.visibility = "visible"
-						}, 1000)
-				}, 1000)
-			}
-		}				
 	}, 400)
 }
-
 
 
 
@@ -1407,10 +1463,16 @@ function fiesta_radio_buttons()
 // FIESTA COLOR TEXTO
 function fiesta_color_texto()
 {
+	color_texto.style.transition = "all, .4s"
 	color_texto.classList.add('fiesta-color-texto')
 	color_texto.innerHTML = "¡Prueba superada!"
-}
 
+	setTimeout(function(){
+		color_texto.classList.remove('fiesta-color-texto')
+		color_texto.innerHTML = "Elige el número de piezas"
+	}, 10000)
+}
+//*********************************************************************************************************
 
 
 
