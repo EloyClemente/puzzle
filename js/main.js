@@ -1467,7 +1467,7 @@ function formato_landscape()
 		header.style.maxWidth = "1200px"
 		boton_menu.style.display = "flex"
 		icono_menu.style.display = "flex"
-		container_puzzle.style.marginTop = "25px"
+		container_puzzle.style.marginTop = "20px"
 	}
 	else
 	{
@@ -1475,7 +1475,7 @@ function formato_landscape()
 		header.style.top = "0px"
 		boton_menu.style.display = "none"
 		icono_menu.style.display = "none"
-		container_puzzle.style.marginTop = "2%"
+		// container_puzzle.style.marginTop = "1%"
 	}
 	
 }
