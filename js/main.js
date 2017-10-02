@@ -1437,13 +1437,14 @@ function focos_radio_buttons()
 
 				custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
 
-
 				// // Si contiene la clase quítala
 				// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
 
-				i = i + 1
-
 			}, 390)
+
+
+
+			i = i + 1
 
 
 
