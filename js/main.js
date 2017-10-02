@@ -1452,6 +1452,43 @@ icono_menu.addEventListener('click', function(){
 
 
 
+window.addEventListener('resize', formato_landscape)
+
+function formato_landscape()
+{
+	var container_puzzle = document.getElementById('container_puzzle')
+
+	if(innerHeight < (header.offsetHeight + container_puzzle.offsetHeight))
+	{
+		header.classList.add('menu-plegable')
+		boton_menu.style.display = "flex"
+		icono_menu.style.display = "flex"
+	}
+	else
+	{
+		header.classList.remove('menu-plegable')
+		boton_menu.style.display = "none"
+		icono_menu.style.display = "none"
+	}
+	
+}
+formato_landscape()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function outline()
