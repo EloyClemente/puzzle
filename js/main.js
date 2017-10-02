@@ -1430,68 +1430,26 @@ function focos_radio_buttons()
 		i == 3 ? i = 0 : false
 
 
-		custom_radio[i].classList.toggle('foco-buttons-color')
+		custom_radio[i].classList.add('foco-buttons-color')
 
 
 
 		setTimeout(function(){
 			console.log(i)
-			custom_radio[i].classList.toggle('foco-buttons-color')
+			custom_radio[i].classList.remove('foco-buttons-color')
 			i = i + 1
 		}, 390)
 
 
-		
-
-		
+	
 
 
+		intervalos = intervalos + 1
 
-
-
-		// custom_radio[i].classList.add('foco-buttons-color')
-
-		// setTimeout(function(){ 
-
-		// 	// Si contiene la clase quítala
-		// 	// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
-
-		// 	custom_radio[i].classList.remove('foco-buttons-color')
-			
-		// }, 390)
-
-
-
-
-
-
-
-	// custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
-
-	// function toggle_focos()
-	// {
-	// 	var z = i
-
-	// 	setTimeout(function(){
-
-	// 		custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
-
-	// 		i = i + 1
-
-	// 	}, 390)
-	// }
-	// toggle_focos()
-
-		
-
-
-
-			intervalos = intervalos + 1
-
-			if(intervalos == 24)
-			{
-				clearInterval(iniciar)
-			}		
+		if(intervalos == 24)
+		{
+			clearInterval(iniciar)
+		}		
 
 	}, 400)
 }
