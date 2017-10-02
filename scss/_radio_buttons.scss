@@ -6,9 +6,6 @@
 }
 
 
-$anchura-li: 30px;
-
-
 
 
 
@@ -28,12 +25,12 @@ $anchura-li: 30px;
 }
 
 
-.texto-inputs{
+
+.elige-numero-piezas{
 	font-size: 14px;
 	font-weight: bold;
 	color: #009688;;
 }
-
 
 
 
@@ -46,19 +43,6 @@ $anchura-li: 30px;
 	{
 		width: 100%;
 	}
-	.item-input{
-		@include flex;
-		flex-wrap: wrap;
-		width: 70px;
-		.radio{
-			font-size: 50px;
-			background-color: blue;
-		}
-		.label-radio{
-			font-size: 14px;
-			padding-left: 5px;
-		}
-	}
 }
 
 
@@ -70,62 +54,75 @@ input[type=radio]{
 
 
 
-.label{
+//*********************
+.item-input{
+	@include flex;
+	flex-wrap: wrap;
+	width: 70px;
+}
+.radio{
+	font-size: 50px;
+}
+//*********************
+
+
+
+
+.label-radio{
+	font-size: 14px;
+	padding-left: 5px;
+	color: #888;
+}
+
+
+
+.label-radio-seleccionada{
 	font-weight: bold;
+	color: #009688;
 }
 
 
 
 
 
-.circulo{
-  width: 10px;
-  height: 10px;
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  border-radius: 100%;
-  background-color: #009688;
-}
-
-
-
-
-.custom-radio{
+.custom-radio-button{
 	width: 22px;
 	height: 22px;
 	border-radius: 50%;
+	border: 3px solid #009688;
+	box-shadow: 0 2px 4px #666 inset;
 	cursor: pointer;
 	position: relative;
 }
 
 
-.custom-radio-sombra{
-	box-shadow: 0 2px 4px #666 inset;
-}
 
-
-.custom-radio-border{
-	border: 3px solid #009688;
+.radio-button-seleccionado{
+	box-shadow: none;
 }
 
 
 
-
-.foco-buttons-color{
+.foco-luces{
 	background-color: violet;
 }
 
-.foco-buttons-size{
-	width: 30px;
-	height: 30px;
-	border: 0px solid #009688;
-	
+
+
+.foco-quitar-sombra{
+	box-shadow: 0 2px 4px #666 inset;
 }
 
-.foco-buttons-sombra{
-	box-shadow: 0 2px 4px #666 inset;
+
+
+.foco-size{
+	width: 30px;
+	height: 30px;
+}
+
+
+.custom-quitar-border{
+	border: 0px solid #009688;
 }
 
 
@@ -166,9 +163,21 @@ input[type=radio]{
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
-	// transition: all, .3s;
 	font-size: 20px;
 	letter-spacing: 1px;
 
 }
 
+
+
+
+.circulo{
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  background-color: #009688;
+}
