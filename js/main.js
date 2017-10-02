@@ -802,7 +802,7 @@ function animacion_de_botones(respuesta_suricata)
 	
 	//************************************************************************
 }
-// animacion_de_botones("presentacion")
+animacion_de_botones("presentacion")
 
 
 
@@ -931,7 +931,7 @@ function flexion(respuesta_suricata)
 		}
 	}, 90)
 }
-flexion("correcto")
+// flexion("correcto")
 
 
 
@@ -1428,16 +1428,6 @@ function focos_radio_buttons()
 		i == 3 ? i = 0 : false
 
 
-		// custom_radio[i].classList.add('foco-buttons-color')
-
-		// setTimeout(function(){
-		// 	custom_radio[i].classList.remove('foco-buttons-color')
-		// 	i = i + 1
-		// }, 390)
-
-
-
-
 		custom_radio[i].classList.toggle('foco-buttons-color')
 		i = i + 1
 
@@ -1445,7 +1435,7 @@ function focos_radio_buttons()
 
 		intervalos = intervalos + 1
 
-		if(intervalos == 96) // 24 en modo normal
+		if(intervalos == 96)
 		{
 			clearInterval(iniciar)
 		}		
