@@ -93,6 +93,7 @@ input[type=radio]{
 	box-shadow: 0 2px 4px #666 inset;
 	cursor: pointer;
 	position: relative;
+	-webkit-user-select: none;
 }
 
 
