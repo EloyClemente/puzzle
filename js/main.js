@@ -1439,12 +1439,12 @@ function focos_radio_buttons()
 
 				// // Si contiene la clase quítala
 				// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
-
+				i = i + 1
 			}, 390)
 
 
 
-			i = i + 1
+			
 
 
 
