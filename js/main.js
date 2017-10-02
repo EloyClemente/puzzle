@@ -1467,7 +1467,7 @@ function formato_landscape()
 		header.style.maxWidth = "1200px"
 		boton_menu.style.display = "flex"
 		icono_menu.style.display = "flex"
-		container_puzzle.style.marginTop = "15px"
+		container_puzzle.style.marginTop = "10px"
 	}
 	else
 	{
