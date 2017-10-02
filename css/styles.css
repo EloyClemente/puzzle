@@ -731,6 +731,9 @@ input[type=radio] {
   transition: all, .5s;
   z-index: 1000; }
 
+* {
+  -webkit-tap-highlight-color: transparent; }
+
 #outline {
   position: absolute;
   top: 97vh;
