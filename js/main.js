@@ -1422,29 +1422,67 @@ function focos_radio_buttons()
 	var intervalos = 0
 	
 	
+
+
 	var iniciar = setInterval(function(){
 
 
-	i == 3 ? i = 0 : false
+		i == 3 ? i = 0 : false
+
+
+		custom_radio[i].classList.toggle('foco-buttons-color')
+
+
+
+		setTimeout(function(){
+			console.log(i)
+			custom_radio[i].classList.toggle('foco-buttons-color')
+			i = i + 1
+		}, 390)
+
 
 		
-			// custom_radio[i].classList.add('foco-buttons-color') // Encender focos
 
-			custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
-
-
-			setTimeout(function(){ 
-
-				custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
-
-				// // Si contiene la clase quítala
-				// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
-				i = i + 1
-			}, 390)
+		
 
 
 
+
+
+		// custom_radio[i].classList.add('foco-buttons-color')
+
+		// setTimeout(function(){ 
+
+		// 	// Si contiene la clase quítala
+		// 	// custom_radio[i].classList.contains('foco-buttons-color') ? custom_radio[i].classList.remove('foco-buttons-color') : false
+
+		// 	custom_radio[i].classList.remove('foco-buttons-color')
 			
+		// }, 390)
+
+
+
+
+
+
+
+	// custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
+
+	// function toggle_focos()
+	// {
+	// 	var z = i
+
+	// 	setTimeout(function(){
+
+	// 		custom_radio[i].classList.toggle('foco-buttons-color') // Encender focos
+
+	// 		i = i + 1
+
+	// 	}, 390)
+	// }
+	// toggle_focos()
+
+		
 
 
 
