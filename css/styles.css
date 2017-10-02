@@ -140,8 +140,8 @@ textarea {
   padding-top: 5px;
   color: #009688;
   cursor: pointer; }
-  .icono-menu:focus {
-    outline: none; }
+  .icono-menu:selection {
+    background: transparent; }
   @media (min-width: 480px) {
     .icono-menu {
       display: none; } }

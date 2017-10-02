@@ -103,8 +103,8 @@ $anchura-li: 30px;
 	padding-top: 5px;
 	color: #009688;
 	cursor: pointer;
-	&:focus{
-		outline: none;
+	&:selection{
+		background: transparent;
 	}
 	@media(min-width: 480px){
 		display: none;
