@@ -1415,7 +1415,7 @@ function formato_focos()
 
 
 
-// FOCOS RADIO BUTTONS LUCES
+// FOCOS LUCES
 function focos_radio_buttons()
 {
 	var i = 0
@@ -1432,13 +1432,8 @@ function focos_radio_buttons()
 		i = i + 1
 
 
-
 		intervalos = intervalos + 1
-
-		if(intervalos == 96)
-		{
-			clearInterval(iniciar)
-		}		
+		intervalos == 96 ? clearInterval(iniciar) : false	
 
 	}, 100)
 }
