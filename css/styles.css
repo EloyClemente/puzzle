@@ -644,9 +644,7 @@ input[type=radio] {
       height: 45vw;
       max-width: 500px;
       max-height: 500px;
-      margin-bottom: 0;
-      margin-left: 15px;
-      margin-right: 15px; } }
+      margin-bottom: 0; } }
 
 .casillas-9,
 .casillas-16,
