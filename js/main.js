@@ -1458,15 +1458,18 @@ function formato_landscape()
 {
 	var container_puzzle = document.getElementById('container_puzzle')
 
+	console.log(header.offsetHeight + container_puzzle.offsetHeight)
+	console.log(innerHeight)
+
 	if(innerHeight < (header.offsetHeight + container_puzzle.offsetHeight))
 	{
-		header.classList.add('menu-plegable')
+		header.style.position = "absolute"
 		boton_menu.style.display = "flex"
 		icono_menu.style.display = "flex"
 	}
 	else
 	{
-		header.classList.remove('menu-plegable')
+		header.style.position = "relative"
 		boton_menu.style.display = "none"
 		icono_menu.style.display = "none"
 	}
