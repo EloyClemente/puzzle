@@ -823,7 +823,6 @@ input[type=radio] {
 
 body {
   font-family: "Open Sans", sans-serif;
-  overflow-y: hidden;
   overflow-x: hidden; }
 
 .container {
