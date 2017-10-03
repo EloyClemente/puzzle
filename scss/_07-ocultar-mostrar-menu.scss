@@ -37,14 +37,12 @@
 	color: #009688;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
-	// -webkit-user-select: none;
 	&:hover{
 		color: lighten(#009688, 10%);
 	}
 	@media(min-width: 480px){
 		width: 30px;
 		height: 30px;
-		// top: 50px;
 		left: 97%;
 		padding-top: 0;
 		display: none;

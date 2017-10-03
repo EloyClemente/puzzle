@@ -8,7 +8,7 @@ const container_destino = document.getElementById('container_destino')
 var casillas_destino    = document.getElementById('container_destino').getElementsByTagName('div')
 var casillas_actuales   = container_destino.getElementsByTagName('div')
 
-var piezas              = document.getElementById('container_origen').getElementsByTagName('img')
+var piezas = document.getElementById('container_origen').getElementsByTagName('img')
 
 var nombre_puzzle
 
@@ -219,8 +219,6 @@ function evento_desplegable()
 		selector_puzzle[i].addEventListener('mouseenter', miniaturas_mostrar)
 		selector_puzzle[i].addEventListener('mouseleave', miniaturas_ocultar)
 		selector_puzzle[i].addEventListener('click', enviar_por_lista)
-
-		// selector_puzzle[i].addEventListener('touchstart', puzzle_listo)
 	}
 } evento_desplegable()
 
@@ -347,7 +345,6 @@ function actualizar_radio_buttons()
 		custom_radio_button[i].innerHTML = "" // Vaciamos todos los custom radio buttons
 	}
 	
-	// this.appendChild(insertar_circulo()) // Y luego insertamos el círculo en el que haya sido seleccionado
 	this.previousElementSibling.checked = true // Activamos el radio button correspondiente
 
 	radio_button_seleccionado()
@@ -786,7 +783,6 @@ function validar_resultado()
 
 
 
-	console.log('1: ' + animando)
 
 	if(animando == false) // Si no hay animación en curso
 	{
@@ -821,7 +817,6 @@ function validar_resultado()
 function animacion_de_botones(respuesta_suricata)
 {
 	animando = true // Evita disparar una nueva animación
-	console.log('2: ' + animando)
 
 	if(respuesta_suricata == "correcto" || respuesta_suricata == "incorrecto")
 	{
@@ -841,7 +836,6 @@ function animacion_de_botones(respuesta_suricata)
 			entrada(respuesta_suricata)
 	}, 1000)
 	
-	//************************************************************************
 }
 animacion_de_botones("presentacion")
 
@@ -972,7 +966,7 @@ function flexion(respuesta_suricata)
 		}
 	}, 90)
 }
-// flexion("correcto")
+
 
 
 
@@ -1199,7 +1193,6 @@ function salida()
 			fadeIn(boton_solucion, 20)
 
 			animando = false // Termina la animación y podemos disparar otra
-			console.log('3: ' + animando)
 		}
 
 	}, 10)
@@ -1270,11 +1263,6 @@ function posicion_solucion()
 	var container_solucion_rejilla = document.getElementById('container_solucion_rejilla')
 
 	capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
-
-	// if(window.matchMedia("(min-width: 480px)").matches)
-	// {
-	// 	capa_solucion.style.left = ((header.offsetWidth / 2) - 100) + "px"
-	// }
 }
 
 
@@ -1361,11 +1349,6 @@ function fadeOut(elemento, intervalos){
 				  }
 	}, intervalos);
 }
-
-
-
-
-
 
 
 
@@ -1549,34 +1532,6 @@ function formato_landscape()
 	
 }
 formato_landscape()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function outline()
-{
-	let allElements = document.getElementsByTagName('*');
-
-	for(let i=0; i < allElements.length; i++)
-	{
-		let elem = allElements[i];
-
-		elem.classList.toggle('outline');
-	}
-}
-// document.getElementById('outline').addEventListener('click',outline);
-
 
 
 
