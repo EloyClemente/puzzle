@@ -730,7 +730,7 @@ function validar_resultado()
 			if(resultado == "574632198" || 
 			   resultado == "57463219151114161210138" || 
 			   resultado == "12101177222194155316131121149252482018236")
-			{
+			{ // 12 10 1 17 7222194155316131121149242382018256")
 				cont = 0 // Reseteamos las variables que usaremos en la animación
 				animacion_de_botones("correcto")
 			}
@@ -1475,7 +1475,6 @@ function formato_landscape()
 		header.style.top = "0px"
 		boton_menu.style.display = "none"
 		icono_menu.style.display = "none"
-		// container_puzzle.style.marginTop = "1%"
 	}
 	
 }
