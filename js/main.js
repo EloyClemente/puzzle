@@ -15,7 +15,8 @@ var nombre_puzzle
 var contador = 0
 
 
-// PARA LA ANIMACIÓN DE LA DISCOTECA
+// PARA LA ANIMACIÓN
+var animando = false
 var color_texto = document.getElementById('color_texto')
 //******************************************************
 
@@ -232,8 +233,6 @@ function puzzle_listo()
 	var boton_desplegable = document.getElementById('boton_desplegable')
 	var contador = 0
 
-	console.log(this)
-
 	document.addEventListener('touchstart', function(){
 		
 	})
@@ -272,8 +271,6 @@ function miniaturas_mostrar(event)
 function miniaturas_ocultar(event)
 {
 	capa_miniatura.parentNode.removeChild(capa_miniatura)
-
-	console.log(event.type)
 }
 
 
@@ -785,19 +782,27 @@ function validar_resultado()
 
 		resultado = resultado + pieza_ID
 	}	
+	
 
-			if(resultado == "574632198" || 
-			   resultado == "57463219151114161210138" || 
-			   resultado == "12101177222194155316131121149252482018236")
-			{ // 12 10 1 17 7222194155316131121149242382018256")
-				cont = 0 // Reseteamos las variables que usaremos en la animación
-				animacion_de_botones("correcto")
-			}
-			else
-			{
-				cont = 0
-				animacion_de_botones("incorrecto")
-			}
+
+
+	console.log('1: ' + animando)
+
+	if(animando == false) // Si no hay animación en curso
+	{
+		if(resultado == "574632198" || 
+		   resultado == "57463219151114161210138" || 
+		   resultado == "12101177222194155316131121149252482018236")
+		{
+			cont = 0 // Reseteamos las variables que usaremos en la animación
+			animacion_de_botones("correcto")
+		}
+		else
+		{
+			cont = 0
+			animacion_de_botones("incorrecto")
+		}
+	} 
 }
 
 
@@ -815,6 +820,9 @@ function validar_resultado()
 // ANIMACIONES PARA LOS BOTONES REJILLA Y SOLUCIÓN
 function animacion_de_botones(respuesta_suricata)
 {
+	animando = true // Evita disparar una nueva animación
+	console.log('2: ' + animando)
+
 	if(respuesta_suricata == "correcto" || respuesta_suricata == "incorrecto")
 	{
 		fadeOut(boton_solucion, 20)
@@ -1189,6 +1197,9 @@ function salida()
 
 			boton_rejilla.style.transform = "translate(0, 0)"
 			fadeIn(boton_solucion, 20)
+
+			animando = false // Termina la animación y podemos disparar otra
+			console.log('3: ' + animando)
 		}
 
 	}, 10)
@@ -1538,10 +1549,6 @@ function formato_landscape()
 	
 }
 formato_landscape()
-
-console.log('base puzzle: ' + container_destino.getBoundingClientRect().bottom)
-console.log('viewport height: ' + innerHeight)
-
 
 
 
