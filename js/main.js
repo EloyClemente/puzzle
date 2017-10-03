@@ -282,7 +282,11 @@ function miniaturas_ocultar(event)
 function seleccion_tactil()
 {
 	capa_miniatura.addEventListener('touchstart', function(){
-		capa_miniatura.style.display = "none"
+
+		setTimeout(function(){
+			capa_miniatura.style.display = "none" // Para no tocar el panel cuando desaparezca
+		}, 10)
+		
 
 		var capa_listo = document.createElement('h1')
 		capa_listo.classList.add('capa-listo')
