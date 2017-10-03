@@ -721,6 +721,9 @@ input[type=radio] {
 .rejilla {
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
+.borde_para_movil {
+  border: 1px solid red; }
+
 .caminar,
 .flexion,
 .presentacion,

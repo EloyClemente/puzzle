@@ -623,13 +623,13 @@ function colocar_piezas(event)
 				    event.changedTouches[0].clientY > casilla_seleccionada.getBoundingClientRect().top &&
 				    event.changedTouches[0].clientY < casilla_seleccionada.getBoundingClientRect().bottom)
 				{		
-					casilla_seleccionada.style.border = "1px solid red"
+					casilla_seleccionada.classList.add('borde_para_movil')
 					panel_destino()
 				}
 				else
 				{
 					casilla_seleccionada.style.backgroundColor = "transparent"
-					// casilla_seleccionada.style.border = "none"
+					casilla_seleccionada.classList.remove('borde_para_movil')
 				}
 			}
 			//************************************************************************************************************
@@ -670,7 +670,7 @@ function colocar_piezas(event)
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
 							document.getElementById( lista_destino[0] ).appendChild(event.target)
-							// document.getElementById( lista_destino[0] ).style.border = "none" // Para la versión móvil
+							document.getElementById( lista_destino[0] ).classList.remove('borde_para_movil')// Para la versión móvil
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 
 							setTimeout(function(){
