@@ -259,15 +259,11 @@ function miniaturas_mostrar(event)
 	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + "-200.jpg)"
 
 	
-	capa_miniatura.addEventListener('touchstart', function(){
-		capa_miniatura.style.display = "none"
-	})
-
+	seleccion_tactil() // Seleccionar puzzle con el dedo
 
 
 	event.stopPropagation()
 }
-
 
 
 
@@ -279,6 +275,30 @@ function miniaturas_ocultar(event)
 
 	console.log(event.type)
 }
+
+
+
+// SELECCIONAR PUZZLE CON EL DEDO
+function seleccion_tactil()
+{
+	capa_miniatura.addEventListener('touchstart', function(){
+		capa_miniatura.style.display = "none"
+
+		var capa_listo = document.createElement('h1')
+		capa_listo.classList.add('capa-listo')
+		capa_listo.innerHTML = "Listo"
+		document.body.appendChild(capa_listo)
+
+		fadeIn(capa_listo, 20)
+
+		setTimeout(function(){
+			fadeOut(capa_listo, 20)
+		}, 2000)
+	})
+}
+
+
+
 
 
 

@@ -153,6 +153,18 @@ $anchura-li: 30px;
 }
 
 
-.puzzle-listo{
-	background-color: #304FFE;
+.capa-listo{
+	@include flex;
+	width: 100%;
+	height: 70px;
+	font-size: 25px;
+	font-weight: lighter;
+	letter-spacing: 1px;
+	font-family: Open Sans;
+	position: absolute;
+	top: 40%;
+	color: #fff;
+	background-color: rgba(#009688, .7);
+	transition: all, .3s;
+	opacity: 0;
 }
