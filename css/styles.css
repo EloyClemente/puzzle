@@ -306,6 +306,9 @@ textarea {
       width: 200px;
       height: 200px; } }
 
+.puzzle-listo {
+  background-color: #304FFE; }
+
 .container-radio {
   display: -webkit-box;
   display: -webkit-flex;

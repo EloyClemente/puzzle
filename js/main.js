@@ -218,10 +218,26 @@ function evento_desplegable()
 		selector_puzzle[i].addEventListener('mouseenter', miniaturas_mostrar)
 		selector_puzzle[i].addEventListener('mouseleave', miniaturas_ocultar)
 		selector_puzzle[i].addEventListener('click', enviar_por_lista)
+
+		// selector_puzzle[i].addEventListener('touchstart', puzzle_listo)
 	}
 } evento_desplegable()
 
 
+
+
+
+function puzzle_listo()
+{
+	var boton_desplegable = document.getElementById('boton_desplegable')
+	var contador = 0
+
+	console.log(this)
+
+	document.addEventListener('touchstart', function(){
+		
+	})
+}
 
 
 
@@ -242,14 +258,26 @@ function miniaturas_mostrar(event)
 
 	capa_miniatura.style.backgroundImage = "url(img/miniaturas/" + imagen + "-200.jpg)"
 
+	
+	capa_miniatura.addEventListener('touchstart', function(){
+		capa_miniatura.style.display = "none"
+	})
+
+
+
 	event.stopPropagation()
 }
+
+
+
 
 
 // OCULTAR MINIATURAS
 function miniaturas_ocultar(event)
 {
 	capa_miniatura.parentNode.removeChild(capa_miniatura)
+
+	console.log(event.type)
 }
 
 
