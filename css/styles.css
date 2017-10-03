@@ -326,7 +326,7 @@ textarea {
   letter-spacing: 1px;
   font-family: Open Sans;
   position: absolute;
-  top: 30%;
+  top: 35%;
   color: #fff;
   background-color: rgba(0, 150, 136, 0.9);
   -webkit-transition: all, .3s;
