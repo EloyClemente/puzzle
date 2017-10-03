@@ -53,21 +53,24 @@ var click = 0
 
 boton_rejilla.addEventListener('click', function(){
 
-	for(let i=0; i < casillas_destino.length; i++)
-	{
-		casillas_destino[i].classList.toggle('rejilla')
-	}
-
-	if(click == 0)
-	{
-		boton_rejilla.value = "Ocultar rejilla"
-		click = 1
-	}
-	else
-	{
-		boton_rejilla.value = "Mostrar rejilla"
-		click = 0
-	}
+		if(click == 0)
+		{
+			for(let i=0; i < casillas_destino.length; i++)
+			{
+				casillas_destino[i].classList.add('rejilla')
+			}
+			boton_rejilla.value = "Ocultar rejilla"
+			click = 1
+		}
+		else
+		{
+			for(let i=0; i < casillas_destino.length; i++)
+			{
+				casillas_destino[i].classList.remove('rejilla')
+			}
+			boton_rejilla.value = "Mostrar rejilla"
+			click = 0
+		}
 })
 
 
@@ -626,7 +629,7 @@ function colocar_piezas(event)
 				else
 				{
 					casilla_seleccionada.style.backgroundColor = "transparent"
-					casilla_seleccionada.style.border = "none"
+					// casilla_seleccionada.style.border = "none"
 				}
 			}
 			//************************************************************************************************************
@@ -667,7 +670,7 @@ function colocar_piezas(event)
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
 							document.getElementById( lista_destino[0] ).appendChild(event.target)
-							document.getElementById( lista_destino[0] ).style.border = "none" // Para la versión móvil
+							// document.getElementById( lista_destino[0] ).style.border = "none" // Para la versión móvil
 							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 
 							setTimeout(function(){
