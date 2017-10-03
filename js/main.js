@@ -285,7 +285,7 @@ function seleccion_tactil()
 
 		setTimeout(function(){
 			capa_miniatura.style.display = "none" // Para no tocar el panel cuando desaparezca
-		}, 20)
+		}, 100)
 		
 
 		var capa_listo = document.createElement('h1')
