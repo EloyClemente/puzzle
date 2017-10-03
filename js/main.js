@@ -287,7 +287,7 @@ function seleccion_tactil()
 		var capa_listo = document.createElement('h1')
 		capa_listo.classList.add('capa-listo')
 		capa_listo.innerHTML = "Listo"
-		document.body.appendChild(capa_listo)
+		header.appendChild(capa_listo)
 
 		fadeIn(capa_listo, 20)
 
