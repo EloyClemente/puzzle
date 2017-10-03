@@ -294,6 +294,10 @@ function seleccion_tactil()
 		setTimeout(function(){
 			fadeOut(capa_listo, 20)
 		}, 2000)
+
+		setTimeout(function(){
+			capa_listo.parentNode.removeChild(capa_listo)
+		}, 4000)
 	})
 }
 

@@ -332,7 +332,8 @@ textarea {
   -webkit-transition: all, .3s;
   -o-transition: all, .3s;
   transition: all, .3s;
-  opacity: 0; }
+  opacity: 0;
+  z-index: 3000; }
 
 .container-radio {
   display: -webkit-box;
