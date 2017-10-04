@@ -173,6 +173,9 @@ textarea {
       width: 25%;
       height: 130px;
       border: none; } }
+  @media (min-width: 600px) {
+    .container-selector {
+      width: 21%; } }
 
 .container-lista {
   display: -webkit-box;
@@ -362,6 +365,9 @@ textarea {
       width: 55%;
       height: 130px;
       border-bottom: none; } }
+  @media (min-width: 600px) {
+    .container-radio {
+      width: 59%; } }
 
 .elige-numero-piezas {
   font-size: 14px;
