@@ -716,7 +716,8 @@ input[type=radio] {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   -webkit-box-shadow: 0 5px 10px -5px #666;
-  box-shadow: 0 5px 10px -5px #666; }
+  box-shadow: 0 5px 10px -5px #666;
+  position: relative; }
   @media (min-width: 480px) {
     .puzzle {
       width: 45vw;
@@ -758,6 +759,12 @@ input[type=radio] {
 
 .borde_para_movil {
   border: 1px solid red; }
+
+.nota {
+  text-align: center;
+  line-height: 25px;
+  color: #a0a0a0;
+  position: absolute; }
 
 .caminar,
 .flexion,

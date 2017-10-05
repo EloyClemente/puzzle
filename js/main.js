@@ -101,6 +101,7 @@ function crear_rejillas( numero_de_casillas )
 	}
 
 
+
 	
 	if(click == 1) // Si la opción "mostrar rejilla" está activada, mantener la clase rejilla
 	{
@@ -111,6 +112,7 @@ function crear_rejillas( numero_de_casillas )
 	}
 }
 crear_rejillas( "16" ) // 16 por defecto
+
 
 
 
@@ -142,6 +144,31 @@ function estilo_casillas( capa_casilla_origen, capa_casilla_destino, numero_de_c
 }
 //***********************************************************
 
+
+
+
+
+
+
+// MONTA EL PUZZLE EN ESTA PANEL
+var parrafo_nota = document.createElement('p')
+
+function introducir_nota()
+{
+	parrafo_nota.classList.add('nota')
+
+	parrafo_nota.innerHTML = "Monta el puzzle en este panel " + "<br>" + " para que lo revise el suricata"
+
+	container_destino.appendChild(parrafo_nota)
+}
+introducir_nota()
+
+
+// BORRAR NOTA
+function ocultar_nota()
+{
+	parrafo_nota.style.display = "none"
+}
 
 
 
@@ -641,19 +668,25 @@ function colocar_piezas(event)
 				window.addEventListener('mouseup', soltar_origen)
 				window.addEventListener('touchend', soltar_origen) // MÓVIL
 
+
+
 				function soltar_origen(event) // IMPORTANTE PONER AQUÍ EVENT, PARA QUE EL EVENT.TARGET DEJE DE SER UNA IMAGEN...
 				{
 					if(event.target.nodeName == 'IMG') // ...Y AL CLICAR EN LA REJILLA NO NOS DE FALLO
 					{
 						if(lista_origen.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
-							document.getElementById( lista_origen[0] ).appendChild(event.target)
-							lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+							if(document.getElementById( lista_origen[0]).innerHTML == "") // Esto evita que se monten las piezas
+							{
+								document.getElementById( lista_origen[0] ).appendChild(event.target)
+								lista_origen = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+							}
 						}
 					}
 				} // soltar_origen(event) 
 			} // panel_origen()
 		} // for(var i=0; i < casillas_destino.length; i++)
+
 
 
 
@@ -710,6 +743,7 @@ function colocar_piezas(event)
 
 
 
+
 				window.addEventListener('mouseup', soltar_destino)
 				window.addEventListener('touchend', soltar_destino) // MÓVIL
 
@@ -719,13 +753,19 @@ function colocar_piezas(event)
 					{
 						if(lista_destino.length == 1) // Si hay casilla seleccionada introduce en ella el event.target
 						{
-							document.getElementById( lista_destino[0] ).appendChild(event.target)
-							document.getElementById( lista_destino[0] ).classList.remove('borde_para_movil')// Para la versión móvil
-							lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
 
-							setTimeout(function(){
-								revisar_si_lleno()
-							}, 300) // Para que le de tiempo a insertar la pieza. Por extraño que parezca, esta es la solución
+							if(document.getElementById( lista_destino[0]).innerHTML == "") // Esto evita que se monten las piezas
+							{
+								document.getElementById( lista_destino[0] ).appendChild(event.target)
+								document.getElementById( lista_destino[0] ).classList.remove('borde_para_movil')// Para la versión móvil
+								lista_destino = [] // Deselecciona la casilla para que no se muevan las piezas a ella al clicarlas
+
+								ocultar_nota() // Oculta la nota que especifica donde montar el puzzle
+
+								setTimeout(function(){
+									revisar_si_lleno()
+								}, 300) // Para que le de tiempo a insertar la pieza. Por extraño que parezca, esta es la solución
+							}
 						}
 					}
 				} // soltar_destino(event) 
