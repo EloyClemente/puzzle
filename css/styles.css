@@ -862,8 +862,15 @@ body {
 .licencia {
   width: 100%;
   padding: 2px;
+  color: #666;
   font-size: 12px;
   text-align: center; }
+
+.imagen-CC {
+  width: 70px; }
+
+.gray {
+  color: #666; }
 
 .blue {
   color: blue; }
