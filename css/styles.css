@@ -864,3 +864,6 @@ body {
   padding: 2px;
   font-size: 12px;
   text-align: center; }
+
+a {
+  color: blue; }
