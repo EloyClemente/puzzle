@@ -150,7 +150,7 @@ function estilo_casillas( capa_casilla_origen, capa_casilla_destino, numero_de_c
 
 
 
-// MONTA EL PUZZLE EN ESTA PANEL
+// NOTA:  MONTA EL PUZZLE EN ESTA PANEL
 var parrafo_nota = document.createElement('p')
 
 function introducir_nota()
@@ -159,9 +159,22 @@ function introducir_nota()
 
 	parrafo_nota.innerHTML = "Monta el puzzle aquí " + "<br>" + " para que lo revise el suricata"
 
+	
+
 	container_destino.appendChild(parrafo_nota)
 }
 introducir_nota()
+
+
+
+
+window.addEventListener('resize', posicion_nota)
+
+function posicion_nota()
+{
+	parrafo_nota.style.left = (container_destino.offsetWidth / 2) - 110 + "px"
+}
+
 
 
 // BORRAR NOTA

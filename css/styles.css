@@ -761,10 +761,13 @@ input[type=radio] {
   border: 1px solid red; }
 
 .nota {
+  width: 220px;
   text-align: center;
   line-height: 25px;
   color: #a0a0a0;
-  position: absolute; }
+  position: absolute;
+  top: 45%;
+  left: 30%; }
 
 .caminar,
 .flexion,
