@@ -157,9 +157,8 @@ function introducir_nota()
 {
 	parrafo_nota.classList.add('nota')
 
-	parrafo_nota.innerHTML = "Monta el puzzle aquí " + "<br>" + " para que lo revise el suricata"
-
-	
+	parrafo_nota.innerHTML  = "Monta el puzzle aquí " + "<br>" + " para que lo revise el suricata"
+	parrafo_nota.style.left = (container_destino.offsetWidth / 2) - 110 + "px"
 
 	container_destino.appendChild(parrafo_nota)
 }
