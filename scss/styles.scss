@@ -1,0 +1,90 @@
+@import "reset";
+@import "botones";
+@import "01-contenedor-header";
+@import "02-titulo";
+@import "03-contenedor-controles";
+@import "04-lista-desplegable";
+@import "05-radio-buttons";
+@import "06-botones-solucion-rejilla";
+@import "07-ocultar-mostrar-menu";
+@import "08-puzzles";
+@import "09-suricata";
+
+
+@mixin flex{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+*{ -webkit-tap-highlight-color: transparent; }
+
+
+// *{outline: 1px solid #e0e0e0; }
+
+
+body{
+	font-family: "Open Sans", sans-serif;
+	overflow-x: hidden;
+	background-color: #fafafa;
+}
+
+
+
+
+
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	height: 100vh;
+	margin-left: auto;
+	margin-right: auto; 
+	overflow: hidden;
+	@media(min-width: 480px){
+		padding: 0;
+	}
+}
+
+
+
+.container-licencia{
+	@include flex;
+	flex-direction: column;
+}
+
+.licencia{
+	width: 100%;
+	padding: 2px;
+	color: #666;
+	font-size: 12px;
+	text-align: center;
+}
+
+
+
+.imagen-CC{
+	width: 70px;
+}
+
+.logo-CC{
+	width: 79px;
+	height: 28px;
+	background-image: url(https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin-bottom: 6px;
+}
+
+.gray{
+	color: #666;
+}
+
+
+
+
+.blue{
+	color: blue;
+}
+

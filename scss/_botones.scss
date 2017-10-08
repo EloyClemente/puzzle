@@ -1,0 +1,25 @@
+
+
+
+@mixin boton-01 ($bgColor){
+	margin: 0;
+	border: 0;
+	padding: .5em .9em;
+	font-size: 16px;
+	outline: none;
+	box-sizing: border-box;
+	border-radius: 2px;
+	cursor: pointer;
+	color: #fff;
+	background-color: $bgColor;
+	box-shadow: 0 .1em .2em -.1em #666;
+	transition: all, .03s;
+	&:hover{
+		background-color: lighten($bgColor, 10%);
+	}
+	&:active{
+		transform: scale(.96, .96);
+		box-shadow: 0 0 0  #fff;
+		border-radius: 4px;
+	}
+}

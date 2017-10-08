@@ -909,6 +909,7 @@ function entrada(respuesta_suricata)
 
 	// ANIMACIÓN DE LA CAPA
 	var capa_caminar = document.getElementById('caminar')
+	capa_caminar.style.visibility = "visible"
 
 	var position_capa = header.offsetWidth // Hay que tomar como referencia el contenedor padre (el header)
 	var sprite_position_x = 0
@@ -920,7 +921,7 @@ function entrada(respuesta_suricata)
 	{
 		// Mover capa *********************************
 		capa_caminar.style.left = position_capa + "px"
-		position_capa           = position_capa - 1.4 // Velocidad de la capa
+		position_capa = position_capa - 1.4 // Velocidad de la capa
 		//*********************************************
 
 
@@ -1235,8 +1236,10 @@ function salida()
 
 
 		// Detener
-		if(caminar.getBoundingClientRect().left < header.getBoundingClientRect().left - 200)
+		if(caminar.getBoundingClientRect().left < header.getBoundingClientRect().left - 150)
 		{
+			capa_caminar.style.visibility = "hidden"
+
 			clearInterval(iniciar)
 
 			cont = 0

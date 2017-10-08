@@ -70,7 +70,8 @@ textarea {
   width: 100%;
   height: 220px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fafafa; }
+  background-color: #fafafa;
+  position: relative; }
   @media (min-width: 480px) {
     .container-controles {
       flex-direction: row;
@@ -515,7 +516,7 @@ input[type=radio] {
   visibility: hidden; }
 
 .caminar {
-  left: 100%;
+  left: 150%;
   background-image: url(../img/suricata/caminar.png);
   visibility: visible; }
 
